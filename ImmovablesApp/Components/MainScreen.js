@@ -20,9 +20,9 @@ export default class MainScreen extends Component {
 
   // navigationOptions 코드 추가
   static navigationOptions = {
-    headerLeft: <Icon name='ios-camera' style={{ paddingLeft:10 }}/>,
-    headerRight: <Icon name='ios-send' style={{ paddingRight:10 }}/>,
-    title: <Text>Instagram</Text>,
+    //headerLeft: <Icon name='ios-camera' style={{ paddingLeft:10 }}/>,
+    //headerRight: <Icon name='ios-send' style={{ paddingRight:10 }}/>,
+    title: <Text>어디 살래?</Text>,
   }
 
   render() {

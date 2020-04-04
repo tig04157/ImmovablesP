@@ -11,7 +11,7 @@ Login View
     * 회원가입 버튼 기능 미구현
     * OAuth 2.0 도입 예정
     
-![login](https://user-images.githubusercontent.com/45858414/78423460-65536d80-76a1-11ea-8540-3fde8ea37148.png width="10" height="10")
+<img src="https://user-images.githubusercontent.com/45858414/78423460-65536d80-76a1-11ea-8540-3fde8ea37148.png" width="10")
 
 Collaborator
 ===

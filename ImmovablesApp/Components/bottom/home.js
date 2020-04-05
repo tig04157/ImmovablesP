@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Container, Content,Icon } from 'native-base';
-import CardComponent  from './CardComponent'; 
+import CardComponent  from '../CardComponent'; 
 
 export default class home extends Component {
 

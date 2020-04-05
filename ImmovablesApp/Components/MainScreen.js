@@ -5,11 +5,11 @@ import { createAppContainer } from 'react-navigation'
 import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
 import Login from './Login/Login' 
-import home from './home'
-import like from './like'
-import map from './map'
-import sell from './sell'
-import plus from './plus'
+import home from './bottom/home'
+import like from './bottom/like'
+import map from './bottom/map'
+import sell from './bottom/sell'
+import plus from './bottom/plus'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},

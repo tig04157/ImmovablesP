@@ -1,18 +1,42 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import { Icon } from 'native-base';
 import { createAppContainer } from 'react-navigation'
-import {createBottomTabNavigator } from 'react-navigation-tabs'
+import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
 import Login from './Login/Login' 
-import test1 from './test1'
-import test2 from './test2'
+import home from './home'
+import like from './like'
+import map from './map'
+import sell from './sell'
+import plus from './plus'
 
-const AppTabNavigator = createBottomTabNavigator({
-    //LoginTab : {screen: Login},
-    test1: {screen:test1},
-    test2: {screen:test2}
-})
+const AppTabNavigator = createMaterialTopTabNavigator({
+    홈 : {screen: home},
+    관심목록: {screen:like},
+    지도: {screen:map},
+    분양: {screen:sell},
+    더보기: {screen:plus}
+}, {
+  animationEnabled: true,
+  swipeEnabled: true,
+  tabBarPosition: "bottom",
+  tabBarOptions: {
+    style : {
+      ...Platform.select({
+        ios:{
+          backgroundColor:'white',
+        }
+      })
+    },
+    iconStyle: {height:30},
+    activeTintColor:'#000',
+    inactiveTintColor:'#d1cece',
+    upperCaseLabel: false,
+    showLabel: true,
+    showIcon:true,
+  }
+});
 
 const AppTabContainet = createAppContainer(AppTabNavigator);
 

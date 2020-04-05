@@ -5,8 +5,6 @@ import CardComponent  from './CardComponent';
 
 export default class home extends Component {
 
-    
-
       state = {
         feeds: []
     }

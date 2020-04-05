@@ -6,14 +6,18 @@ import Login  from './Components/Login/Login';
 import test  from './Components/Login/test';
 import MainScreen from  './Components/MainScreen'
 
+/*
+*/
+
 const AppStackNavigator = createStackNavigator({
-  Main:{
+  
+  Login:{
       screen: Login // Login 컴포넌트를 네비게이터에 등록
     },
   },
   {
     headerLayoutPreset: 'center'
-  }
+  },
 );
 
 export default createAppContainer(AppStackNavigator);

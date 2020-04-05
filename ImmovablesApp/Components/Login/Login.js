@@ -8,10 +8,12 @@ import {
   Text, 
   View 
 } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import { Icon } from 'native-base';
 import CustomButton from '../Util/CustomButton';
+import Main from './../MainScreen'
 
 export default class Login extends Component {
 
@@ -29,6 +31,12 @@ export default class Login extends Component {
           pw: ''
       };  
     }  
+
+    _doLogin(){
+      // do something
+      this.props.navigation.replace('TabNavigator')
+    } 
+  
 
     render() {    
       return (
@@ -60,7 +68,7 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'cornflowerblue'}
             title={'로그인'}
-            onPress={() => alert('로그인')}/>
+            onPress={this._doLogin.bind(this)}/>
           <CustomButton 
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
@@ -98,8 +106,9 @@ export default class Login extends Component {
       backgroundColor: '#EFE4B0',
     },
     footer: {
-      width:'100%',
-      height:'20%',
+      flex: 1,
+      width: '100%',
+      height: hp('10%'),
       backgroundColor: '#EFE4B0',
     },
   });

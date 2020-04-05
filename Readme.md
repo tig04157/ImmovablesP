@@ -34,6 +34,9 @@ OH chan-hae
     Update a Team Logo.
     Update a Readme.md.
     Create a loginView.
+> ### 2020-04-05
+    Update a App, LoginScreen(connect MainScreen)
+
 
 Kim jong-min
 ---

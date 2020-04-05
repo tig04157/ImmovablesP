@@ -16,6 +16,7 @@ export default class home extends Component {
             })
         });
     }
+    
     fetchFeeds() {
         const data = {
             id: 1,

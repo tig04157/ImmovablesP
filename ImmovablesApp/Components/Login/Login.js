@@ -34,9 +34,8 @@ export default class Login extends Component {
 
     _doLogin(){
       // do something
-      this.props.navigation.replace('TabNavigator')
-    } 
-  
+      this.props.navigation.replace('next')
+    }   
 
     render() {    
       return (

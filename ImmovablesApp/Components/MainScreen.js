@@ -22,12 +22,13 @@ const AppTabNavigator = createMaterialTopTabNavigator({
   swipeEnabled: true,
   tabBarPosition: "bottom",
   tabBarOptions: {
-    style : {
+    style : {/*
       ...Platform.select({
         ios:{
           backgroundColor:'white',
         }
-      })
+      })*/
+      backgroundColor:'white',
     },
     iconStyle: {height:30},
     activeTintColor:'#000',

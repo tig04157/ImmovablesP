@@ -37,3 +37,6 @@ OH chan-hae
 
 Kim jong-min
 ---
+> ### 2020-04-05
+    Update a MainScreen.
+    Update a BottomButton.

@@ -43,4 +43,7 @@ Kim jong-min
 > ### 2020-04-05
     Update a MainScreen.
     Update a BottomButton.   
+> ### 2020-04-05
+    Update a Header(Fiexd Title -> Changeable Title)
+    Update a LikeView  
 

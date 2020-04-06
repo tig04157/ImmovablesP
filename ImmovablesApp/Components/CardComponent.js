@@ -9,51 +9,30 @@ export default class CardComponent extends Component {
       return (
           <Card>
               <CardItem>
-                <Left>
-                  <Thumbnail source={{ uri: `https://steemitimages.com/u/${data.author}/avatar` }} />
-                  <Body>
-                    <Text>{data.author}</Text>
+                  <Body >
+                    <Text style = {{ fontWeight:'900'}}>월세정보{data.author}</Text>
                     <Text note>{new Date(data.created).toDateString()}</Text>
+                    {
+                    (data.body.replace(/\n/g,' ').slice(0, 15)).length>=11 ?
+                    <Text> 
+                      {data.body.replace(/\n/g,' ').slice(0, 12) }...
+                    </Text> 
+                    : <Text> 
+                      {data.body.replace(/\n/g,' ').slice(0, 11) }
+                    </Text>
+                    }
                   </Body>
-                </Left>
-              </CardItem>
-              {     //구문파악
-                image && image.length ?
-                <CardItem cardBody>
+                  <Body>
+                  {     
+                  image && image.length ?
                   <Image 
                     source={{ uri: image[0] }} 
-                    style={{ height:200, width:null, flex: 1 }} />
-                </CardItem> : null
-              }
-              <CardItem /*style={{ height: 20}}*/>
-                <Text>{ data.active_votes.length } likes</Text>
+                    style={{ height:100, width:150 }} />
+                    : null
+                  }
+                  </Body>
               </CardItem>
-              <CardItem>
-                <Text style={{ fontWeight:'900'}}>{ data.title }</Text>
-              </CardItem>
-              <CardItem>
-                <Text>
-                { data.body.replace(/\n/g,' ').slice(0, 200) }
-                </Text>
-              </CardItem>
-              <CardItem style={{ height:45 }}>
-                <Left>
-                  <Button transparent>
-                    <Icon name='ios-heart' style={{ color:'black', marginRight: 5 }}/> 
-                    <Text>{ data.active_votes.length }</Text>
-                  </Button>
-                  <Button transparent>
-                    <Icon name='ios-chatbubbles' style={{ color:'black', marginRight: 5 }}/>
-                    <Text>{ data.children }</Text>
-                  </Button>
-                  <Button transparent>
-                    <Icon name='ios-send' style={{ color:'black' }}/>
-                  </Button>
-                </Left>
-                <Right>
-                  <Text>{ data.pending_payout_value }</Text>
-                </Right>
-              </CardItem>
+              
           </Card>
       );
     }

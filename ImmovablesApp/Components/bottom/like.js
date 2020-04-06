@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Container, Content,Icon } from 'native-base';
+import { Container, Content,Icon, Header } from 'native-base';
 import CardComponent  from '../CardComponent'; 
 
 export default class home extends Component {
@@ -44,6 +44,9 @@ export default class home extends Component {
     render() {
         return (
           <Container style={style.container}>
+             <Header>
+                <Text>관심목록</Text>
+            </Header>
             <Content>
               {
                 this.state.feeds.map(feed => <CardComponent data={ feed }/>)

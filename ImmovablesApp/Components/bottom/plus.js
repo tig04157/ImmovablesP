@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'native-base'; 
+import {  Container, Content,Icon, Header } from 'native-base'; 
 
 export default class plus extends Component {
 
@@ -13,9 +13,12 @@ export default class plus extends Component {
 
     render() {
         return (
-            <View style={style.container}>
+            <Container style={style.container}>
+             <Header>
                 <Text>더보기</Text>
-            </View>
+            </Header>
+          
+          </Container>
         );
     }
 }
@@ -23,7 +26,6 @@ export default class plus extends Component {
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+
     }
 });

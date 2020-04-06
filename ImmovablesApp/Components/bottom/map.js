@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'native-base'; 
+import { Icon, Container, Header } from 'native-base'; 
 
 export default class map extends Component {
 
@@ -12,9 +12,11 @@ export default class map extends Component {
 
     render() {
         return (
-            <View style={style.container}>
-                <Text>map</Text>
-            </View>
+            <Container style={style.container}>
+             <Header>
+                <Text>더보기</Text>
+            </Header>
+          </Container>
         );
     }
 }
@@ -22,7 +24,6 @@ export default class map extends Component {
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+
     }
 });

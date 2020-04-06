@@ -17,7 +17,7 @@ export default class CardComponent extends Component {
                   </Body>
                 </Left>
               </CardItem>
-              {
+              {     //구문파악
                 image && image.length ?
                 <CardItem cardBody>
                   <Image 
@@ -25,7 +25,7 @@ export default class CardComponent extends Component {
                     style={{ height:200, width:null, flex: 1 }} />
                 </CardItem> : null
               }
-              <CardItem style={{ height: 20 }}>
+              <CardItem /*style={{ height: 20}}*/>
                 <Text>{ data.active_votes.length } likes</Text>
               </CardItem>
               <CardItem>

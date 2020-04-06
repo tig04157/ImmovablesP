@@ -67,7 +67,8 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'cornflowerblue'}
             title={'로그인'}
-            onPress={this._doLogin.bind(this)}/>
+            onPress={this._doLogin.bind(this)}
+            />
           <CustomButton 
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
@@ -107,7 +108,7 @@ export default class Login extends Component {
     footer: {
       flex: 1,
       width: '100%',
-      height: hp('10%'),
+      height: 50,
       backgroundColor: '#EFE4B0',
     },
   });

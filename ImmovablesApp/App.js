@@ -26,8 +26,10 @@ const AppStackNavigator = createStackNavigator({
       navigationOptions: ({navigation}) => ({
           header: null,
       }),
+      
+        headerLayoutPreset: 'center'
+          
     },
-    headerLayoutPreset: 'center'
   },
 );
 

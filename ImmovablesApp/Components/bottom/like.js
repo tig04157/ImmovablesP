@@ -1,7 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Container, Content,Icon, Header } from 'native-base';
+import { StyleSheet, Text, View, ScrollView, } from 'react-native';
+import { Container, Content,Icon, Header,Button} from 'native-base';
+import { createAppContainer } from 'react-navigation'
+import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
+
 import CardComponent  from '../CardComponent'; 
+import RecentR from '../LikeTab/RecentR';
+import RecentT from '../LikeTab/RecentT';
+import ContectedO from '../LikeTab/ContectedO';
+import SubsT from '../LikeTab/SubsT';
+import SubsR from '../LikeTab/SubsR';
+
+const AppTabNavigator = createMaterialTopTabNavigator({
+  본방 : {screen: RecentR},
+  본단지: {screen: RecentT},
+  찜한방: {screen: SubsR},
+  찜한단지: {screen: SubsT},
+  부동산: {screen: ContectedO}
+}, {
+animationEnabled: true,
+swipeEnabled: true,
+tabBarPosition: "top",
+tabBarOptions: {
+  style : {/*
+    ...Platform.select({
+      ios:{
+        backgroundColor:'white',
+      }
+    })*/
+    backgroundColor:'white',
+  },
+  iconStyle: {height:30},
+  activeTintColor:'#000',
+  inactiveTintColor:'#d1cece',
+  upperCaseLabel: false,
+  showLabel: true,
+  showIcon:true,
+}
+});
+
+const AppTabContainet = createAppContainer(AppTabNavigator);
 
 export default class home extends Component {
 
@@ -43,14 +81,24 @@ export default class home extends Component {
 
     render() {
         return (
-          <Container style={style.container}>
-             <Header>
-                <Text>관심목록</Text>
+          <Container style={style.container }>
+             <Header style ={{ height: 910, flexDirection: 'column'}}>
+                <View style={{ alignItems: 'center', justifyContent: 'center'}} >
+                  <Text style={{ alignItems:'center' }}>관심목록</Text>
+                </View>
+                <View style={{}}>
+                    <ScrollView horizontal={true}>
+                    <AppTabContainet/>
+                    </ScrollView>
+                </View>
             </Header>
             <Content>
-              {
-                this.state.feeds.map(feed => <CardComponent data={ feed }/>)
-              }
+              
+                {
+                  this.state.feeds.map(feed => (
+                    <CardComponent data={ feed } key={feed.url}/>
+                  ))
+                }
             </Content>
           </Container>
         );

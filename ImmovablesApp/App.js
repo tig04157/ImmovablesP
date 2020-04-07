@@ -14,7 +14,7 @@ const HomeStack = createStackNavigator(
       defaultNavigationOptions: ({navigation}) => ({
           title: 'Home',
       }),
-      headerLayoutPreset: 'center'
+      headerTitleAlign: 'center'
   }
 );
 
@@ -24,7 +24,7 @@ const AppStackNavigator = createStackNavigator({
   next: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
-          header: null,
+          headerShown: false,
       }),
       
         headerLayoutPreset: 'center'

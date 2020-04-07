@@ -47,7 +47,7 @@ export default class MainScreen extends Component {
   static navigationOptions = {
     //headerLeft: <Icon name='ios-camera' style={{ paddingLeft:10 }}/>,
     //headerRight: <Icon name='ios-send' style={{ paddingRight:10 }}/>,
-    header: null
+    headerShown: false
   }
 
   render() {

@@ -38,7 +38,7 @@ OH chan-hae
     Update a App, LoginScreen(connect MainScreen).
 > ### 2020-04-08
     Catch a Cycle warning in Login.js.
-    
+    Complete UI Home.js
 
 
 Kim jong-min

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import {TextInput, StyleSheet, Text, View } from 'react-native';
+import {TextInput, StyleSheet, Text, View, SafeAreaView, ScrollView,Dimensions } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Icon, Header, Content, Footer } from 'native-base'; 
-import RawCardComponent  from './../Util/HomeUtil/RowCardComponent'; 
+import RowCardComponent  from './../Util/HomeUtil/RowCardComponent'; 
 import ColumnCardComponent  from './../Util/HomeUtil/ColumnCardComponent'; 
+import Carousel2 from './../Util/HomeUtil/Carousel2'
 import myData from './../Util/test.json';
 
-export default class like extends Component {
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+
+export default class home extends Component {
 
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
@@ -18,7 +23,8 @@ export default class like extends Component {
         super(props);  
         this.state = {
           data1: '',
-          feeds: []
+          feeds: [],
+          jsonD: myData
       };  
     }  
   
@@ -30,7 +36,7 @@ export default class like extends Component {
             })
         });
     }
-  
+ 
     fetchFeeds() {
         const data = {
             id: 1,
@@ -49,42 +55,59 @@ export default class like extends Component {
         .then(res => res.json())
         .then(res => res.result)
     }
-
+ 
     render() {
         return (
-            <View style={styles.container}>               
-
-                <Header style={styles.header}></Header>
-                <View style={styles.br}></View>
+            <SafeAreaView style={styles.container}>               
+              
+                <Header style={styles.header}><Text>어디살래?</Text></Header>
+                
+                <View style={{height:10}}></View>
+               
                 <View style={styles.title}>
                   
                     <TextInput  
                         style={{height: '80%', width: '80%', backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  
-                        placeholder="아이디"  
+                        placeholder="검색"  
                         onChangeText={(data1) => this.setState({data1})}  
                     />
                     <Icon name='ios-search'/>
                     <Text>검색</Text>
                 </View>        
+                <ScrollView style={{flex:1, padding:'3%'}} >   
+                                  
+                  <View>               
+                  <View><Text style={{fontSize:24}}>'어디살래?'가 추천하는 어디살래!?</Text></View>
+                  {        /*       
+                    this.state.feeds.map((feed) => (                    
+                      <ColumnCardComponent data={ feed } />
+                    ))  */
+                  }
+                  <ColumnCardComponent data={ this.state.jsonD } />
+                  </View>   
 
-                <View style={styles.br}></View>
-                <View style={{height:'30%'}}>
-                <Content>                  
-                    {
-                        myData.map(myData => <RawCardComponent style={{ flexDirection: 'column'}} data={ myData }/>)
-                    }               
-                </Content>
-                </View>
-                <View style={styles.br}></View>
-                <View style={{height:'20%'}}>
-                    <Content>
-                    {
-                        myData.map(myData => <ColumnCardComponent style={{ flexDirection: 'column'}} data={ myData }/>)
-                    }      
-                    </Content>                  
-                </View>
-                <View style={styles.br}></View>                 
-            </View> 
+                  <View style={styles.br}/>               
+                
+                  <View>     
+                  <View><Text style={{fontSize:24}}>어디살래? 새소식</Text></View>              
+                    <Carousel2 data={ this.state.jsonD }/>         
+                  </View>                           
+                
+                  <View style={styles.br}/>
+
+                  <View><Text style={{fontSize:24}}>어디살래? 와 함께하는 제휴사</Text></View>
+                  <View>                                              
+                    {                  
+                      this.state.jsonD.map((feed, index) => (
+                        <RowCardComponent data={ feed } key={index}/>
+                        ))   
+                    }                 
+                  </View>            
+
+                  <View style={{height:'10%'}}></View>  
+                    
+                </ScrollView>
+            </SafeAreaView> 
             
         );
     }

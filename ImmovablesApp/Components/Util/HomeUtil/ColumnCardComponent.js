@@ -1,54 +1,89 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+import { View, Image, Text, Dimensions, StyleSheet } from 'react-native';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, G, Grid } from 'native-base';
+import { scrollInterpolator, animatedStyles } from './../HomeUtil/animation'
 
-export default class RawCardComponent extends Component {
-    render() {
-      const { data } = this.props; // 피드 항목 데이터
-      //const { image } = JSON.parse(data.json_metadata); // json_metadata에서 이미지 url을 파싱
-      return (
-          
-          <Card>             
-              <CardItem>
-                  <Body style={{flex: 1.5, flexDirection: 'column',  alignItems:'flex-start'}}>
-                    <Text style = {{ fontWeight:'900'}}>파는 곳 : {data.author}</Text>
-                    <Text note>{
-                    data.title
-                    //new Date(data.created).toDateString()
-                    
-                    }</Text>
-                    {
-                    (String(data.price).replace(/\n/g,' ').slice(0, 15)).length>=11 ?
-                      <Text> 
-                        {String(data.price).replace(/\n/g,' ').slice(0, 15) }...
-                      </Text> 
-                    : <Text> 
-                        {String(data.price).replace(/\n/g,' ').slice(0, 11) }
-                      </Text>
-                    }
-                  </Body>                  
-                  
-                  <Body style={{flex: 1}}>
-                    {     
-                        (data.content.replace(/\n/g,' ').slice(0, 15)).length>=11 ?
-                        <Text> 
-                          {data.content.replace(/\n/g,' ').slice(0, 15) }...
-                        </Text> 
-                      : <Text> 
-                          {data.content.replace(/\n/g,' ').slice(0, 11) }
-                        </Text>
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
-                        /*
-                      image && image.length ?
-                      <Image 
-                        source={{ uri: image[0] }} 
-                        style={{ height:100, width:150 }} />
-                    : null
-                    */
-                    }
-                  </Body>
-              </CardItem>             
-          </Card>
-      );
-    }
+const DATA = [];
+for (let i = 0; i < 10; i++) {
+  DATA.push(i)
+} 
+
+export default class ColumnCardComponent extends Component {
+       
+      constructor(props) {
+        super(props);
+        this._renderItem = this._renderItem.bind(this)  
+        this.state={
+            mydata: this.props.data
+        }      
+      }
+      
+      _renderItem({ item }) {
+        return (
+          <View style={styles.itemContainer}>
+            <Text style={styles.itemLabel}>{item.title}</Text>
+            <Text>{item.author}</Text>
+            {
+                item.content.replace(/\n/g,' ').slice(0, 15).length>=11 ?
+                    <Text> 
+                    {item.content.replace(/\n/g,' ').slice(0, 15) }...
+                    </Text> 
+                : <Text> 
+                    {item.content.replace(/\n/g,' ').slice(0, 11) }
+                 </Text>
+            }
+            <Text></Text>
+            <Text>{item.price}</Text>
+          </View>
+        );
+      }
+      
+      render() {
+        return (
+          <View>
+            <Carousel
+              ref={(c) => this.carousel = c}
+              data={this.state.mydata}
+              renderItem={this._renderItem}
+              sliderWidth={SLIDER_WIDTH}
+              itemWidth={ITEM_WIDTH}
+              containerCustomStyle={styles.carouselContainer}
+              inactiveSlideShift={0}
+              onSnapToItem={(index) => this.setState({ index })}
+              scrollInterpolator={scrollInterpolator}
+              slideInterpolatedStyle={animatedStyles}
+              useScrollView={true}          
+            />
+          </View>
+        );
+      }
   }
+  
+  const styles = StyleSheet.create({
+    carouselContainer: {
+      marginTop: 10
+    },
+    itemContainer: {
+      width: ITEM_WIDTH,
+      height: ITEM_HEIGHT,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'white'
+    },
+    itemLabel: {
+      color: 'black',
+      fontSize: 24
+    },
+    counter: {
+      marginTop: 25,
+      fontSize: 30,
+      fontWeight: 'bold',
+      textAlign: 'center'
+    }
+  });
+  

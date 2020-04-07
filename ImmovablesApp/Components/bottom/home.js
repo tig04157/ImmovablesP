@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {TextInput, StyleSheet, Text, View } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { Icon } from 'native-base'; 
+import { Icon, Header, Content, Footer } from 'native-base'; 
+import CardComponent  from '../CardComponent'; 
+
 
 export default class like extends Component {
 
@@ -14,38 +16,81 @@ export default class like extends Component {
     constructor(props) {  
         super(props);  
         this.state = {
-          data: ''
+          data1: '',
+          feeds:[]
       };  
     }  
 
+    componentDidMount() {   //기존함수 componentWillMount에서 componentDidMount로 변경함.
+        this.fetchFeeds().then(feeds => {
+            this.setState({
+              feeds
+            })
+        });
+    }
+    
+    fetchFeeds() {
+        const data = {
+            id: 1,
+            jsonrpc: "2.0",
+            method: "call",
+            params: [
+              "database_api",
+              "get_discussions_by_created",
+              [{ tag: "kr", limit: 20 }]
+            ]
+        };
+        return fetch('https://api.steemit.com', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => res.result)
+    }
+
     render() {
         return (
-            <View style={style.container}>
-                <View style={style.header}>
+            <View style={styles.container}>
+                <Header style={styles.header}><Text>어디살래?</Text></Header>
+                <View><Text></Text></View>
+                <View style={styles.title}>
                     <TextInput  
                         style={{height: '80%', width: '80%', backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  
                         placeholder="아이디"  
-                        onChangeText={(data) => this.setState({data})}  
+                        onChangeText={(data1) => this.setState({data1})}  
                     />
                     <Icon name='ios-search'/>
                     <Text>검색</Text>
-                </View>
-                <View style={style.title}></View>
-                <View style={style.content}></View>
-                <View style={style.fotter}></View>                
+                </View>                   
+                <Content style={{height:'80%'}}>
+                {
+                    this.state.feeds.map(feed => <CardComponent data={ feed }/>)
+                }                
+                </Content>
+                <Content style={{height:'20%'}}>
+                    <Text>test</Text>
+                </Content>
+                <Footer>
+                    
+                </Footer>                
             </View> 
             
         );
     }
 }
  
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
         backgroundColor: '#EFE4B0'
       },
       header: {
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+      },
+      title: {
         width:'100%',
         height: 50,
         flexDirection: 'row',
@@ -53,15 +98,9 @@ const style = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
       },
-      title: {
-        width:'100%',
-        height:'30%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#EFE4B0',
-      },
       content: {
-        flex: 1,
+   
+        width:'100%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#EFE4B0',

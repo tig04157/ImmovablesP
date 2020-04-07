@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {TextInput, StyleSheet, Text, View } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Icon, Header, Content, Footer } from 'native-base'; 
-import CardComponent  from '../CardComponent'; 
+import RawCardComponent  from './../Util/HomeUtil/RowCardComponent'; 
+import ColumnCardComponent  from './../Util/HomeUtil/ColumnCardComponent'; 
+import myData from './../Util/test.json';
 
 export default class like extends Component {
 
@@ -10,26 +12,25 @@ export default class like extends Component {
         tabBarIcon: ({tintColor}) => (
             <Icon name='ios-home' style={{color: tintColor}}/>
         )
-    }
-
-    
+    }   
 
     constructor(props) {  
         super(props);  
         this.state = {
           data1: '',
-          feeds:[]
+          feeds: []
       };  
     }  
-
+  
     componentDidMount() {   //기존함수 componentWillMount에서 componentDidMount로 변경함.
+  
         this.fetchFeeds().then(feeds => {
             this.setState({
               feeds
             })
         });
     }
-    
+  
     fetchFeeds() {
         const data = {
             id: 1,
@@ -67,14 +68,20 @@ export default class like extends Component {
                 </View>        
 
                 <View style={styles.br}></View>
-                
+                <View style={{height:'30%'}}>
                 <Content>                  
                     {
-                        this.state.feeds.map(feed => <CardComponent style={{ flexDirection: 'column'}} data={ feed }/>)
+                        myData.map(myData => <RawCardComponent style={{ flexDirection: 'column'}} data={ myData }/>)
                     }               
                 </Content>
-                <View style={{height:'10%'}}>
-                  <Text>test</Text>
+                </View>
+                <View style={styles.br}></View>
+                <View style={{height:'20%'}}>
+                    <Content>
+                    {
+                        myData.map(myData => <ColumnCardComponent style={{ flexDirection: 'column'}} data={ myData }/>)
+                    }      
+                    </Content>                  
                 </View>
                 <View style={styles.br}></View>                 
             </View> 
@@ -86,7 +93,7 @@ export default class like extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#EFE4B0'
+        backgroundColor: 'whitesmoke'
       },
       header: {
         height: 50,

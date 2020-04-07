@@ -50,10 +50,12 @@ export default class like extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Header style={styles.header}><Text>어디살래?</Text></Header>
-                <View><Text></Text></View>
+            <View style={styles.container}>               
+
+                <Header style={styles.header}></Header>
+                <View style={styles.br}></View>
                 <View style={styles.title}>
+                  
                     <TextInput  
                         style={{height: '80%', width: '80%', backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  
                         placeholder="아이디"  
@@ -61,18 +63,19 @@ export default class like extends Component {
                     />
                     <Icon name='ios-search'/>
                     <Text>검색</Text>
-                </View>                   
-                <Content style={{height:'80%'}}>
-                {
-                    this.state.feeds.map(feed => <CardComponent data={ feed }/>)
-                }                
+                </View>        
+
+                <View style={styles.br}></View>
+                
+                <Content>                  
+                    {
+                        this.state.feeds.map(feed => <CardComponent style={{ flexDirection: 'column'}} data={ feed }/>)
+                    }               
                 </Content>
-                <Content style={{height:'20%'}}>
-                    <Text>test</Text>
-                </Content>
-                <Footer>
-                    
-                </Footer>                
+                <View style={{height:'10%'}}>
+                  <Text>test</Text>
+                </View>
+                <View style={styles.br}></View>                 
             </View> 
             
         );
@@ -111,4 +114,7 @@ const styles = StyleSheet.create({
         height: hp('10%'),
         backgroundColor: '#EFE4B0',
       },
+      br: {
+        height: '3%'
+      }
 });

@@ -82,13 +82,13 @@ export default class home extends Component {
     render() {
         return (
           <Container style={style.container }>
-             <Header style ={{ height: 910, flexDirection: 'column'}}>
+             <Header style ={{ height: 110, flexDirection: 'column'}}>
                 <View style={{ alignItems: 'center', justifyContent: 'center'}} >
                   <Text style={{ alignItems:'center' }}>관심목록</Text>
                 </View>
                 <View style={{}}>
                     <ScrollView horizontal={true}>
-                    <AppTabContainet/>
+                      <AppTabContainet/>
                     </ScrollView>
                 </View>
             </Header>

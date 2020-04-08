@@ -75,7 +75,12 @@ export default class home extends Component {
                     <Text>검색</Text>
                 </View>        
                 <ScrollView style={{flex:1, padding:'3%'}} >   
-                                  
+                    
+                    
+
+                    
+                    
+                  {/*=======================================================*/}              
                   <View>               
                   <View><Text style={{fontSize:24}}>'어디살래?'가 추천하는 어디살래!?</Text></View>
                   {        /*       
@@ -91,8 +96,33 @@ export default class home extends Component {
                   <View>     
                   <View><Text style={{fontSize:24}}>어디살래? 새소식</Text></View>              
                     <Carousel2 data={ this.state.jsonD }/>         
-                  </View>                           
+                  </View>  
+                   {/*아래 내용으로 교체시 페이지 라우터 구현*/}
+                   {/*=======================================================*/}
+                   {/*교체 내용*/}
+                  {   
+                  /*                      
+                  <View>
+                    {   this.state.flag == 1?           
+                        <View>               
+                          <View><Text style={{fontSize:24}}>'어디살래?'가 추천하는 어디살래!?</Text></View>
+                          
+                          <ColumnCardComponent data={ this.state.jsonD } />
+                        </View>   :                                  
                 
+                      <View>     
+                      <View><Text style={{fontSize:24}}>어디살래? 새소식</Text></View>              
+                        <Carousel2 data={ this.state.jsonD }/>         
+                      </View>                           
+                    }
+                  </View>
+                  */
+                  }
+                  {/*=======================================================*/}
+
+
+
+
                   <View style={styles.br}/>
 
                   <View><Text style={{fontSize:24}}>어디살래? 와 함께하는 제휴사</Text></View>

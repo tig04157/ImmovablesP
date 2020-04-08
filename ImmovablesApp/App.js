@@ -6,6 +6,14 @@ import Login  from './Components/Login/Login';
 import test  from './Components/Login/test';
 import MainScreen from  './Components/MainScreen'
 
+const datas = [
+  {id:"RR"},
+  {id:"RT"},
+  {id:"LR"},
+  {id:"LT"},
+  {id:"CO"},
+];
+
 const HomeStack = createStackNavigator(
   {
     MainScreen

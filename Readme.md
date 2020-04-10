@@ -1,6 +1,4 @@
-<h1 align="center">Team.A Sudden Meeting
-=======
-
+<h1 align="center">Team.A Sudden Meeting</h1>
 
 Logo
 ===

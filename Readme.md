@@ -20,8 +20,8 @@ Envoirment
     * Using React-Native-navigation
     * Using React-Native-base
 
-Design
-===
+<h1 align="center">Design</h1>
+
 Login View
 ---
     * 임시 Loginview 로그인 버튼 component 이동으로 구현

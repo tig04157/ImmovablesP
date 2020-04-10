@@ -1,9 +1,14 @@
 ﻿Team.A Sudden Meeting
 =======
 
+
+메인화면
+---
 <p align="center">
-<img src="https://user-images.githubusercontent.com/45858414/78417788-88b1f480-7670-11ea-9863-4f0cf414d453.png" width="40%">
+   <img src="https://user-images.githubusercontent.com/45858414/78417788-88b1f480-7670-11ea-9863-4f0cf414d453.png" width="40%">
 </p>
+
+
 
 ### logo source = svgsilh.com
 
@@ -16,8 +21,18 @@ Login View
     * OAuth 2.0 도입 예정
     
 <p align="center">
-<img src="https://user-images.githubusercontent.com/45858414/78423460-65536d80-76a1-11ea-8540-3fde8ea37148.png" width="30%">
+   <img src="https://user-images.githubusercontent.com/45858414/78989193-ead99080-7b6d-11ea-9c54-72380f51d1f6.png" width="33%">
+   <img src="https://user-images.githubusercontent.com/45858414/78423460-65536d80-76a1-11ea-8540-3fde8ea37148.png" width="33%">
 </p>
+
+
+Main View
+---
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/45858414/78989229-093f8c00-7b6e-11ea-9b53-f06db23b0fec.jpg" width="33%">
+   <img src="https://user-images.githubusercontent.com/45858414/78989332-499f0a00-7b6e-11ea-864a-06a2a4220200.jpg" width="33%">
+</p>
+
 
 Collaborator
 ===

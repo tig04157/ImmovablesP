@@ -1,4 +1,4 @@
-﻿Team.A Sudden Meeting
+<h1 align="center">Team.A Sudden Meeting
 =======
 
 
@@ -19,7 +19,7 @@ Envoirment
     * Using Expo
     * Using React-Native-navigation
     * Using React-Native-base
-
+<br><br><br><br>
 <h1 align="center">Design</h1>
 
 Login View

@@ -11,7 +11,7 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
 
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
-            <Icon name='ios-add-circle' style={{color: tintColor}}/>
+            <Icon name='ios-more' style={{color: tintColor}}/>
         )
     }
 
@@ -26,11 +26,11 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
                     <Button style ={style.chimpormation}><Text style ={{color : 'blue'}}>정보수정</Text></Button>
                 </View>
                 <View style={{flex:1,flexDirection: 'row'}}>
-                    <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:12.5, padding:5}}>알림</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>방내놓기</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>내가쓴리뷰</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>연락한부동산</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>입찰</Text></Button>
+                    <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:11, padding:5}}>알림</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>방내놓기</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>내가쓴리뷰</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>연락한부동산</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>입찰</Text></Button>
                 </View>
                 <View style={style.rowSeparatorLine} />
 

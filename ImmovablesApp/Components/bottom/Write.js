@@ -1,10 +1,14 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Icon, Container, Header, Button } from 'native-base'; 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-export default class sell extends Component {
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+
+export default class Write extends Component {
 
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
@@ -15,11 +19,19 @@ export default class sell extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header style={styles.header}><Text>입찰</Text></Header>
+                <Header style={styles.header}><Text>글쓰기</Text></Header>
                 <View style={{height:'10%'}}></View>
-                <View style={{width:200}}>              
-                    <Button style={{justifyContent:'center'}}><Text>판매자</Text></Button>                  
+
+
+                <View style={{flexDirection:'row'}}>
+                  <View style={{width: (SLIDER_WIDTH - 200)/2}}></View>
+                  <View style={{width:200}}>              
+                      <Button style={{justifyContent:'center'}}><Text>판매자</Text></Button>
+                  </View>
+                  <View style={{width:(SLIDER_WIDTH - 200)/2}}></View>
                 </View>
+
+
                 <View style={{height:'10%'}}></View>
                 <View style={{flexDirection:'row', justifyContent:'space-around'}}>                    
                     <View style={{width:200}}>

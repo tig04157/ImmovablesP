@@ -7,7 +7,7 @@ import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import home from './bottom/HomeComponents/Home'
 import like from './bottom/like'
 import map from './bottom/Map'
-import write from './bottom/Write'
+import write from './bottom/Write/Write'
 import plus from './bottom/plus'
 
 const AppTabNavigator = createMaterialTopTabNavigator({

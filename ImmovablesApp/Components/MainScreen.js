@@ -4,17 +4,17 @@ import { Icon } from 'native-base';
 import { createAppContainer } from 'react-navigation'
 import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
-import home from './bottom/home'
+import home from './bottom/HomeComponents/Home'
 import like from './bottom/like'
-import map from './bottom/map'
-import sell from './bottom/sell'
-import plus from './bottom/plus'
+import map from './bottom/Map'
+import sell from './bottom/Sell'
+import plus from './bottom/More'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},
     관심목록: {screen:like},
     지도: {screen:map},
-    분양: {screen:sell},
+    입찰: {screen:sell},
     더보기: {screen:plus}
 }, {
   animationEnabled: true,

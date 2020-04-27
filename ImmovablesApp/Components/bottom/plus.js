@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {  Container, Content,Icon, Button, Separator } from 'native-base'; 
 
-function Separator() {
-    return <View style={styles.separator} />;
-  }
+
 
   export default class plus extends Component {
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Carousel from 'react-native-snap-carousel';
 import { View, Image, Text, Dimensions, StyleSheet } from 'react-native';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, G, Grid } from 'native-base';
-import { scrollInterpolator, animatedStyles } from './../HomeUtil/animation'
+import { scrollInterpolator, animatedStyles } from '../../Util/HomeUtil/animation'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);

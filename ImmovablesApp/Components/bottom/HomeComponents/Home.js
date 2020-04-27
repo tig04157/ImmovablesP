@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {TextInput, StyleSheet, Text, View, SafeAreaView, ScrollView,Dimensions } from 'react-native';
+import {TextInput, StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Icon, Header, Content, Footer } from 'native-base'; 
-import RowCardComponent  from './../Util/HomeUtil/RowCardComponent'; 
-import ColumnCardComponent  from './../Util/HomeUtil/ColumnCardComponent'; 
-import Carousel2 from './../Util/HomeUtil/Carousel2'
-import myData from './../Util/test.json';
+import RowCardComponent  from './RowCardComponent'; 
+import ColumnCardComponent  from './ColumnCardComponent'; 
+import Carousel2 from './Carousel2'
+import myData from '../../Util/test.json';
 
-const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+//const SLIDER_WIDTH = Dimensions.get('window').width;
+//const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+//const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
 export default class home extends Component {
 
@@ -75,20 +75,10 @@ export default class home extends Component {
                     <Text>검색</Text>
                 </View>        
                 <ScrollView style={{flex:1, padding:'3%'}} >   
-                    
-                    
-
-                    
-                    
-                  {/*=======================================================*/}              
+      
                   <View>               
                   <View><Text style={{fontSize:24}}>'어디살래?'가 추천하는 어디살래!?</Text></View>
-                  {        /*       
-                    this.state.feeds.map((feed) => (                    
-                      <ColumnCardComponent data={ feed } />
-                    ))  */
-                  }
-                  <ColumnCardComponent data={ this.state.jsonD } />
+                    <ColumnCardComponent data={ this.state.jsonD } />
                   </View>   
 
                   <View style={styles.br}/>               
@@ -96,32 +86,7 @@ export default class home extends Component {
                   <View>     
                   <View><Text style={{fontSize:24}}>어디살래? 새소식</Text></View>              
                     <Carousel2 data={ this.state.jsonD }/>         
-                  </View>  
-                   {/*아래 내용으로 교체시 페이지 라우터 구현*/}
-                   {/*=======================================================*/}
-                   {/*교체 내용*/}
-                  {   
-                  /*                      
-                  <View>
-                    {   this.state.flag == 1?           
-                        <View>               
-                          <View><Text style={{fontSize:24}}>'어디살래?'가 추천하는 어디살래!?</Text></View>
-                          
-                          <ColumnCardComponent data={ this.state.jsonD } />
-                        </View>   :                                  
-                
-                      <View>     
-                      <View><Text style={{fontSize:24}}>어디살래? 새소식</Text></View>              
-                        <Carousel2 data={ this.state.jsonD }/>         
-                      </View>                           
-                    }
-                  </View>
-                  */
-                  }
-                  {/*=======================================================*/}
-
-
-
+                  </View>                 
 
                   <View style={styles.br}/>
 

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {  Container, Content,Icon, Button, Separator } from 'native-base'; 
+import {  Container, Content,Icon, Button, } from 'native-base'; 
 
 
 
@@ -22,7 +22,6 @@ import {  Container, Content,Icon, Button, Separator } from 'native-base';
                     <Text>e-mail</Text>
                     <Button style ={style.topbutton}><Text style ={{color : 'blue'}}>정보수정</Text></Button>
                 </View>
-                <Separator></Separator>
                 <View><Text>dfd</Text></View>
 
             </Container>
@@ -44,9 +43,4 @@ const style = StyleSheet.create({
         borderColor: 'blue',
         borderWidth: 1
     },
-     separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
 });

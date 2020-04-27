@@ -8,7 +8,7 @@ import home from './bottom/HomeComponents/Home'
 import like from './bottom/like'
 import map from './bottom/Map'
 import sell from './bottom/Sell'
-import plus from './bottom/More'
+import plus from './bottom/plus'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},

@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, Dimensions} from 'react-native';
 import {  Container, Content,Icon, Button, } from 'native-base'; 
 import { ScrollView } from 'react-native-gesture-handler';
-
+const SLIDER_WIDTH = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
 
 
   export default class plus extends Component {
@@ -18,18 +19,18 @@ import { ScrollView } from 'react-native-gesture-handler';
         return (
             <Container style={style.container}>
                 <ScrollView>
-                <View style ={{  flexDirection: 'column' }}>
-                    <View style ={{ height: 60 }}></View>
+                <View style ={{  padding:10, flexDirection: 'column' }}>
+                    <View style ={{ height: 50 }}></View>
                     <Text>ID</Text>
                     <Text>e-mail</Text>
                     <Button style ={style.chimpormation}><Text style ={{color : 'blue'}}>정보수정</Text></Button>
                 </View>
                 <View style={{flex:1,flexDirection: 'row'}}>
-                    <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{padding:5}}>알림</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>방내놓기</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>내가쓴리뷰</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>연락한부동산</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>입찰</Text></Button>
+                    <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:12.5, padding:5}}>알림</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>방내놓기</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>내가쓴리뷰</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>연락한부동산</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:12.5,padding:5}}>입찰</Text></Button>
                 </View>
                 <View style={style.rowSeparatorLine} />
 
@@ -76,6 +77,7 @@ const style = StyleSheet.create({
     },
     topbutton: {
         height: 100,
+        width: ITEM_WIDTH,
         flexDirection: 'column',
         justifyContent: 'center',
         alignContent: 'center',
@@ -87,6 +89,7 @@ const style = StyleSheet.create({
         justifyContent: 'space-around'
     },
     midbutton: {
+        padding: 10,
         flex: 1,
         height: 40,
         justifyContent: 'flex-start',
@@ -94,6 +97,7 @@ const style = StyleSheet.create({
     },
     bottombutton: {
         backgroundColor: 'white',
+        padding: 10
     },
 
     ImageIconStyle: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import { Container, Content,Icon, Header,Button} from 'native-base';
+import { Container, Content,Icon, Header,Button,Card, CardItem} from 'native-base';
 import { createAppContainer } from 'react-navigation'
 import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';

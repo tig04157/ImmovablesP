@@ -26,8 +26,8 @@ import { ScrollView } from 'react-native-gesture-handler';
                 </View>
                 <View style={{flex:1,flexDirection: 'row'}}>
                     <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{padding:5}}>알림</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-home-outline' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>방내놓기</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-paper-outline' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>내가쓴리뷰</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>방내놓기</Text></Button>
+                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>내가쓴리뷰</Text></Button>
                     <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>연락한부동산</Text></Button>
                     <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{padding:5}}>입찰</Text></Button>
                 </View>

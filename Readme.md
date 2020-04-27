@@ -54,3 +54,5 @@ Kim jong-min
 > ### 2020-04-08
     Update a Scroll Top Tab
     Update a UI like.js
+> ### 2020-04-09
+    Update a Button -> TouchableOpacity in like.js

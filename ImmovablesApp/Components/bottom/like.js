@@ -97,63 +97,45 @@ export default class home extends Component {
             <Icon name='ios-home' style={{color: tintColor}}/>
         )
     }
-
+          //tabbar에 스크롤 제거, touchableopacity클릭시 하단부 밑줄, 안드로이드 작동 확인
     render() {
-        return (
+        return (          
           <Container style={style.container }>
               <Header style ={{ height:100, flexDirection: 'column' }}>
                 <View style={{ height:45, alignItems: 'center', justifyContent: 'center'}} >
                   <Text style={{ alignItems:'center' }}>관심목록</Text>
                 </View>
-                <View style={{height:100,}}>
-                  
+                <View style={{height:45,}}>
                     <ScrollView horizontal={true}>
                       <View style={{ flexDirection: 'row', justifyContent:'space-around', }}>
-                        <Button style={[ this.state.activeIndex === 0 ? {height:40,borderBottomWidth:2} :{height:40}], {backgroundColor:'white'}}
+                        <TouchableOpacity style={[ this.state.activeIndex === 0 ? {height:40,borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
                           onPress={() => this.segmentClicked(0)}
                           active={this.state.activeIndex === 0}>
                             <Text style={[ this.state.activeIndex === 0 ? {} : {color: 'grey'} ]}>최근 본 방</Text>
-                          
-                        </Button>
-                        <View style={{width:'5%'}}></View>
-                        <Button style={[ this.state.activeIndex === 1 ? {height:40, borderBottomWidth:2} :{height:40}], {backgroundColor:'white'}}
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[ this.state.activeIndex === 1 ? {height:40, borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
                           onPress={() => this.segmentClicked(1)}
                           active={this.state.activeIndex === 1}>
                             <Text style={ [ this.state.activeIndex === 1 ? {} : {color: 'grey'} ]}>최근 본 단지</Text>
-                        </Button>
-                        <Button style={[ this.state.activeIndex === 2 ? {height:40, borderBottomWidth:2} :{height:40}], {backgroundColor:'white'}}
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[ this.state.activeIndex === 2 ? {height:40, borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
                           onPress={() => this.segmentClicked(2)}
                           active={this.state.activeIndex === 2}>
                             <Text style={[ this.state.activeIndex === 2 ? {} : {color: 'grey'} ]}>찜한 방</Text>
-                        </Button>
-                        <Button style={[ this.state.activeIndex === 3 ? {height:40, borderBottomWidth:2} :{height:40}], {backgroundColor:'white'}}
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[ this.state.activeIndex === 3 ? {height:40, borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
                           onPress={() => this.segmentClicked(3)}
                           active={this.state.activeIndex === 3}>
                             <Text style={[ this.state.activeIndex === 3 ? {} : {color: 'grey'} ]}>찜한 단지</Text>
-                        </Button>
-                        <Button style={[ this.state.activeIndex === 4 ? {height:40, borderBottomWidth:2} :{height:40}], {backgroundColor:'white'}}
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[ this.state.activeIndex === 4 ? {height:40, borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
                           onPress={() => this.segmentClicked(4)}
                           active={this.state.activeIndex === 4}>
-                          <Text style={[ this.state.activeIndex === 4 ? {} : {color: 'grey'} ]}>연락한 부동산</Text>
-                        </Button>
+                            <Text style={[ this.state.activeIndex === 4 ? {} : {color: 'grey'} ]}>연락한 부동산</Text>
+                        </TouchableOpacity>
                       </View>
                     </ScrollView>
-                      {/*}
-                    <TouchableOpacity style={{ padding: 15, backgroundColor:'string', flexDirection: 'row'}}>
-                      <Text>최근 본 방</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 15, backgroundColor:'string', flexDirection: 'row'}}>
-                      <Text>최근 본 단지</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 15, backgroundColor:'string', flexDirection: 'row'}}>
-                      <Text>찜한 방</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 15, backgroundColor:'string', flexDirection: 'row'}}>
-                      <Text>찜한 단지</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: 15, backgroundColor:'string', flexDirection: 'row'}}>
-                      <Text>연락한 부동산</Text>
-                    </TouchableOpacity>{*/}
+                 
                 </View>
               </Header>
               { this.renderSection() }

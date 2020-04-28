@@ -22,7 +22,6 @@ def job_day():
 if __name__ == '__main__':
     job_day()
 
-
     #schedule.every().days.at("11:55").do(job_day)
     #while True:
         #schedule.run_pending()

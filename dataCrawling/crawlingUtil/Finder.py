@@ -10,7 +10,7 @@ class Finder:
     crawlingUtil = UtilCrawling()
     cityName = ''
     contryName = ''
-    OUTPUT_FILE_NAME = 'address.txt'
+    OUTPUT_FILE_NAME = 'address1.txt'
     open_output_file = open(OUTPUT_FILE_NAME, 'w', -1, "utf-8")
 
 
@@ -18,11 +18,11 @@ class Finder:
 
         URL = 'http://www.juso.go.kr/openIndexPage.do'
         self.se.startSelenium(URL)
-        self.findCity(URL)
+        #self.findCity(URL)
+        self.saeJong(URL)
         self.open_output_file.close()
         #asyncio.run(self.findContry(URL))
         #self.findGu(links)
-
 
     def findCity(self, URL):
         # 도로명 주소 버튼 클릭
@@ -43,11 +43,12 @@ class Finder:
         ''' len(cityArr) '''
         for cityCount in range(len(cityArr)):
             cityOptionNum = cityCount + 2
-            self.cityName = cityArr[cityCount]
-            cityButton = '//*[@id="rdnmcity1"]/option[' + str(cityOptionNum) + ']' # 시 버튼
-            self.se.buttonClick(cityButton)
-            #URL = 'http://www.juso.go.kr/getAreaCode.do?from=city&to=county&valFrom=11&valTo='
-            if cityArr[cityOptionNum] != '세종특별자치시':
+            if cityArr[cityCount] != '세종특별자치시':
+                self.cityName = cityArr[cityCount]
+                cityButton = '//*[@id="rdnmcity1"]/option[' + str(cityOptionNum) + ']' # 시 버튼
+                self.se.buttonClick(cityButton)
+                #URL = 'http://www.juso.go.kr/getAreaCode.do?from=city&to=county&valFrom=11&valTo='
+
                 tempContryArr = [] # 임시 리스트
                 time.sleep(1)
                 tempContryArr.append(self.se.driver.find_element_by_xpath('//*[@id="rdnmcounty1"]').text) # 셀레니움 텍스트 가져오기
@@ -56,15 +57,25 @@ class Finder:
 
                 contryArr = tempContryArr[0].split(',')
                 self.findRoad(contryArr)
-            else:
-                time.sleep(2)  # query 처리 시간 대기
-                tempContryArr = []  # 임시 리스트
-                tempContryArr.append(self.se.driver.find_element_by_xpath('//*[@id="roadNameList2"]').text)
-                tempContryArr[0] = tempContryArr[0].replace('\n', ',')
-                tempContryArr[0] = re.sub("[ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ]", "", tempContryArr[0])
-                roadArr = tempContryArr[0].split(',')
-                roadArr = ' '.join(roadArr).split()
-                self.write_at_notePad(roadArr)
+
+    def saeJong(self, cityArr):
+        findButtonPath = '//*[@id="AKCFrm"]/fieldset/div[1]/button'  # 조회 버튼
+        self.se.buttonClick(findButtonPath)
+        self.cityName = '세종특별자치시'
+        cityButton = '//*[@id="rdnmcity1"]/option[9]' # 시 버튼
+        self.se.buttonClick(cityButton)
+        time.sleep(2) # query 처리 시간 대기
+        tempContryArr = []  # 임시 리스트
+        tempContryArr.append(self.se.driver.find_element_by_xpath('//*[@id="roadNameList2"]').text)
+        tempContryArr[0] = tempContryArr[0].replace('\n', ',')
+        tempContryArr[0] = re.sub("[ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ]", "", tempContryArr[0])
+        roadArr = tempContryArr[0].split(',')
+        roadArr = ' '.join(roadArr).split()
+        if '1' in roadArr:
+            del roadArr[roadArr.index('1')]
+        if '#' in roadArr:
+            del roadArr[roadArr.index('#')]
+        self.write_at_notePad(roadArr)
 
     def findRoad(self, contryArr):
         '''len(contryArr)'''
@@ -80,6 +91,10 @@ class Finder:
             tempContryArr[0] = re.sub("[ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ]", "", tempContryArr[0])
             roadArr = tempContryArr[0].split(',')
             roadArr = ' '.join(roadArr).split()
+            if '1' in roadArr:
+                del roadArr[roadArr.index('1')]
+            if '#' in roadArr:
+                del roadArr[roadArr.index('#')]
             self.write_at_notePad(roadArr)
 
     def write_at_notePad(self, roadArr):#result_text, count, fileNum, p):

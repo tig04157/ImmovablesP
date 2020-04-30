@@ -1,5 +1,11 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
+const express = require('express');
+const index = express();
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+index.use(bodyParser.json());
+index.use(cors());
+const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'iclab4',
@@ -8,11 +14,32 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT * from test', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
-  else
-    console.log('Error while performing Query.', err);
+index.get('/data', function(req,res){
+  var sql = 'SELECT * FROM test';
+  connection.query(sql, (err, result)=>{
+      if(err) throw err;
+      console.log(result);
+      res.send(result);
+  });
+  });
+
+index.post('/data', function(req, res){
+	console.log(req.body); 
+    var data = {id:req.body.id, pw:req.body.pw};
+    var sql = "INSERT INTO test(id,pw) SELECT '&id','&pw' FROM DUAL WHERE NOT EXISTS( SELECT id, pw SELECT test WHERE id = '&id' and pw ='&pw')?";
+    connection.query(sql, data, (err, result)=>{
+    if(err) throw err;
+
+    console.log(result);
+    res.send({
+        status: 'ㅗ!',
+        no: null,
+		id: req.body.id,
+		pw: req.body.pw
+	});
+});
 });
 
-connection.end();
+index.listen(3210, ()=>{
+  console.log('Server port 3210')
+});

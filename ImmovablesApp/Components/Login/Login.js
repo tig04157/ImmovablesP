@@ -1,26 +1,17 @@
 import React, { Component, useState } from 'react';
-import { 
-  StyleSheet, 
-  Alert,
-  Button, 
-  Image,
-  TextInput, 
-  Text, 
-  View 
-} from 'react-native';
+import {   StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import { Icon } from 'native-base';
 import CustomButton from '../Util/LoginUtil/CustomButton';
+import axios from 'axios';
 import Main from './../MainScreen'
 
 export default class Login extends Component {
 
     // navigationOptions 코드 추가
     static navigationOptions = {
-      //headerLeft: <Icon name='ios-camera' style={{ paddingLeft:10 }}/>,
-      //headerRight: <Icon name='ios-send' style={{ paddingRight:10 }}/>,
       title: <Text>어디 살래?</Text>,
     }
     
@@ -28,14 +19,33 @@ export default class Login extends Component {
         super(props);  
         this.state = {
           id: '',
-          pw: ''
+          pw: '',
+          dataku: [],
       };  
     }  
 
-    _doLogin(){
+    klikPost(){
+      var url = 'http://192.168.0.25:3210/data';
+      axios.post(url, {
+        id: this.state.id,
+        pw: this.state.pw
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      this.state.id = '';
+      this.state.pw = '';
+    //  this.props.navigation.replace('next')
+
+    };
+    
+   /* _doLogin(){
       // do something
       this.props.navigation.replace('next')
-    }   
+    }   */
 
     render() {    
       return (
@@ -52,6 +62,7 @@ export default class Login extends Component {
               style={{height: 40, backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  
               placeholder="아이디"  
               onChangeText={(id) => this.setState({id})}  
+              value={this.state.id}
           />
         </View>
         <View>
@@ -59,7 +70,9 @@ export default class Login extends Component {
           <TextInput  
               style={{height: 40, backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  
               placeholder="비밀번호"  
-              onChangeText={(pw) => this.setState({pw})}  
+              onChangeText={(pw) => this.setState({pw})} 
+              value={this.state.pw}
+
           />
         </View>
         <View style={styles.content}></View>
@@ -67,7 +80,8 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'cornflowerblue'}
             title={'로그인'}
-            onPress={this._doLogin.bind(this)}
+            onPress={this.klikPost.bind(this)}
+            
             />
           <CustomButton 
             buttonColor={'mediumseagreen'}

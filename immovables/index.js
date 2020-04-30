@@ -25,11 +25,10 @@ index.get('/data', function(req,res){
 
 index.post('/data', function(req, res){
 	console.log(req.body); 
-    var data = {id:req.body.id, pw:req.body.pw};
-    var sql = "INSERT INTO test(id,pw) SELECT '&id','&pw' FROM DUAL WHERE NOT EXISTS( SELECT id, pw SELECT test WHERE id = '&id' and pw ='&pw')?";
-    connection.query(sql, data, (err, result)=>{
+    var data = [req.body.id,req.body.pw];
+    var sql = "INSERT INTO test(id,pw) VALUES(?) ";
+    connection.query(sql,[data],(err, result)=>{
     if(err) throw err;
-
     console.log(result);
     res.send({
         status: 'ㅗ!',
@@ -41,5 +40,5 @@ index.post('/data', function(req, res){
 });
 
 index.listen(3210, ()=>{
-  console.log('Server port 3210')
+  console.log('Server aktif di port 3210')
 });

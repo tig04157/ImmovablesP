@@ -7,9 +7,9 @@ import { Icon } from 'native-base';
 import CustomButton from '../Util/LoginUtil/CustomButton';
 import axios from 'axios';
 import Main from './../MainScreen'
+import Signup from '../Signup/Signup'
 
 export default class Login extends Component {
-
     // navigationOptions 코드 추가
     static navigationOptions = {
       title: <Text>어디 살래?</Text>,
@@ -43,7 +43,7 @@ export default class Login extends Component {
       });
       this.state.id = '';
       this.state.pw = '';
-    //  this.props.navigation.replace('next')
+     // this.props.navigation.replace('next')
 
     };
     
@@ -91,12 +91,18 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
-            onPress={() => alert('회원가입')}/>
+            onPress={() => this.props.navigation.navigate('Signup')}/>
       </View>  
       );
     }
+    
   }
   
+  const AppNavigator = createStackNavigator({
+    Signup: {
+      screen: Signup,
+    },
+  });
 
   const styles = StyleSheet.create({
     container: {

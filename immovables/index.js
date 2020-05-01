@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
   
-app.post('/data', function(req, res){
+app.post('/chinfo', function(req, res){
   var data = [req.body.id,req.body.pw];
   var sql = "SELECT count(*) as id FROM test WHERE id = ? ";
 
@@ -40,23 +40,22 @@ app.post('/data', function(req, res){
   });
 });
 
-  /*
+
 app.post('/data', function(req, res){
-	console.log(req.body); 
+  console.log(req.body); 
   var data = [req.body.id,req.body.pw];
   var sql = "INSERT INTO test(id,pw) values(?) ";
-
   connection.query(sql,[data],(err, result)=>{
     if(err) throw err;
     else{
-     // console.log(result);
+      console.log(result);
       res.send({
         result: "완료"
       });
     }
   });
 });
-*/
+
 app.listen(3210, ()=>{
   console.log('Server aktif di port 3210')
 });

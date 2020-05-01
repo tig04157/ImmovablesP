@@ -5,7 +5,7 @@ import { createStackNavigator} from 'react-navigation-stack'
 import Login  from './Components/Login/Login';
 import test  from './Components/Login/test';
 import MainScreen from  './Components/MainScreen'
-
+import Signup from './Components/Signup/Signup'
 const datas = [
   {id:"RR"},
   {id:"RT"},
@@ -29,6 +29,7 @@ const HomeStack = createStackNavigator(
 const AppStackNavigator = createStackNavigator({
   
   LoginScreen: Login,
+  
   next: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
@@ -38,6 +39,10 @@ const AppStackNavigator = createStackNavigator({
         headerLayoutPreset: 'center'
           
     },
+  Signup: {
+    screen: Signup,
+    
+  }
   },
 );
 

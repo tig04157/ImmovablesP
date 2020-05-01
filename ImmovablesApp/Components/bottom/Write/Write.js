@@ -58,7 +58,7 @@ export default class Write extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header style={styles.header}><Text>글쓰기</Text></Header>
+                <Header style={styles.header}><Text>구매 희망 게시판</Text></Header>
                 <View style={styles.title}>
                     <TextInput  
                         style={{height: '80%', width: '80%', backgroundColor: 'whitesmoke', fontSize: 20, margin:10}}  

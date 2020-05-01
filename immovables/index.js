@@ -1,10 +1,10 @@
 const express = require('express');
-const index = express();
+const app = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-index.use(bodyParser.json());
-index.use(cors());
+app.use(bodyParser.json());
+app.use(cors());
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-index.get('/data', function(req,res){
+app.get('/data', function(req,res){
   var sql = 'SELECT * FROM test';
   connection.query(sql, (err, result)=>{
       if(err) throw err;
@@ -23,7 +23,23 @@ index.get('/data', function(req,res){
   });
   });
 
-index.post('/data', function(req, res){
+app.post('/loginInfo', function(req, res){
+  console.log(req.body); 
+  var data = [req.body.id,req.body.pw];
+  var sql = "SELECT count(*) FROM test WHERE id = ?";
+  connection.query(sql,data[0],(err, result)=>{
+    if(err) throw err
+    else{
+      console.log(result);
+      res.send({
+        result: this.result
+      });
+    }
+  });
+});
+
+
+app.post('/data', function(req, res){
 	console.log(req.body); 
     var data = [req.body.id,req.body.pw];
     var sql = "INSERT INTO test(id,pw) VALUES(?) ";
@@ -39,6 +55,6 @@ index.post('/data', function(req, res){
 });
 });
 
-index.listen(3210, ()=>{
+app.listen(3210, ()=>{
   console.log('Server aktif di port 3210')
 });

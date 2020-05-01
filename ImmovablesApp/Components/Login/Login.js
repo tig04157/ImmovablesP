@@ -31,7 +31,12 @@ export default class Login extends Component {
         pw: this.state.pw
       })
       .then(function (response) {
-        console.log(response);
+        if(response.data.values=="중복"){
+          alert('아이디 중복');
+        }
+        else{
+          alert('아이디 사용 가능');
+        }
       })
       .catch(function (error) {
         console.log(error);

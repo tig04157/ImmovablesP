@@ -10,7 +10,7 @@ export default class Map extends Component {
             <Icon name='ios-map' styles={{color: tintColor}}/>
         )
     }
-
+ 
     render() {
         return (
             <Container style={styles.container}>

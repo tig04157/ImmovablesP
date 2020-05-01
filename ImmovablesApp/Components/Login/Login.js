@@ -25,7 +25,8 @@ export default class Login extends Component {
     }  
 
     klikPost(){
-      var url = 'http://192.168.0.25:3210/data';
+      //var url = 'http://192.168.0.25:3210/data';
+      var url = 'http://192.168.0.25:3210/loginInfo'
       axios.post(url, {
         id: this.state.id,
         pw: this.state.pw
@@ -42,9 +43,9 @@ export default class Login extends Component {
         console.log(error);
       });
       this.state.id = '';
-      this.state.pw = '';
-     // this.props.navigation.replace('next')
-
+      this.state.pw = ''; 
+      //this.props.navigation.replace('next')
+     
     };
     
    /* _doLogin(){

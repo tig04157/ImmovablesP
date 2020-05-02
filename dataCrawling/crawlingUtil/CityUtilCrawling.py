@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import os
 
-class UtilCrawling:
+class CityUtilCrawling:
 
     #시 코드 및 이름 조회
     def get_City_code_name(self, URL):

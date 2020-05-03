@@ -8,7 +8,7 @@ import CustomButton from '../Util/LoginUtil/CustomButton';
 import axios from 'axios';
 import Main from './../MainScreen'
 import Signup from '../Signup/Signup'
-
+  import App from '../../App'
 export default class Login extends Component {
     // navigationOptions 코드 추가
     static navigationOptions = {
@@ -23,20 +23,22 @@ export default class Login extends Component {
           dataku: [],
       };  
     }  
-
+    chpoint(){
+      this.props.navigation.replace('next')
+    }
     klikPost(){
       //var url = 'http://192.168.0.25:3210/data';
-      var url = 'http://192.168.0.25:3210/loginInfo'
+      var url = 'http://192.168.0.25:3210/chinfo'
       axios.post(url, {
         id: this.state.id,
         pw: this.state.pw
       })
       .then(function (response) {
         if(response.data.values=="중복"){
-          alert('아이디 중복');
+          
         }
-        else{
-          alert('아이디 사용 가능');
+        else if(response.data.values=="중복아님"){
+          alert('아이디 혹은 비밀번호가 다릅니다.');
         }
       })
       .catch(function (error) {
@@ -44,7 +46,7 @@ export default class Login extends Component {
       });
       this.state.id = '';
       this.state.pw = ''; 
-      //this.props.navigation.replace('next')
+      this.props.navigation.replace('next')
      
     };
     
@@ -92,7 +94,7 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
-            onPress={() => this.props.navigation.navigate('Signup')}/>
+            onPress={() => this.props.navigation.navigate('Wishlist')}/>
       </View>  
       );
     }

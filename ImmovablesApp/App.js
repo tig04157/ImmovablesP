@@ -6,6 +6,9 @@ import Login  from './Components/Login/Login';
 import test  from './Components/Login/test';
 import MainScreen from  './Components/MainScreen'
 import Signup from './Components/Signup/Signup'
+import Wishlist from './Components/Util/WriteUtil/Wishlist'
+import Write from './Components/bottom/Write/Write';
+
 const datas = [
   {id:"RR"},
   {id:"RT"},
@@ -29,20 +32,23 @@ const HomeStack = createStackNavigator(
 const AppStackNavigator = createStackNavigator({
   
   LoginScreen: Login,
-  
+  WriteScreen: Write,
+
   next: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
           headerShown: false,
       }),
-      
         headerLayoutPreset: 'center'
-          
     },
   Signup: {
     screen: Signup,
     
-  }
+  },
+  Wishlist:{
+    screen: Wishlist,
+    
+  },
   },
 );
 

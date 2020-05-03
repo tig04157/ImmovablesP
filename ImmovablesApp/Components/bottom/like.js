@@ -101,7 +101,7 @@ export default class home extends Component {
     render() {
         return (          
           <Container style={style.container }>
-              <Header style ={{ height:100, flexDirection: 'column' }}>
+              <Header style ={{ height:100, flexDirection: 'column', backgroundColor: 'white' }}>
                 <View style={{ height:45, alignItems: 'center', justifyContent: 'center'}} >
                   <Text style={{ alignItems:'center' }}>관심목록</Text>
                 </View>

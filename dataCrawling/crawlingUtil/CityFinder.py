@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-from crawlingUtil.UtilCrawling import UtilCrawling
+from crawlingUtil.CityUtilCrawling import CityUtilCrawling
 from crawlingUtil.Selenium import Selenium
 import re
 import asyncio
 import time
 
-class Finder:
+
+class CityFinder:
     se = Selenium()
-    crawlingUtil = UtilCrawling()
+    crawlingUtil = CityUtilCrawling()
     cityName = ''
     contryName = ''
     OUTPUT_FILE_NAME = 'address1.txt'
     open_output_file = open(OUTPUT_FILE_NAME, 'w', -1, "utf-8")
 
 
-    def __init__(self, pageNum, rootPath):
+    def __init__(self):
 
         URL = 'http://www.juso.go.kr/openIndexPage.do'
         self.se.startSelenium(URL)

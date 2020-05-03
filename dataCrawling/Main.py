@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
+import atexit
 from datetime import datetime
-from crawlingUtil.UtilCrawling import UtilCrawling
-from crawlingUtil.Finder import Finder
-
+from crawlingUtil.CityUtilCrawling import CityUtilCrawling
+#from crawlingUtil.CityFinder import CityFinder
+from crawlingUtil.ImmovablesFinder import ImmovablesFinder
 import schedule
 import time
-
+import winsound
 def job_day():
     for i in range(1):
         tempStr = __file__
-        today = '202002' + '%02d' % (i+1) # str(datetime.today().year) + "%02d" % datetime.today().month + "%02d" % datetime.today().day
+        today = str(datetime.today().year) + "%02d" % datetime.today().month + "%02d" % datetime.today().day + '%02d' % (i+1) # str(datetime.today().year) + "%02d" % datetime.today().month + "%02d" % datetime.today().day
         rootPath = tempStr[:-16]
-        Finder(1,rootPath)
+        #CityFinder(1)
+
+        # 네이버 부동산 URL
+        naverImmovablesURL = 'https://new.land.naver.com/complexes?ms=37.487257,127.0568035,17&a=APT:ABYG:JGC&e=RETAIL'
+        ImmovablesFinder(naverImmovablesURL)
+
         print('\n')
         print("="*120)
         print('\n\t' + str(today) + ' 크롤링 완료')
@@ -19,8 +25,41 @@ def job_day():
         print("=" * 120)
 
 
+def naviBeep():
+    # 도,레,미,파,솔,라,시 Hz
+    so1 = {'do':261,'re':293,'mi':329,'pa':349,'sol':391,'ra':440,'si':493}
+    mel = ['si','si','si','sol','mi','mi', 'pa','re','re', 'do','re','mi','pa','sol','sol','sol']
+    dur = [1,1,1,2,2,1,           2,2,1,           2,2,2,2,2,2,1]
+    mel2 = ['sol','mi','mi','mi',  'pa','re','re',   'do','mi','sol','sol', 'mi','mi','mi' ]
+    dur2 = [2,2,2,2,                2,2,1,             2,2,2,2,                2,2,1]
+    music = zip(mel,dur)
+    music2 = zip(mel2,dur2)
+    for melody,duration in music:
+        winsound.Beep(so1[melody],1000//duration)
+    for melody,duration in music2:
+        winsound.Beep(so1[melody],1000//duration)
+
+def airplaneBeep():
+    # 도,레,미,파,솔,라,시 Hz
+    so1 = {'do':261,'re':293,'mi':329,'pa':349,'sol':391,'ra':440,'si':493}
+    mel = ['mi','re','do',  're','mi','mi',  'mi','re','re',   're','mi','sol','sol']
+    dur = [2,4,2,           2,2,2,             1,  2,   2,       1,  2,2,1]
+    mel2 = ['mi','re','do',  're','mi','mi',  'mi','re','re',   'mi','re','do' ]
+    dur2 = [2,4,2,                2,2,2,        1,  2,   2,         1,2,1]
+    music = zip(mel,dur)
+    music2 = zip(mel2,dur2)
+    for melody,duration in music:
+        winsound.Beep(so1[melody],1000//duration)
+    for melody,duration in music2:
+        winsound.Beep(so1[melody],1000//duration)
+
+
 if __name__ == '__main__':
-    job_day()
+    try:
+        job_day()
+    finally:
+        atexit.register(naviBeep())
+    airplaneBeep()
 
     #schedule.every().days.at("11:55").do(job_day)
     #while True:

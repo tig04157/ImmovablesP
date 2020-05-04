@@ -36,20 +36,23 @@ class ImmovablesFinder:
         #print(tempCityArr)
         cNum = len(tempCityArr)
         time.sleep(1)
-        for click in range(1): #시 버튼 클릭
-            self.OUTPUT_FILE_NAME = tempCityArr[click] + ' ' + 'Immovables.txt'
-            self.open_output_file = open(self.OUTPUT_FILE_NAME, 'w', -1, "utf-8")
-            self.city = tempCityArr[click]
-            self.cityButton = '//*[@id="region_filter"]/div/div/div[2]/ul/li['+str(click+1)+']'
-            self.se.buttonClick(self.cityButton)
-            time.sleep(2)
-            self.findContry()
-            time.sleep(2)
-            cityOpenButton = '//*[@id="region_filter"]/div/a/span[1]'
-            self.se.buttonClick(cityOpenButton)
-            time.sleep(2)
-            self.se.buttonClick(cityOpenButton)
-            time.sleep(1)
+        for click in range(cNum): #시 버튼 클릭
+            try:
+                self.OUTPUT_FILE_NAME = tempCityArr[click] + ' ' + 'Immovables.txt'
+                self.open_output_file = open(self.OUTPUT_FILE_NAME, 'w', -1, "utf-8")
+                self.city = tempCityArr[click]
+                self.cityButton = '//*[@id="region_filter"]/div/div/div[2]/ul/li['+str(click+1)+']'
+                self.se.buttonClick(self.cityButton)
+                time.sleep(2)
+                self.findContry()
+                time.sleep(2)
+                cityOpenButton = '//*[@id="region_filter"]/div/a/span[1]'
+                self.se.buttonClick(cityOpenButton)
+                time.sleep(2)
+                self.se.buttonClick(cityOpenButton)
+                time.sleep(1)
+            except:
+                None
 
     def findContry(self):
 
@@ -62,20 +65,19 @@ class ImmovablesFinder:
         contNum = len(tempContryArr)
         time.sleep(1)
         for click in range(contNum): # 읍/면/구
-            if click > 13:
-                try:
-                    self.contry = tempContryArr[click]
-                    self.contryButton = '//*[@id="region_filter"]/div/div/div[2]/ul/li['+str(click+1)+']'
-                    self.se.buttonClick(self.contryButton)
-                    time.sleep(2)
-                    self.findTown()
-                    time.sleep(2)
-                    self.se.buttonClick('//*[@id="region_filter"]/div/a/span[2]')
-                    time.sleep(2)
-                    self.se.buttonClick('//*[@id="region_filter"]/div/a/span[2]')
-                    time.sleep(1)
-                except:
-                    None
+            try:
+                self.contry = tempContryArr[click]
+                self.contryButton = '//*[@id="region_filter"]/div/div/div[2]/ul/li['+str(click+1)+']'
+                self.se.buttonClick(self.contryButton)
+                time.sleep(2)
+                self.findTown()
+                time.sleep(2)
+                self.se.buttonClick('//*[@id="region_filter"]/div/a/span[2]')
+                time.sleep(2)
+                self.se.buttonClick('//*[@id="region_filter"]/div/a/span[2]')
+                time.sleep(1)
+            except:
+                None
 
     def findTown(self):
         tempTownArr = [] #임시 리스트

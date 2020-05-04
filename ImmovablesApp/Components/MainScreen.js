@@ -14,7 +14,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},
     관심목록: {screen:like},
     지도: {screen:map},
-    글쓰기: {screen:write},
+    게시판: {screen:write},
     더보기: {screen:plus}
 }, {
   animationEnabled: true,

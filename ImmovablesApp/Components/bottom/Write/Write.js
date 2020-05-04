@@ -7,8 +7,6 @@ import RowCardComponent  from './RowCardComponent';
 import myData from '../../Util/test.json';
 import Wishlist from '../../Util/WriteUtil/Wishlist'
 import { createStackNavigator } from 'react-navigation-stack'
-import MainScreen from '../../MainScreen';
-import App from '../../../App'
 
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -133,11 +131,6 @@ export default class Write extends Component {
         );
     }
 }
-const AppNavigator = createStackNavigator({
-  Wishlist: {
-    screen: Wishlist,
-  },
-});
 const styles = StyleSheet.create({
     container: {
         flex: 1,

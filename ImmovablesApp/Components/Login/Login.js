@@ -8,7 +8,7 @@ import CustomButton from '../Util/LoginUtil/CustomButton';
 import axios from 'axios';
 import Main from './../MainScreen'
 import Signup from '../Signup/Signup'
-  import App from '../../App'
+
 export default class Login extends Component {
     // navigationOptions 코드 추가
     static navigationOptions = {
@@ -23,9 +23,6 @@ export default class Login extends Component {
           dataku: [],
       };  
     }  
-    chpoint(){
-      this.props.navigation.replace('next')
-    }
     klikPost(){
       //var url = 'http://192.168.0.25:3210/data';
       var url = 'http://192.168.0.25:3210/chinfo'
@@ -94,19 +91,13 @@ export default class Login extends Component {
           <CustomButton 
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
-            onPress={() => this.props.navigation.navigate('Wishlist')}/>
+            onPress={() => this.props.navigation.navigate('Signup')}/>
       </View>  
       );
     }
     
   }
   
-  const AppNavigator = createStackNavigator({
-    Signup: {
-      screen: Signup,
-    },
-  });
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,

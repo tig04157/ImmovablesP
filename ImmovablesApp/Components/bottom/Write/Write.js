@@ -108,7 +108,6 @@ export default class Write extends Component {
                     <Text style={ [ this.state.activeIndex === 1 ? {} : {color: 'grey'} ]}>거래 게시판</Text>
                   </TouchableOpacity>
                 </View> 
-                <Button  title ="dfefdsa" onPress={()=>Write.screen('Wishlist')}/>
                 { this.renderSection() }
 
           </Container>

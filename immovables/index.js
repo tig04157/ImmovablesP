@@ -8,7 +8,7 @@ app.use(cors());
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '0000',
+  password : 'iclab4',
   database : 'immovables'
 });
 

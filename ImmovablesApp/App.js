@@ -9,30 +9,38 @@ import Signup from './Components/Signup/Signup'
 import Wishlist from './Components/Util/WriteUtil/Wishlist'
 import Write from './Components/bottom/Write/Write';
 
-const datas = [
-  {id:"RR"},
-  {id:"RT"},
-  {id:"LR"},
-  {id:"LT"},
-  {id:"CO"},
-];
+const WriteStack = createStackNavigator({
+  Write,
+  
+},
 
+)
 const HomeStack = createStackNavigator(
   {
-    MainScreen
+    MainScreen,
+    
+    next: {
+      screen: WriteStack,
+      navigationOptions: ({navigation}) => ({
+          headerShown: false,
+      }),
+        headerLayoutPreset: 'center'
+    },
+
   },
+
   {
       defaultNavigationOptions: ({navigation}) => ({
           title: 'Home',
       }),
       headerTitleAlign: 'center'
-  }
+  },
+  
 );
 
 const AppStackNavigator = createStackNavigator({
   
   LoginScreen: Login,
-  WriteScreen: Write,
 
   next: {
       screen: HomeStack,
@@ -43,12 +51,8 @@ const AppStackNavigator = createStackNavigator({
     },
   Signup: {
     screen: Signup,
-    
   },
-  Wishlist:{
-    screen: Wishlist,
-    
-  },
+
   },
 );
 

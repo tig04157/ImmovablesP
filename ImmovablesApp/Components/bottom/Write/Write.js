@@ -34,6 +34,25 @@ export default class Write extends Component {
         activeIndex: 0    };  
   }  
 
+  getDB = function(){
+    var url = 'http://192.168.0.25:3210/data'
+    axios.post(url, {
+      id: this.state.id,
+      pw: this.state.pw
+    })
+    .then(function (response) {
+      if(response.data.result=="완료"){
+        alert('회원가입 완료');
+      }
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.state.id = '';
+    this.state.pw = '';
+  }
+
   componentDidMount() {   //기존함수 componentWillMount에서 componentDidMount로 변경함.
 
       this.fetchFeeds().then(feeds => {
@@ -45,7 +64,7 @@ export default class Write extends Component {
   segmentClicked = (activeIndex)=>{
     this.setState({activeIndex});
   }
-  renderSection = () => {
+  renderSection = () => { 
     if(this.state.activeIndex === 0){
       return <View>                                              
                 {                  

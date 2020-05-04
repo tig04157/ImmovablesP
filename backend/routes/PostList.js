@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 router.get('/getPost/:test', function(req, res, next) {
     console.log(req.params.test)
     conn.query('SELECT * FROM imformation', function(err, row) {
-        console.log(row);
         res.send(row);
         
     });

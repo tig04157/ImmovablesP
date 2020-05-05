@@ -60,6 +60,9 @@ OH chan-hae
 > ### 2020-04-08
     Catch a Cycle warning in Login.js.
     Complete UI Home.js
+> ### 2020-05-05
+    Complete crawling data.
+    Create a Board component.
 
 
 Kim jong-min

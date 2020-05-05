@@ -7,14 +7,14 @@ import {createMaterialTopTabNavigator } from 'react-navigation-tabs'
 import home from './bottom/HomeComponents/Home'
 import like from './bottom/like'
 import map from './bottom/Map'
-import write from './bottom/Write/Write'
+import Board from './bottom/Write/Board'
 import plus from './bottom/PlusComponents/plus'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},
     관심목록: {screen:like},
     지도: {screen:map},
-    게시판: {screen:write},
+    게시판: {screen:Board},
     더보기: {screen:plus}
 }, {
   animationEnabled: true,

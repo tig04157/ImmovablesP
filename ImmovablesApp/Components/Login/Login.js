@@ -43,8 +43,7 @@ export default class Login extends Component {
       });
       this.state.id = '';
       this.state.pw = ''; 
-      this.props.navigation.replace('next')
-     
+      this.props.navigation.replace('next')     
     };
     
    /* _doLogin(){

@@ -24,9 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 경로 확인
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/postList', PostListRouter)
-app.use('/login', LoginRouter)
+app.use('/api/users', usersRouter);
+app.use('/api/postList', PostListRouter)
+app.use('/api/login', LoginRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

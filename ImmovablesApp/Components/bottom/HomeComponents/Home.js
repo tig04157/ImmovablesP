@@ -92,7 +92,7 @@ export default class home extends Component {
 
                   <View><Text style={{fontSize:24}}>어디살래? 와 함께하는 제휴사</Text></View>
                   <View>                                              
-                    {                  
+                    {                                      
                       this.state.jsonD.map((feed, index) => (
                         <RowCardComponent data={ feed } key={index}/>
                         ))   
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'whitesmoke'
       },
       header: {
-        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',

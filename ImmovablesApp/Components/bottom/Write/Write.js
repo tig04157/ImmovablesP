@@ -83,8 +83,8 @@ export default class Write extends Component {
       return (
           <Container style={styles.container}>
               <Header style={styles.header}>
-                <View style={{alignItems:'center',justifyContent:'center',width:'90%',height:'80%'}}>
-                  <Text>                       입찰 게시판</Text>
+                <View style={{alignItems:'center',justifyContent:'center',width:'90%',height:'80%'}} >
+                  <Text >                       입찰 게시판</Text>
                 </View>
                 <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
                   <Button style={{backgroundColor:'white'}} onPress={()=> {this.setModalVisible(true);}}>

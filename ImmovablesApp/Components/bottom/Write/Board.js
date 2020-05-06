@@ -8,7 +8,6 @@ import http from "../../../http-common";
 import Wishlist from '../../Util/WriteUtil/Wishlist'
 import { createStackNavigator } from 'react-navigation-stack'
 
-
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
@@ -88,7 +87,7 @@ export default class Board extends Component {
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button style={{backgroundColor:'white'}}>
+              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   
@@ -132,7 +131,7 @@ export default class Board extends Component {
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button style={{backgroundColor:'white'}}>
+              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   

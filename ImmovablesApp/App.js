@@ -8,14 +8,15 @@ import MainScreen from  './Components/MainScreen'
 import Signup from './Components/Signup/Signup'
 import Wishlist from './Components/Util/WriteUtil/Wishlist'
 import post from './Components/bottom/Write/Post'
+import write from './Components/bottom/Write/Write'
 
-/*
+
 const WriteStack = createStackNavigator({
-  //Write,
+  write,
   
 },
 
-)*/
+)
 
 const detail = createStackNavigator(
   {
@@ -28,10 +29,10 @@ const detail = createStackNavigator(
     headerTitleAlign: 'center'  
 },
 )
-
+/*
 const HomeStack = createStackNavigator(
   {
-    MainScreen,
+    
     
     toDetail: {
       screen: detail,
@@ -42,14 +43,18 @@ const HomeStack = createStackNavigator(
       headerLayoutPreset: 'center',
 
     },
+    toWrite: {
+      screen: write,
+    }
   },
 
 );
-
+*/
 const AppStackNavigator = createStackNavigator({
   
   LoginScreen: Login,
-
+  next : MainScreen,
+  /*
   next: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
@@ -57,6 +62,7 @@ const AppStackNavigator = createStackNavigator({
       }),
         headerLayoutPreset: 'center'
     },
+    */
   Signup: {
     screen: Signup,
   },

@@ -9,7 +9,7 @@ import like from './bottom/like'
 import map from './bottom/Map'
 import Board from './bottom/Write/Board'
 import plus from './bottom/PlusComponents/plus'
-
+import Write from './bottom/Write/Write'
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},
     관심목록: {screen:like},

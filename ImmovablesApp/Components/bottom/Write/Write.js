@@ -36,14 +36,16 @@ export default class Write extends Component {
     onRequestClose={() => {
       alert('Modal has been closed.');
     }}
-    style={{}}
+    
     >
     <View style={{
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          
+          backgroundColor:'white'
+          }}
+          onPress={() => {this.setModalVisible(!this.state.modalVisible);
           }}>
       <View style={{justifyContent:'center', alignItems:'center',width: 300, height: 150, borderWidth:1, borderColor:'#a7a7a7', borderRadius:5, backgroundColor:'whitesmoke'}}>
         <Text style={{color:'#004aff',margin:5}}>카테고리를 선택하시오.</Text>
@@ -67,26 +69,7 @@ export default class Write extends Component {
   updateText = () => {
     this.setState({myText: 'My Changed Text'})
  }
-  renderSection = () => { 
-    if(this.state.activeIndex === 0){
-      return (
-        <View>                                              
-          {                 
-          this.getDB()
-          }             
-        </View>      
-      )
-    }
-    else if(this.state.activeIndex === 1){
-      return (
-        <View>                                              
-          {                  
-            <Text>거래 게시판</Text> 
-          }                 
-        </View>      
-      )
-    }
-  }
+ 
   render() {
       return (
               <Container style={styles.container}>

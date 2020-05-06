@@ -7,49 +7,7 @@ import test  from './Components/Login/test';
 import MainScreen from  './Components/MainScreen'
 import Signup from './Components/Signup/Signup'
 import Wishlist from './Components/Util/WriteUtil/Wishlist'
-import post from './Components/bottom/Write/Post'
-import write from './Components/bottom/Write/Write'
 
-
-const WriteStack = createStackNavigator({
-  write,
-  
-},
-
-)
-
-const detail = createStackNavigator(
-  {
-    post,  
-  },
-  {
-    defaultNavigationOptions: ({navigation}) => ({
-        //title: 'Home',
-    }),
-    headerTitleAlign: 'center'  
-},
-)
-/*
-const HomeStack = createStackNavigator(
-  {
-    
-    
-    toDetail: {
-      screen: detail,
-      navigationOptions: ({navigation}) => ({
-          title:'',
-          headerShown: false,
-      }),
-      headerLayoutPreset: 'center',
-
-    },
-    toWrite: {
-      screen: write,
-    }
-  },
-
-);
-*/
 const AppStackNavigator = createStackNavigator({
   
   LoginScreen: Login,

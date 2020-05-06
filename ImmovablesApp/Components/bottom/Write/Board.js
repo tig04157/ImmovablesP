@@ -5,12 +5,11 @@ import { Icon, Container, Header, Button } from 'native-base';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RowCardComponent  from './RowCardComponent'; 
 import http from "../../../http-common";
-import Wishlist from '../../Util/WriteUtil/Wishlist'
-import { createStackNavigator } from 'react-navigation-stack'
+
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+//const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
 export default class Board extends Component { 
 
@@ -24,6 +23,7 @@ export default class Board extends Component {
       searchInfo: ''
     };  
   }    
+  
   //로딩 구현(Life cycle (constructor-> static getDerivedStateFromProps() -> render() -> ))
   componentDidMount(){
     this.getDB()

@@ -26,6 +26,19 @@ class ImmovablesFinder:
         self.open_output_file.close()
 
     def findCity(self):
+        self.se.buttonClick('//*[@id="type0"]')
+        time.sleep(1)
+        self.se.buttonClick('//*[@id="type1"]')
+        time.sleep(1)
+        self.se.buttonClick('//*[@id="type3"]')
+        time.sleep(1)
+        self.se.buttonClick('//*[@id="type2"]')
+        time.sleep(1)
+        self.se.buttonClick('//*[@id="type4"]')
+        time.sleep(1)
+        self.se.buttonClick('//*[@id="type5"]')
+        time.sleep(1)
+
         self.openButton = '//*[@id="region_filter"]/div/a/span[1]'
         self.se.buttonClick(self.openButton)
 
@@ -36,6 +49,7 @@ class ImmovablesFinder:
         #print(tempCityArr)
         cNum = len(tempCityArr)
         time.sleep(1)
+
         for click in range(cNum): #시 버튼 클릭
             try:
                 self.OUTPUT_FILE_NAME = tempCityArr[click] + ' ' + 'Immovables.txt'

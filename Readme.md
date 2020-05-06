@@ -63,7 +63,8 @@ OH chan-hae
 > ### 2020-05-05
     Complete crawling data.
     Create a Board component.
-
+> ### 2020-05-06
+    Need a fix loading in board.js(if fail loading, repeat loading).
 
 Kim jong-min
 ---
@@ -78,8 +79,5 @@ Kim jong-min
 > ### 2020-04-08
     Update a Scroll Top Tab
     Update a UI like.js
-<<<<<<< HEAD
 > ### 2020-04-09
     Update a Button -> TouchableOpacity in like.js
-=======
->>>>>>> bdc3facb21c9de164c874999d0557ba68bbaf619

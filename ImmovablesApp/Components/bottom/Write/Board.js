@@ -1,10 +1,11 @@
-
 import React, { Component } from 'react';
+import Modal from "react-native-modal";
 import { TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
 import { Icon, Container, Header, Button } from 'native-base'; 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RowCardComponent  from './RowCardComponent'; 
 import http from "../../../http-common";
+import DetailPostModal from './DetailPostModal'
 
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -16,11 +17,11 @@ export default class Board extends Component {
   constructor(props) {  
     super(props);      
     this.state = {
-      test: 'ok',
       DBdata: null,
       activeIndex: 0,
       loading: true,
-      searchInfo: ''
+      searchInfo: '',
+      isModalVisible: false
     };  
   }    
   
@@ -45,7 +46,7 @@ export default class Board extends Component {
   }
 
   getDB(){
-    http.get(`/postList/getPost/${this.state.test}`)
+    http.get(`/postList/getPost`)
       .then(response => {
         this.state.DBdata = response.data
         this.renderSection()
@@ -77,10 +78,14 @@ export default class Board extends Component {
       )
     }
   }
+
+  toggle(){
+    this.setState({isModalVisible: !this.state.isModalVisible});
+  }
   
   render() {
     if(this.state.loading){
-      return(
+      return(        
         <Container style={styles.container}>
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>
@@ -98,10 +103,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={()=>this.props.navigation.replace('toDetail',{
-          title: data.title, 
-          author: data.author
-          })}>
+              <TouchableOpacity onPress={() => this.toggle()}>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>
@@ -126,6 +128,9 @@ export default class Board extends Component {
     }else{
       return (        
         <Container style={styles.container}>
+          <Modal isVisible={this.state.isModalVisible}>
+            <DetailPostModal toggle={() => this.toggle()}/>
+          </Modal>          
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>
               <Text>입찰 게시판</Text>                  
@@ -142,7 +147,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={()=>this.props.navigation.replace('toDetail')}>
+              <TouchableOpacity onPress={() => this.toggle()}>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>

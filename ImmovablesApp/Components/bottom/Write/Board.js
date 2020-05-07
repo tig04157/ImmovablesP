@@ -5,7 +5,7 @@ import { Icon, Container, Header, Button } from 'native-base';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RowCardComponent  from './RowCardComponent'; 
 import http from "../../../http-common";
-import Write from './Write'
+import DetailPostModal from './DetailPostModal'
 
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -92,7 +92,7 @@ export default class Board extends Component {
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
+              <Button  onPress={() => this.toggle()} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   
@@ -103,7 +103,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={() => this.toggle()}>
+              <TouchableOpacity>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>
@@ -128,15 +128,15 @@ export default class Board extends Component {
     }else{
       return (        
         <Container style={styles.container}>
-          <Modal isVisible={this.state.isModalVisible} >
-            <Write toggle={() => this.toggle()}/>
+          <Modal isVisible={this.state.isModalVisible}>
+            <DetailPostModal toggle={() => this.toggle()}/>
           </Modal>          
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
+              <Button  onPress={() => this.toggle()} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   
@@ -147,7 +147,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={() => this.toggle()}>
+              <TouchableOpacity>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>

@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
+import {TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
 import { Icon, Container, Header, } from 'native-base'; 
 
 
@@ -31,31 +31,36 @@ export default class DetailPostModal extends Component {
     onRequestClose={() => {
       this.setModalVisible(!this.state.modalVisible);
     }}
-    
+    backdrop={true}
     >
-    <View style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          }}>
-      <View style={{justifyContent:'center', alignItems:'center',width: 300, height: 150, borderWidth:1, borderColor:'#a7a7a7', borderRadius:5, backgroundColor:'whitesmoke'}}>
-        <Text style={{color:'#004aff',margin:5}}>카테고리를 선택하시오.</Text>
-        <TouchableOpacity style={styles.button} onPress={() => {
-          this.setModalVisible(!this.state.modalVisible);
-          this.setState({category: '구매 희망 게시판'});
-        }}> 
-          <Text style={{color:'#004aff'}}>구매 희망 게시판</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {
-          this.setModalVisible(!this.state.modalVisible);
-          this.setState({category: '거래 게시판'});
+    <TouchableWithoutFeedback onPress={()=>{this.setModalVisible(!this.state.modalVisible);}}>
+      <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            }}>
+        <TouchableWithoutFeedback>
+          <View style={{justifyContent:'center', alignItems:'center',width: 300, height: 150, borderWidth:1, borderColor:'#a7a7a7', borderRadius:5, backgroundColor:'#c0c0c0'}}>
+            <Text style={{color:'#004aff',margin:5}}>카테고리를 선택하시오.</Text>
+            <TouchableOpacity style={styles.button} onPress={() => {
+              this.setModalVisible(!this.state.modalVisible);
+              this.setState({category: '구매 희망 게시판'});
+            }}> 
+            <Text style={{color:'#004aff'}}>구매 희망 게시판</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => {
+              this.setModalVisible(!this.state.modalVisible);
+              this.setState({category: '거래 게시판'});
 
-        }}> 
-          <Text style={{color:'#004aff'}}>거래 게시판</Text>
-        </TouchableOpacity>
+            }}> 
+              <Text style={{color:'#004aff'}}>거래 게시판</Text>
+            </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
+
   </Modal>
   }
   updateText = () => {

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-import atexit
+'''
 from datetime import datetime
 from crawlingUtil.CityUtilCrawling import CityUtilCrawling
 #from crawlingUtil.CityFinder import CityFinder
-from crawlingUtil.ImmovablesFinder import ImmovablesFinder
+from crawlingUtil.InsertCity import InsertCity
+#from crawlingUtil.ImmovablesFinder import ImmovablesFinder
 import schedule
 import time
 import winsound
+
 def job_day():
     for i in range(1):
         tempStr = __file__
@@ -16,7 +18,8 @@ def job_day():
 
         # 네이버 부동산 URL
         naverImmovablesURL = 'https://new.land.naver.com/complexes?ms=37.487257,127.0568035,17&a=APT:ABYG:JGC&e=RETAIL'
-        ImmovablesFinder(naverImmovablesURL)
+        #ImmovablesFinder(naverImmovablesURL)
+        InsertCity(naverImmovablesURL)
 
         print('\n')
         print("="*120)
@@ -29,7 +32,7 @@ def naviBeep():
     # 도,레,미,파,솔,라,시 Hz
     so1 = {'do':261,'re':293,'mi':329,'pa':349,'sol':391,'ra':440,'si':493}
     mel = ['si','si','si','sol','mi','mi', 'pa','re','re', 'do','re','mi','pa','sol','sol','sol']
-    dur = [1,1,1,2,2,1,           2,2,1,           2,2,2,2,2,2,1]
+    dur = [2,2,1,2,2,1,           2,2,1,           2,2,2,2,2,2,1]
     mel2 = ['sol','mi','mi','mi',  'pa','re','re',   'do','mi','sol','sol', 'mi','mi','mi' ]
     dur2 = [2,2,2,2,                2,2,1,             2,2,2,2,                2,2,1]
     music = zip(mel,dur)
@@ -53,15 +56,28 @@ def airplaneBeep():
     for melody,duration in music2:
         winsound.Beep(so1[melody],1000//duration)
 
+'''
+from DataBase.DBConnector import DBConnector
+#from DataBase.DataPreprocessor import DataPreprocessor
 
 if __name__ == '__main__':
+    '''
     try:
         job_day()
-    finally:
-        atexit.register(naviBeep())
-    airplaneBeep()
+    except:
+        naviBeep()
 
+    airplaneBeep()
+    '''
     #schedule.every().days.at("11:55").do(job_day)
     #while True:
         #schedule.run_pending()
         #time.sleep(1)
+    DB = DBConnector()
+    #dp = DataPreprocessor()
+    #dp.preProcess()
+
+    DB.DBselector()
+    DB.DBCloser()
+    #print(dp.getData())
+    #db.InsertDB(l)

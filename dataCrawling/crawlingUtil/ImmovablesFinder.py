@@ -6,15 +6,20 @@ import time
 import winsound as ws
 
 class ImmovablesFinder:
+
     city = ''
     contry = ''
     town = ''
+
     se = Selenium()
     crawlingUtil = CityUtilCrawling()
+
     cityName = ''
     contryName = ''
+
     OUTPUT_FILE_NAME = 'Immovables.txt'
     open_output_file = None
+
     openButton = ''
     cityButton = ''
     contryButton = ''
@@ -50,7 +55,7 @@ class ImmovablesFinder:
         cNum = len(tempCityArr)
         time.sleep(1)
 
-        for click in range(cNum): #시 버튼 클릭
+        for click in range(1): #시 버튼 클릭
             try:
                 self.OUTPUT_FILE_NAME = tempCityArr[click] + ' ' + 'Immovables.txt'
                 self.open_output_file = open(self.OUTPUT_FILE_NAME, 'w', -1, "utf-8")
@@ -74,10 +79,10 @@ class ImmovablesFinder:
         tempContryArr.append(self.se.driver.find_element_by_xpath('//*[@id="region_filter"]/div/div/div[2]/ul').text)
         tempContryArr[0] = tempContryArr[0].replace('\n', ',')
         tempContryArr = tempContryArr[0].split(',')
-
         #print(tempContryArr)
         contNum = len(tempContryArr)
         time.sleep(1)
+
         for click in range(contNum): # 읍/면/구
             try:
                 self.contry = tempContryArr[click]

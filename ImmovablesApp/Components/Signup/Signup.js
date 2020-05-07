@@ -14,7 +14,7 @@ export default class Signup extends Component {
   };  
 } 
 klikPost(){
-  http.post('/data', {
+  http.post('/login/data', {
     id: this.state.id,
     pw: this.state.pw
   })
@@ -36,7 +36,6 @@ idchk = ()=>{
     pw: this.state.pw
   })
   .then(function (response) {
-    alert('ef');
     if(response.data.values=="중복"){
       alert('아이디 중복');
     }

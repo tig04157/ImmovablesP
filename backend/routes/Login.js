@@ -10,7 +10,7 @@ router.post('/chinfo', function(req, res){
   var sql = "SELECT count(*) as id FROM test WHERE id = ? ";
 
   conn.query(sql,data[0],(err, result,rows)=>{
-    console.log('뺌')
+    console.log(data[0])
     if(err) throw err;
     else{
       console.log(result[0].id)
@@ -37,7 +37,6 @@ router.post('/data', function(req, res){
   var data = [req.body.id,req.body.pw];
   var sql = "INSERT INTO test(id,pw) values(?) ";
   conn.query(sql,[data],(err, result)=>{
-    console.log('좀 돼라')
     if(err) throw err;
     else{
       console.log(result);

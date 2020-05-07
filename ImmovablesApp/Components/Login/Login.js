@@ -24,13 +24,13 @@ export default class Login extends Component {
       };  
     }  
     klikPost(){
-      http.post('/chinfo', {
+      http.post('/login/chinfo', {
         id: this.state.id,
         pw: this.state.pw
       })
-      .then(function (response) {
+      .then((response)=> {
         if(response.data.values=="중복"){
-          
+          this.props.navigation.replace('next')
         }
         else if(response.data.values=="중복아님"){
           alert('아이디 혹은 비밀번호가 다릅니다.');
@@ -41,7 +41,6 @@ export default class Login extends Component {
       });
       this.state.id = '';
       this.state.pw = ''; 
-      this.props.navigation.replace('next')     
     };
     
    /* _doLogin(){

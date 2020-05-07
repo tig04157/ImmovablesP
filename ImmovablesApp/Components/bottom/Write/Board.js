@@ -7,8 +7,6 @@ import RowCardComponent  from './RowCardComponent';
 import http from "../../../http-common";
 import DetailPostModal from './DetailPostModal'
 import WriteModal from './WriteModal'
-import Write from './Write'
-
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -94,7 +92,7 @@ export default class Board extends Component {
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
+              <Button onPress={() => this.toggle()} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   
@@ -131,7 +129,7 @@ export default class Board extends Component {
       return (        
         <Container style={styles.container}>
           <Modal isVisible={this.state.isModalVisible}>
-            <Write toggle={() => this.toggle()}/>
+            <WriteModal toggle={() => this.toggle()}/>
           </Modal>          
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>

@@ -82,7 +82,7 @@ export default class DetailPostModal extends Component {
                 {this.showmodal()}
                 <View style={{alignItems:'center'}}>
                   <View style={styles.iteminformation}>
-                    <Icon name='ios-camera' style={{margin:10, fontsize: '100'}} />
+                    <Icon name='ios-camera' style={{margin:10, fontSize: '100'}} />
                     <View>
                       <Text>매물이름</Text>
                       <Text>가격</Text>

@@ -29,7 +29,7 @@ export default class DetailPostModal extends Component {
     transparent={true}
     visible={this.state.modalVisible}
     onRequestClose={() => {
-      alert('Modal has been closed.');
+      this.setModalVisible(!this.state.modalVisible);
     }}
     
     >
@@ -38,9 +38,6 @@ export default class DetailPostModal extends Component {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor:'white'
-          }}
-          onPress={() => {this.setModalVisible(!this.state.modalVisible);
           }}>
       <View style={{justifyContent:'center', alignItems:'center',width: 300, height: 150, borderWidth:1, borderColor:'#a7a7a7', borderRadius:5, backgroundColor:'whitesmoke'}}>
         <Text style={{color:'#004aff',margin:5}}>카테고리를 선택하시오.</Text>

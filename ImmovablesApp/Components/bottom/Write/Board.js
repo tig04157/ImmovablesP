@@ -5,7 +5,7 @@ import { Icon, Container, Header, Button } from 'native-base';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import RowCardComponent  from './RowCardComponent'; 
 import http from "../../../http-common";
-import DetailPostModal from './DetailPostModal'
+import Write from './Write'
 
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -129,7 +129,7 @@ export default class Board extends Component {
       return (        
         <Container style={styles.container}>
           <Modal isVisible={this.state.isModalVisible} >
-            <DetailPostModal toggle={() => this.toggle()}/>
+            <Write toggle={() => this.toggle()}/>
           </Modal>          
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>

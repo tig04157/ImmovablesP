@@ -5,7 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import { Icon } from 'native-base';
 import CustomButton from '../Util/LoginUtil/CustomButton';
-import axios from 'axios';
+import http from '../../http-common'
 import Main from './../MainScreen'
 import Signup from '../Signup/Signup'
 
@@ -24,9 +24,7 @@ export default class Login extends Component {
       };  
     }  
     klikPost(){
-      //var url = 'http://192.168.0.25:3210/data';
-      var url = 'http://192.168.0.25:3210/chinfo'
-      axios.post(url, {
+      http.post('/chinfo', {
         id: this.state.id,
         pw: this.state.pw
       })

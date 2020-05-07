@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View } from 'react-native';
 import { Container, CheckBox } from 'native-base';
-import http from '../../http-common'
+import http from "../../http-common";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 export default class Signup extends Component {
 
@@ -30,8 +30,8 @@ klikPost(){
   this.state.id = '';
   this.state.pw = '';
 };
-idchk(){
-  http.post('/chinfo', {
+idchk = ()=>{
+  http.post('/login/chinfo', {
     id: this.state.id,
     pw: this.state.pw
   })
@@ -59,11 +59,10 @@ idchk(){
               style={{borderBottomWidth:2, width:'70%',height: 40, backgroundColor: 'white', fontSize: 20, margin:10}}  
               placeholder="아이디" onChangeText={(id) => this.setState({id})} value={this.state.id}>  
             </TextInput>
-            <TouchableOpacity style={{flex:1, alignItems:'center' ,justifyContent:'center', }} onPress={ this.idchk.bind(this)}>
+            <TouchableOpacity style={{flex:1, alignItems:'center' ,justifyContent:'center', }} onPress={this.idchk}>
               <Text style={{fontSize: 20,}}>중복확인</Text>
             </TouchableOpacity>
-              
-            
+
           </View>
           <TextInput
             style={{borderBottomWidth:2, width:'90%',height: 40, backgroundColor: 'white', fontSize: 20, margin:10}}  

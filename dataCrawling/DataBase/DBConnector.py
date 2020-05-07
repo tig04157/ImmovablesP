@@ -10,16 +10,29 @@ class DBConnector:
                        password='0000', db='Immovables', charset='utf8')
         self.curs = self.conn.cursor()
 
-    def DBselector(self):
-        sql = 'select code, name from contry'
-        self.curs.execute(sql)
-        result = self.curs.fetchall()
-        #for row_data in result:
-        print(dict(result))
+    def DBselector(self, arr):
 
-'select code from city where name="서울시";'
-'select code from contry where pre_code = (select code from city where name = "서울시") and name="강남구";'
-'select code from town where name="개포동" and pre_code = (select code from contry where pre_code = (select code from city where name = "서울시") and name="강남구");'
+        for count in range(len(arr)):
+            city = arr[count][0][0]
+            contry = arr[count][1][0]
+            town = arr[count][2][0]
+            sql1 = "select code from city where name='"+ city +"'"
+            sql2 = "select code from contry where pre_code = (select code from city where name ='"+ city +"') and name='" + contry + "'"
+            sql3 = "select code from town where name='"+ town +"' and pre_code = (select code from contry where pre_code = (select code from city where name ='"+ city +"') and name='" + contry + "')"
+
+            self.curs.execute(sql1)
+            result = self.curs.fetchall()
+            arr[count][0][0] = result[0][0]
+
+            self.curs.execute(sql2)
+            result = self.curs.fetchall()
+            arr[count][1][0] = result[0][0]
+
+            self.curs.execute(sql3)
+            result = self.curs.fetchall()
+            arr[count][2][0] = result[0][0]
+
+        return arr
 
     def InsertDB(self, contryList, code, pre_code):
         try:
@@ -38,6 +51,29 @@ class DBConnector:
             print("예외 발생! DB ", e.args)
             print(e.__traceback__)
 
+
+    def InsertApart(self, arr):
+
+
+        for count in range(len(arr)):
+            cityNum = arr[count][0][0]
+            contryNum = arr[count][1][0]
+            townNum = arr[count][2][0]
+            immovableName = arr[count][3][0]  # 매물 이름
+            price = arr[count][4][0]  # 가격
+            info = ' , '.join(arr[count][5])  # 설명
+
+            rea = ' , '.join(arr[count][6])  # 공인중개사
+            sql = "insert into apartImmovables(cityCode, " \
+                  "contryCode, townCode,immovable_name, price, info, rea) " \
+                  "values('" + cityNum + "','" + contryNum + "','"+ townNum + \
+                  "','" + immovableName + "','" + price + "','" + info + "','" + rea + "')"
+
+            print(sql)
+
+            self.curs.execute(sql)
+
+        self.conn.commit()
 
 
 

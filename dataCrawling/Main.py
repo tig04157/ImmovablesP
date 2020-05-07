@@ -58,7 +58,7 @@ def airplaneBeep():
 
 '''
 from DataBase.DBConnector import DBConnector
-#from DataBase.DataPreprocessor import DataPreprocessor
+from DataBase.DataPreprocessor import DataPreprocessor
 
 if __name__ == '__main__':
     '''
@@ -74,10 +74,14 @@ if __name__ == '__main__':
         #schedule.run_pending()
         #time.sleep(1)
     DB = DBConnector()
-    #dp = DataPreprocessor()
-    #dp.preProcess()
-
-    DB.DBselector()
-    DB.DBCloser()
+    dp = DataPreprocessor()
+    dp.preProcess()
     #print(dp.getData())
+
+    tempArr = DB.DBselector(dp.getData())
+    DB.InsertApart(tempArr)
+
+
+    DB.DBCloser()
+
     #db.InsertDB(l)

@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 import {TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
 import { Icon, Container, Header, } from 'native-base'; 
 
-
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH );
 
-export default class DetailPostModal extends Component {
+export default class WriteModal extends Component {
 
 
     constructor(props) {  
@@ -25,7 +24,7 @@ export default class DetailPostModal extends Component {
 
   showmodal =() =>{
   return <Modal
-    animationType="fade"
+    animationType="slide"
     transparent={true}
     visible={this.state.modalVisible}
     onRequestClose={() => {
@@ -71,19 +70,19 @@ export default class DetailPostModal extends Component {
       return (
               <Container style={styles.container}>
               <ScrollView>
-                <Header style={styles.modalheader}> 
-                  <TouchableOpacity onPress={this.props.toggle}>
-                    <Text style={{fontSize:"20"}}>X</Text>
-                  </TouchableOpacity>  
-                  <Text style={{fontSize:"15" }}>
+                <Header style={styles.modalheader}>     
+                  <Text></Text>           
+                  <Text style={{fontSize:15 }}>
                     게시판 글쓰기
-                  </Text>  
-                  <Text></Text>             
+                  </Text>
+                  <TouchableOpacity onPress={this.props.toggle}>
+                    <Text>취소</Text>
+                  </TouchableOpacity>
                 </Header>
                 {this.showmodal()}
                 <View style={{alignItems:'center'}}>
                   <View style={styles.iteminformation}>
-                    <Icon name='ios-camera' style={{margin:10, fontSize: '100'}} />
+                    <Icon name='ios-camera' style={{margin:10, fontsize: '100'}} />
                     <View>
                       <Text>매물이름</Text>
                       <Text>가격</Text>
@@ -128,7 +127,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'whitesmoke'
       },
       modalheader:{
-        margin:5,
         backgroundColor: 'whitesmoke',
         alignItems:'center',
         justifyContent: 'space-between',

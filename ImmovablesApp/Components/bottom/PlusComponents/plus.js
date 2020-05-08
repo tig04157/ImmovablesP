@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Image, Dimensions} from 'react-native';
+import { AsyncStorage,StyleSheet, Text, View, FlatList, Image, Dimensions} from 'react-native';
 import {  Container, Content,Icon, Button, } from 'native-base'; 
 import { ScrollView } from 'react-native-gesture-handler';
-import http from '../../../http-common'
+import http from '../../../http-common';
 //import myData from '.././Util/idpw.json';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
@@ -11,6 +11,11 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
 
   export default class plus extends Component {
 
+    componentDidMount(){
+        AsyncStorage.getItem('idchk').then(value =>
+        this.setState({ getValue: value })
+        );
+    }
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
             <Icon name='ios-more' style={{color: tintColor}}/>
@@ -28,7 +33,7 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
                 <ScrollView>
                 <View style ={{  padding:10, flexDirection: 'column' }}>
                     <View style ={{ height: 50 }}></View>
-                    <Text>ID</Text>
+                    <Text>{this.state.getValue}</Text>
                     <Text>e-mail</Text>
                     <Button style ={style.chimpormation}><Text style ={{color : 'blue'}}>정보수정</Text></Button>
                 </View>

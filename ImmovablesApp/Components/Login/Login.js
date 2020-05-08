@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import {   StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View } from 'react-native';
+import {TouchableOpacity,AsyncStorage, StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View } from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
@@ -8,6 +8,7 @@ import CustomButton from '../Util/LoginUtil/CustomButton';
 import http from '../../http-common'
 import Main from './../MainScreen'
 import Signup from '../Signup/Signup'
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export default class Login extends Component {
     // navigationOptions 코드 추가
@@ -21,16 +22,24 @@ export default class Login extends Component {
           id: '',
           pw: '',
           dataku: [],
+          textInputData: '',
+          getValue: '',
       };  
     }  
-    klikPost(){
+
+     klikPost(){
       http.post('/login/chinfo', {
         id: this.state.id,
-        pw: this.state.pw
+        pw: this.state.pw,
+        
       })
       .then((response)=> {
         if(response.data.values=="중복"){
+          AsyncStorage.setItem('idchk', this.state.id)
+          this.setState({id:''})
+          this.setState({pw:''})
           this.props.navigation.replace('next')
+
         }
         else if(response.data.values=="중복아님"){
           alert('아이디 혹은 비밀번호가 다릅니다.');
@@ -39,8 +48,7 @@ export default class Login extends Component {
       .catch(function (error) {
         console.log(error);
       });
-      this.state.id = '';
-      this.state.pw = ''; 
+
     };
     
    /* _doLogin(){
@@ -88,6 +96,7 @@ export default class Login extends Component {
             buttonColor={'mediumseagreen'}
             title={'회원가입'}
             onPress={() => this.props.navigation.navigate('Signup')}/>
+
       </View>  
       );
     }

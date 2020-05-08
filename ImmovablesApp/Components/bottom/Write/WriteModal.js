@@ -70,14 +70,14 @@ export default class WriteModal extends Component {
       return (
               <Container style={styles.container}>
               <ScrollView>
-                <Header style={styles.modalheader}>     
-                  <Text></Text>           
+                <Header style={styles.modalheader}>    
+                  <TouchableOpacity onPress={this.props.toggle}>
+                    <Text>X</Text>
+                  </TouchableOpacity> 
                   <Text style={{fontSize:15 }}>
                     게시판 글쓰기
                   </Text>
-                  <TouchableOpacity onPress={this.props.toggle}>
-                    <Text>취소</Text>
-                  </TouchableOpacity>
+                  <Text></Text>           
                 </Header>
                 {this.showmodal()}
                 <View style={{alignItems:'center'}}>

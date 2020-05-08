@@ -10,6 +10,7 @@ import map from './bottom/Map'
 import Board from './bottom/Write/Board'
 import plus from './bottom/PlusComponents/plus'
 //import write from './bottom/Write/Write'
+//import EditInfo from './bottom/PlusComponents/EditInfo'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     홈 : {screen: home},

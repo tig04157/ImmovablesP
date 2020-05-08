@@ -1,9 +1,11 @@
 
 import React, { Component } from 'react';
+import Modal from  'react-native-modal';
 import { AsyncStorage,StyleSheet, Text, View, FlatList, Image, Dimensions} from 'react-native';
 import {  Container, Content,Icon, Button, } from 'native-base'; 
 import { ScrollView } from 'react-native-gesture-handler';
 import http from '../../../http-common';
+import EditInfo from './EditInfo';
 //import myData from '.././Util/idpw.json';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
@@ -11,66 +13,136 @@ const ITEM_WIDTH = Math.round(SLIDER_WIDTH /5);
 
   export default class plus extends Component {
 
+    constructor(props) {  
+        super(props);  
+        this.state = {
+            isModalVisible: false,
+            loading:true
+       //   jsonD: myData
+      };  
+    } 
     componentDidMount(){
         AsyncStorage.getItem('idchk').then(value =>
         this.setState({ getValue: value })
         );
+        setTimeout(()=>{
+            this.setState({
+              loading:false
+            })
+          }, 1000)
     }
     static navigationOptions = {
         tabBarIcon: ({tintColor}) => (
             <Icon name='ios-more' style={{color: tintColor}}/>
         )
     }
-    constructor(props) {  
-        super(props);  
-        this.state = {
-       //   jsonD: myData
-      };  
-    } 
+ 
+    toggle(a){
+        this.setState({isModalVisible:a});
+    }
+    
+  toggle1(){
+    this.setState({isModalVisible: this.state.isModalVisible});
+  }
     render() {
-        return (
-            <Container style={style.container}>
-                <ScrollView>
-                <View style ={{  padding:10, flexDirection: 'column' }}>
-                    <View style ={{ height: 50 }}></View>
-                    <Text>{this.state.getValue}</Text>
-                    <Text>e-mail</Text>
-                    <Button style ={style.chimpormation}><Text style ={{color : 'blue'}}>정보수정</Text></Button>
-                </View>
-                <View style={{flex:1,flexDirection: 'row'}}>
-                    <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:11, padding:5}}>알림</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>방내놓기</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>내가쓴리뷰</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>연락한부동산</Text></Button>
-                    <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>입찰</Text></Button>
-                </View>
-                <View style={style.rowSeparatorLine} />
+            if(this.state.loading){
+                return (
+                    <Container style={style.container}>
+                        <ScrollView>
+                        <View style ={{  padding:10, flexDirection: 'column' }}>
+                            <View style ={{ height: 50 }}></View>
+                            <Text>{this.state.getValue}</Text>
+                            <Text>e-mail</Text>
+                            <Button style ={style.chimpormation} onPress={()=>this.toggle(!this.state.isModalVisible)}>
+                                <Text style ={{color : 'blue'}}>정보수정</Text>
+                            </Button>
+                        </View>
+                        <View style={{flex:1,flexDirection: 'row'}}>
+                            <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:11, padding:5}}>알림</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>방내놓기</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>내가쓴리뷰</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>연락한부동산</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>입찰</Text></Button>
+                        </View>
+                        <View style={style.rowSeparatorLine} />
 
-                <View>
-                    <View style={style.midview}>
-                        <Button style={style.midbutton}><Text style={{fontSize: 18}}>매물번호 조회</Text></Button>
-                        <Button style={style.midbutton}><Text style={{fontSize: 18}}>자주 묻는 질문</Text></Button>
-                    </View>
-                    <View style={style.bottomview}>
-                        <Button style={style.midbutton}><Text style={{fontSize: 18}}>이벤트</Text></Button>
-                        <Button style={style.midbutton}><Text style={{fontSize: 18}}>공지사항</Text></Button>
-                    </View>
-                    <View style={style.bottomview}>
-                        <Button style={style.midbutton}><Text style={{fontSize: 18}}>1:1문의</Text></Button>
-                    </View>
+                        <View>
+                            <View style={style.midview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>매물번호 조회</Text></Button>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>자주 묻는 질문</Text></Button>
+                            </View>
+                            <View style={style.bottomview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>이벤트</Text></Button>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>공지사항</Text></Button>
+                            </View>
+                            <View style={style.bottomview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>1:1문의</Text></Button>
+                            </View>
 
-                </View>
-                <View style={style.rowSeparatorLine} />
+                        </View>
+                        <View style={style.rowSeparatorLine} />
 
-                <View style={{flexDirection: 'row'}}>
-                    <Button style ={style.bottombutton}><Text style={{color:'#d1cece'}}>이용약관 </Text></Button>
-                    <Button style={style.bottombutton}><Text style={{color:'#d1cece'}}> 개인정보처리방침</Text></Button>
-                </View>
-                <View style={style.rowSeparatorLine} />
-                </ScrollView>
-            </Container>
+                        <View style={{flexDirection: 'row'}}>
+                            <Button style ={style.bottombutton}><Text style={{color:'#d1cece'}}>이용약관 </Text></Button>
+                            <Button style={style.bottombutton}><Text style={{color:'#d1cece'}}> 개인정보처리방침</Text></Button>
+                        </View>
+                        <View style={style.rowSeparatorLine} />
+                        </ScrollView>
+                    </Container>
+                );
+            }
+            else{
+                return(
+                    <Container style={style.container}>
+                        <Modal isVisible={this.state.isModalVisible}>
+                            <EditInfo toggle={()=>toggle()}/>
+                        </Modal>
+                        <ScrollView>
+                        <View style ={{  padding:10, flexDirection: 'column' }}>
+                            <View style ={{ height: 50 }}></View>
+                            <Text>{this.state.getValue}</Text>
+                            <Text>e-mail</Text>
+                            <Button style ={style.chimpormation} onPress={()=>this.toggle(!this.state.isModalVisible)}>
+                                <Text style ={{color : 'blue'}}>정보수정</Text>
+                            </Button>
+                        </View>
+                        <View style={{flex:1,flexDirection: 'row'}}>
+                            <Button style = {style.topbutton}><Icon name='ios-notifications-outline' style={{fontSize: 40,color: 'black'}}/><Text style={{fontSize:11, padding:5}}>알림</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='ios-redo' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>방내놓기</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='md-create' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>내가쓴리뷰</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='ios-home' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>연락한부동산</Text></Button>
+                            <Button style ={style.topbutton}><Icon name='md-trending-up' style={{fontSize: 40, color: 'black'}}/><Text style={{fontSize:11,padding:5}}>입찰</Text></Button>
+                        </View>
+                        <View style={style.rowSeparatorLine} />
+
+                        <View>
+                            <View style={style.midview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>매물번호 조회</Text></Button>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>자주 묻는 질문</Text></Button>
+                            </View>
+                            <View style={style.bottomview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>이벤트</Text></Button>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>공지사항</Text></Button>
+                            </View>
+                            <View style={style.bottomview}>
+                                <Button style={style.midbutton}><Text style={{fontSize: 18}}>1:1문의</Text></Button>
+                            </View>
+
+                        </View>
+                        <View style={style.rowSeparatorLine} />
+
+                        <View style={{flexDirection: 'row'}}>
+                            <Button style ={style.bottombutton}><Text style={{color:'#d1cece'}}>이용약관 </Text></Button>
+                            <Button style={style.bottombutton}><Text style={{color:'#d1cece'}}> 개인정보처리방침</Text></Button>
+                        </View>
+                        <View style={style.rowSeparatorLine} />
+                        </ScrollView>
+                    </Container>
+                );
+            }
             
-        );
+            
+        
     }
 }
  

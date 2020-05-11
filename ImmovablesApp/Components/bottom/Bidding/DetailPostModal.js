@@ -23,7 +23,7 @@ export default class DetailPostModal extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header style={styles.modalheader}>
+        <Header style={styles.header}>
           <Icon 
             name='ios-close'
             style={{fontSize: 50, color: 'black'}}
@@ -31,7 +31,10 @@ export default class DetailPostModal extends Component {
           />
           <Text> 
             {this.state.data} 
-          </Text>         
+          </Text> 
+          <Text> 
+            
+          </Text>        
         </Header>
         <ScrollView>
         <View>
@@ -51,10 +54,11 @@ const styles = StyleSheet.create({
       margin:-20,
       backgroundColor: 'whitesmoke'
     },
-  modalheader:{
+  header:{
     backgroundColor: 'whitesmoke',
     alignItems:'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    flexDirection:'row'
   },
 
   button:{
@@ -118,4 +122,5 @@ const styles = StyleSheet.create({
     borderColor:'#a7a7a7',   
     backgroundColor:'#004aff'   
   },
-})
+
+});

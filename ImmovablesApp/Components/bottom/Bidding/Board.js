@@ -129,7 +129,7 @@ export default class Board extends Component {
     }else{
       return (        
         <Container style={styles.container}>
-          <Modal isVisible={this.state.isModalVisible}>
+          <Modal isVisible={this.state.isModalVisible} animationIn='bounceInDown' animationInTiming={1000} animationOut='slideOutDown' animationOutTiming={1000}>
             <WriteModal toggle={() => this.toggle()}/>
           </Modal>          
           <Header style={styles.header}>

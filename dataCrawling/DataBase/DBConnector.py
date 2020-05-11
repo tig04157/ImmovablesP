@@ -54,7 +54,6 @@ class DBConnector:
 
     def InsertApart(self, arr):
 
-
         for count in range(len(arr)):
             cityNum = arr[count][0][0]
             contryNum = arr[count][1][0]
@@ -75,6 +74,27 @@ class DBConnector:
 
         self.conn.commit()
 
+    def InsertOfficetel(self, arr):
+
+        for count in range(len(arr)):
+            cityNum = arr[count][0][0]
+            contryNum = arr[count][1][0]
+            townNum = arr[count][2][0]
+            immovableName = arr[count][3][0]  # 매물 이름
+            price = arr[count][4][0]  # 가격
+            info = ' , '.join(arr[count][5])  # 설명
+
+            rea = ' , '.join(arr[count][6])  # 공인중개사
+            sql = "insert into officetelImmovables(cityCode, " \
+                  "contryCode, townCode,immovable_name, price, info, rea) " \
+                  "values('" + cityNum + "','" + contryNum + "','"+ townNum + \
+                  "','" + immovableName + "','" + price + "','" + info + "','" + rea + "')"
+
+            print(sql)
+
+            self.curs.execute(sql)
+
+        self.conn.commit()
 
 
     def DBCloser(self):

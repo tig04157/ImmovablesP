@@ -90,7 +90,7 @@ export default class Board extends Component {
         <Container style={styles.container}>
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>
-              <Text>입찰 게시판</Text>                  
+              <Text>거래소</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
               <Button onPress={() => this.toggle()} style={{backgroundColor:'white'}}>
@@ -134,7 +134,7 @@ export default class Board extends Component {
           </Modal>          
           <Header style={styles.header}>
             <View style={{justifyContent:'center'}}>
-              <Text>입찰 게시판</Text>                  
+              <Text>거래소</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
               <Button onPress={() => this.toggle()} style={{backgroundColor:'white'}}>

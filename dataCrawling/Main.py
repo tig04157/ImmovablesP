@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
 from datetime import datetime
 from crawlingUtil.CityUtilCrawling import CityUtilCrawling
-#from crawlingUtil.CityFinder import CityFinder
-from crawlingUtil.InsertCity import InsertCity
-#from crawlingUtil.ImmovablesFinder import ImmovablesFinder
+# from crawlingUtil.CityFinder import CityFinder
+# from crawlingUtil.InsertCity import InsertCity
+# from crawlingUtil.ImmovablesFinder import ImmovablesFinder
+from crawlingUtil.BillaJutaeckImmovablesFinder import BillaJutaeckImmovablesFinder
 import schedule
 import time
 import winsound
@@ -18,9 +18,9 @@ def job_day():
 
         # 네이버 부동산 URL
         naverImmovablesURL = 'https://new.land.naver.com/complexes?ms=37.487257,127.0568035,17&a=APT:ABYG:JGC&e=RETAIL'
-        #ImmovablesFinder(naverImmovablesURL)
-        InsertCity(naverImmovablesURL)
-
+        # ImmovablesFinder(naverImmovablesURL)
+        # InsertCity(naverImmovablesURL)
+        BillaJutaeckImmovablesFinder(naverImmovablesURL)
         print('\n')
         print("="*120)
         print('\n\t' + str(today) + ' 크롤링 완료')
@@ -56,32 +56,31 @@ def airplaneBeep():
     for melody,duration in music2:
         winsound.Beep(so1[melody],1000//duration)
 
-'''
-from DataBase.DBConnector import DBConnector
-from DataBase.DataPreprocessor import DataPreprocessor
+
+# from DataBase.DBConnector import DBConnector
+# from DataBase.DataPreprocessor import DataPreprocessor
 
 if __name__ == '__main__':
-    '''
+
     try:
         job_day()
     except:
         naviBeep()
 
     airplaneBeep()
-    '''
-    #schedule.every().days.at("11:55").do(job_day)
-    #while True:
-        #schedule.run_pending()
-        #time.sleep(1)
-    DB = DBConnector()
-    dp = DataPreprocessor()
-    dp.preProcess()
-    #print(dp.getData())
 
-    tempArr = DB.DBselector(dp.getData())
-    DB.InsertApart(tempArr)
+    # schedule.every().days.at("11:55").do(job_day)
+    # while True:
+        # schedule.run_pending()
+        # time.sleep(1)
+    # DB = DBConnector()
+    # dp = DataPreprocessor()
+    # dp.preProcessOffice()
+    # print(dp.getData())
 
+    # tempArr = DB.DBselector(dp.getData())
+    # DB.InsertApart(tempArr)
 
-    DB.DBCloser()
+    # DB.DBCloser()
 
-    #db.InsertDB(l)
+    # db.InsertDB(l)

@@ -24,7 +24,7 @@ export default class RawCardComponent extends Component {
       return (
         <Card>
             <Modal isVisible={this.state.isModalVisible}>
-              <DetailPostModal toggle2={() => this.toggle()} toData={data.title}/>
+              <DetailPostModal toggle2={() => this.toggle()} toData={data}/>
             </Modal>
             <TouchableOpacity onPress={() => this.toggle()}>
               <CardItem>

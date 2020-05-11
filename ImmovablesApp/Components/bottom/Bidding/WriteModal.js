@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
 import {TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
-import { Icon, Container, Header, } from 'native-base'; 
+import { Icon, Container, Header, Button, CheckBox, } from 'native-base'; 
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH );
+const ITEM_WIDTH1 = Math.round(SLIDER_WIDTH);
 
 export default class WriteModal extends Component {
 
@@ -17,8 +18,121 @@ export default class WriteModal extends Component {
         modalVisible: false,
         title:'',
         category:'카테고리',
+        activeIndex:1,
+        secondIndex:1,
+        thirdIndex:1,
+        Type:'매물종류',
       };  
   }  
+  segmentClicked = (activeIndex) => {
+    this.setState({ 
+      activeIndex 
+    });
+    
+}
+renderSection=()=>{
+  if(this.state.activeIndex === 1){
+    return(
+      <View>
+        <TouchableOpacity style={{width:ITEM_WIDTH1,height:50,flexDirection:'row',justifyContent:'space-between',alignItems: 'center',borderWidth:0.5,borderColor:'#a7a7a7',backgroundColor:'whitesmoke'}}
+        onPress={() => this.state.activeIndex === 1 ? this.setState.secondIndex=0 : this.setState.secondIndex=1}>
+          <View style={{flexDirection:'row'}}>
+            <Text>  </Text>
+            <Icon name='ios-watch'/>
+            <Text style={{margin:5}}>오피스텔</Text>
+          </View>
+          <Icon name='ios-arrow-down' style={{margin:5}}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={{height:50,flexDirection:'row',justifyContent:'space-between',alignItems: 'center',borderWidth:0.5,borderColor:'#a7a7a7',backgroundColor:'whitesmoke'}}
+        onPress={() => this.state.activeIndex === 1 ? this.setState.thirdIndex=0 : this.setState.thirdIndex=1}>
+          <View style={{flexDirection:'row'}}>
+            <Text>  </Text>
+            <Icon name='md-browsers'/>
+            <Text style={{margin:5}}>아파트</Text>
+          </View>
+          <Icon name='ios-arrow-down' style={{margin:5}}/>
+        </TouchableOpacity>
+      </View>
+   )
+  }
+  else if(this.state.activeIndex === 0){
+    return(
+      <View>
+        <View style={{width:'100%', flexDirection:'row'}}>
+          <View style={{width:'50%'}}>
+            <View style={{flexDirection:'row'}}><CheckBox/><Text>     단독주택</Text></View>
+            <View style={{flexDirection:'row'}}><CheckBox></CheckBox><Text>     다가구주택</Text></View>
+          </View>
+          <View style={{width:'50%'}}>
+            <View style={{flexDirection:'row'}}><CheckBox/><Text>     다가구주택</Text></View>
+            <View style={{flexDirection:'row'}}><CheckBox></CheckBox><Text>     상가주택</Text></View>
+          </View>
+        </View>
+        <View>
+        <TouchableOpacity style={{height:50,flexDirection:'row',justifyContent:'space-between',alignItems: 'center',borderWidth:0.5,borderColor:'#a7a7a7',backgroundColor:'whitesmoke'}}
+        onPress={() => this.state.activeIndex === 1 ? this.setState.secondIndex=0 : this.setState.secondIndex=1}>
+          <View style={{flexDirection:'row'}}>
+            <Text>  </Text>
+            <Icon name='ios-watch'/>
+            <Text style={{margin:5}}>오피스텔</Text>
+          </View>
+          <Icon name='ios-arrow-down' style={{margin:5}}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={{height:50,flexDirection:'row',justifyContent:'space-between',alignItems: 'center',borderWidth:0.5,borderColor:'#a7a7a7',backgroundColor:'whitesmoke'}}
+        onPress={() => this.state.activeIndex === 1 ? this.setState.thirdIndex=0 : this.setState.thirdIndex=1}>
+          <View style={{flexDirection:'row'}}>
+            <Text>  </Text>
+            <Icon name='md-browsers'/>
+            <Text style={{margin:5}}>아파트</Text>
+          </View>
+          <Icon name='ios-arrow-down' style={{margin:5}}/>
+        </TouchableOpacity>
+        </View>
+      </View>
+      
+    )
+  }
+}
+/*
+renderSection = () => {
+  if(this.state.activeIndex === 0) {
+      return ( 
+      <View style={styles.button1}>
+        <TouchableOpacity 
+          style={styles.button2} 
+          onPress={() => {
+            this.setState({Type: '주택'})  
+            this.state.activeIndex===0 ? this.state.activeIndex = 1 : this.state.activeIndex = 0         
+            }}> 
+          <Text style={{fontSize:20}}>주택</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.button2} 
+          onPress={() => {
+            this.setState({Type: '빌라'})  
+            this.state.activeIndex===0 ? this.state.activeIndex = 1 : this.state.activeIndex = 0         
+            }}>
+          <Text style={{fontSize:20}}>빌라</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.button2} 
+          onPress={() => {
+            this.setState({Type: '오피스텔'})  
+            this.state.activeIndex===0 ? this.state.activeIndex = 1 : this.state.activeIndex = 0         
+            }}>
+          <Text style={{fontSize:20}}>오피스텔</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.button2} 
+          onPress={() => {
+            this.setState({Type: '아파트'})  
+            this.state.activeIndex===0 ? this.state.activeIndex = 1 : this.state.activeIndex = 0         
+            }}>
+          <Text style={{fontSize:20}}>아파트</Text>
+        </TouchableOpacity>
+      </View>
+    )}
+  }*/
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
@@ -42,11 +156,17 @@ export default class WriteModal extends Component {
           <Text>세부 정보</Text>
           <Text/>
         </Header>
-        <View style={{flexDirection:'row'}}>
-          <TouchableOpacity style={styles.button} onPress={()=>this.setModalShown(true)}>
-            <Text style={{margin:5}}>세부정보</Text>
-            <Text style={{margin:5}}>></Text>
+        <View style={{flexDirection:'column', alignItems:'center'}}>
+          <TouchableOpacity style={{width:'100%',height:50,flexDirection:'row',justifyContent:'space-between',alignItems: 'center',borderWidth:0.5,borderColor:'#a7a7a7',backgroundColor:'whitesmoke'}}
+           onPress={() => this.state.activeIndex === 1 ? this.segmentClicked(0) : this.segmentClicked(1)}>
+            <View style={{flexDirection:'row'}}>
+              <Text>  </Text>
+              <Icon name='md-square-outline'/>
+              <Text style={{margin:5}}>주택</Text>
+            </View>
+            <Icon name='ios-arrow-down' style={{margin:5}}/>
           </TouchableOpacity>
+          {this.renderSection()}
         </View>
       </View>
     </Modal>
@@ -167,7 +287,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
 
       },
-
+      button1:{
+        width:'95%',
+        justifyContent:'space-around',
+        alignItems: 'center',
+        borderWidth:1,
+        borderColor:'#a7a7a7',
+        backgroundColor:'whitesmoke'    
+    },
+    button2:{
+      width:'100%',
+      justifyContent:'space-around',
+      alignItems: 'center',
+      borderWidth:1,
+      borderColor:'#a7a7a7',
+      backgroundColor:'whitesmoke'    
+  },
     button:{
         margin:5,
         width:'95%',

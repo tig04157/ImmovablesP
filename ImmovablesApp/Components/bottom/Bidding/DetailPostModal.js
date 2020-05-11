@@ -26,25 +26,32 @@ export default class DetailPostModal extends Component {
         <Header style={styles.header}>
           <Icon 
             name='ios-close'
-            style={{fontSize: 50, color: 'black'}}
+            style={{fontSize: 50, color: 'black', position: 'absolute', left: 15}}
             onPress={this.props.toggle2}
           />
           <Text> 
-            {this.state.data} 
-          </Text> 
-          <Text> 
-            
-          </Text>        
+            {this.state.data.title} 
+          </Text>   
         </Header>
         <ScrollView>
-        <View>
-        <Text>검색</Text>
-        
-        </View>
+          {/*사진 View*/}
+          <View style={styles.img}>
+            <Text style={{margin:15}}>사진</Text>        
+          </View>
+          {/*가격 뷰*/}
+          <View style={styles.price}>
+            <Text style={{margin:15}}>{this.state.data.price}</Text>
+          </View>
+          {/*설명*/}
+          <View style={styles.price}>
+            <Text style={{margin:15}}>{this.state.data.content}</Text>
+          </View>
+          {/*부동산*/}
+          <View style={styles.price}>
+            <Text style={{margin:15}}>{this.state.data.author}</Text>
+          </View>
         </ScrollView>
       </Container>
-
-      
     );
   }
 }
@@ -57,70 +64,25 @@ const styles = StyleSheet.create({
   header:{
     backgroundColor: 'whitesmoke',
     alignItems:'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexDirection:'row'
   },
+  img:{
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  price:{
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  info:{
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  br: {
+    height: '10%',
+    backgroundColor: 'whitesmoke'
+  }
 
-  button:{
-      margin:5,
-      width:'95%',
-      height:40,
-      flexDirection:'row',
-      justifyContent:'space-between',
-      alignItems: 'center',
-      borderWidth:1,
-      borderColor:'#a7a7a7',
-      borderRadius:5,
-      backgroundColor:'whitesmoke'
-      
-  },
-  iteminformation:{
-    flex:1,
-    height:100,
-    width:'100%',
-    flexDirection:'row',
-    justifyContent:'flex-start',
-    alignItems: 'center',
-    borderBottomWidth:1,
-    borderColor:'#b7b7b7',
-  },
-
-  mcontent:{
-    height:ITEM_HEIGHT,
-    width:'95%',
-    justifyContent:'center',
-    alignItems: 'center',
-    borderWidth:1,
-    borderColor:'#a7a7a7',      
-  },
-  bottomimage:{
-    width:'95%',
-    flexDirection:'row',
-    justifyContent:'flex-start',
-    alignItems: 'center',
-    borderWidth:1,
-    borderColor:'#a7a7a7',      
-  },
-  bottombutton:{
-    width:'46%',
-    height: ITEM_HEIGHT/7,
-    margin:5,
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems: 'center',
-    borderWidth:1,
-    borderColor:'#a7a7a7',      
-  },
-  bottombutton1:{
-    width:'46%',
-    height: ITEM_HEIGHT/7,
-    margin:5,
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems: 'center',
-    borderWidth:1,
-    borderColor:'#a7a7a7',   
-    backgroundColor:'#004aff'   
-  },
 
 });

@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Icon, Container, Header } from 'native-base'; 
+import MapView from 'react-native-maps';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class Map extends Component {
 
-    static navigationOptions = {
-        tabBarIcon: ({tintColor}) => (
-            <Icon name='ios-map' styles={{color: tintColor}}/>
-        )
+  constructor(props){
+    super(props)
+    this.state={
+      //region: null
     }
- 
-    render() {
-        return (
-            <Container style={styles.container}>
-                <Header style={styles.header}><Text>지도</Text></Header>
-            
-            <View><Text>지도 삽입 필요(Google MAP API)</Text></View>
+  }
 
-          </Container>
-        );
-    }
+  static navigationOptions = {
+      tabBarIcon: ({tintColor}) => (
+          <Icon name='ios-map' styles={{color: tintColor}}/>
+      )
+  }  
+
+  onRegionChange(region) {
+    this.setState({ region });
+  }
+  
+
+  render() {
+    return (
+      <Container style={styles.container}>
+        <Header style={styles.header}><Text>지도</Text></Header>
+          <View style={styles.container}>
+            <MapView
+              initialRegion={{
+                latitude: 35.2,
+                longitude: 127.8,
+                latitudeDelta: 6.5,
+                longitudeDelta: 3.6,
+              }}
+              /*
+              region={this.state.region}
+              onRegionChange={this.onRegionChange}
+              */
+              style={styles.mapStyle} />
+          </View> 
+      </Container>
+    );
+  }
 }
  
 const styles = StyleSheet.create({
@@ -57,5 +81,9 @@ const styles = StyleSheet.create({
       },
       br: {
         height: '3%'
+      },
+      mapStyle:{
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
       }
 });

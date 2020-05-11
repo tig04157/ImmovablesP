@@ -46,3 +46,23 @@ class Selenium:
                 s += word + " "
         print(len(tempImmovable2))
         return len(tempImmovable2)
+
+    def scrollDown2(self, length):
+        ELEMENT = self.driver.find_elements_by_css_selector('#listContents1 > div > div > div:nth-child(1) > div:nth-child('+str(length)+')')[-1]
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", ELEMENT)
+        time.sleep(0.5)
+        tempImmovable1 = []
+        tempImmovable2 = []
+        #self.se.buttonClick('//*[@id="complexOverviewList"]/div/div[1]/div[3]/div/label')
+        tempImmovable1.append(self.driver.find_element_by_xpath('//*[@id="listContents1"]/div/div/div[1]').text)
+        tempImmovable1[0] = tempImmovable1[0].replace('\n', ',')
+        tempImmovable1 = tempImmovable1[0].split(',')
+        s = ''
+        for word in tempImmovable1:
+            if len(word) > 2 and word[:2] == '확인' or word[:4] == '거래완료':
+                tempImmovable2.append(s)
+                s = ''
+            else:
+                s += word + " "
+        print(len(tempImmovable2))
+        return len(tempImmovable2)

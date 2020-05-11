@@ -23,13 +23,22 @@ export default class DetailPostModal extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        <Header style={styles.modalheader}>
+          <Icon 
+            name='ios-close'
+            style={{fontSize: 50, color: 'black'}}
+            onPress={this.props.toggle2}
+          />
+          <Text> 
+            {this.state.data} 
+          </Text>         
+        </Header>
+        <ScrollView>
         <View>
-        <Text> {this.state.data} </Text>
-        <TouchableOpacity onPress={this.props.toggle2}>
-          <Icon name='ios-search'/>
-          <Text>검색</Text>
-        </TouchableOpacity>
+        <Text>검색</Text>
+        
         </View>
+        </ScrollView>
       </Container>
 
       
@@ -42,12 +51,11 @@ const styles = StyleSheet.create({
       margin:-20,
       backgroundColor: 'whitesmoke'
     },
-    modalheader:{
-      backgroundColor: 'whitesmoke',
-      alignItems:'center',
-      justifyContent: 'space-between',
-
-    },
+  modalheader:{
+    backgroundColor: 'whitesmoke',
+    alignItems:'center',
+    justifyContent: 'space-between',
+  },
 
   button:{
       margin:5,
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth:1,
     borderColor:'#b7b7b7',
-},
+  },
 
   mcontent:{
     height:ITEM_HEIGHT,

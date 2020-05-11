@@ -118,5 +118,4 @@ const styles = StyleSheet.create({
     borderColor:'#a7a7a7',   
     backgroundColor:'#004aff'   
   },
-
-});
+})

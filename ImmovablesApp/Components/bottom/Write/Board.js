@@ -43,6 +43,7 @@ export default class Board extends Component {
 
   segmentClicked = (activeIndex)=>{
     this.setState({activeIndex});
+    this.renderSection()
   }
 
   getDB(){
@@ -58,7 +59,7 @@ export default class Board extends Component {
 
   renderSection() {  
     if(this.state.DBdata != null){
-      if(this.state.activeIndex === 0){ 
+      if(this.state.activeIndex === 0){
         return (    
           this.state.DBdata.map((feed, index) => (
             <RowCardComponent data={ feed } key={index}/>
@@ -103,7 +104,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={() => this.toggle()}>
+              <TouchableOpacity>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>
@@ -136,7 +137,7 @@ export default class Board extends Component {
               <Text>입찰 게시판</Text>                  
             </View> 
             <View style={{position: 'absolute', right: 0}}>
-              <Button onPress={()=>this.props.navigation.replace('toWrite')} style={{backgroundColor:'white'}}>
+              <Button onPress={() => this.toggle()} style={{backgroundColor:'white'}}>
                 <Icon name='ios-create' style={{color:'black'}}/>
               </Button>
             </View>                   
@@ -147,7 +148,7 @@ export default class Board extends Component {
                   placeholder="검색"  
                   onChangeText={(searchInfo) => this.setState({searchInfo})}  
               />
-              <TouchableOpacity onPress={() => this.toggle()}>
+              <TouchableOpacity>
               <Icon name='ios-search'/>
               <Text>검색</Text>
               </TouchableOpacity>

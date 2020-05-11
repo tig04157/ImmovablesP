@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
+import Modal from "react-native-modal";
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import DetailPostModal from './DetailPostModal'
 
 export default class RawCardComponent extends Component {
+
+    constructor(props){
+      super(props);
+      this.state = {
+        isModalVisible: false
+      };  
+    }
+      
+    toggle(){
+      this.setState({isModalVisible: !this.state.isModalVisible});
+    }
+
     render() {
       const { data } = this.props; // 피드 항목 데이터
       //const { image } = JSON.parse(data.json_metadata); // json_metadata에서 이미지 url을 파싱
       return (
-        <TouchableWithoutFeedback onPress={()=>this.props.navigation.replace('toDetail',{
-          title: data.title, 
-          author: data.author
-          })}>
-          <Card>
+        <Card>
+            <Modal isVisible={this.state.isModalVisible}>
+              <DetailPostModal toggle2={() => this.toggle()} toData={data.title}/>
+            </Modal>
+            <TouchableOpacity onPress={() => this.toggle()}>
               <CardItem>
                   <Body style={{flex: 1.5, flexDirection: 'column',  alignItems:'flex-start'}}>
                     {
@@ -45,7 +59,7 @@ export default class RawCardComponent extends Component {
                   <Body style={{flex: 1}}>
                     {
                       <Text>사진</Text>
-                     /*
+                      /*
                       image && image.length ?
                       <Image 
                         source={{ uri: image[0] }} 
@@ -55,8 +69,8 @@ export default class RawCardComponent extends Component {
                     }
                   </Body>
               </CardItem>
-          </Card>
-        </TouchableWithoutFeedback>
+            </TouchableOpacity>
+        </Card>
       );
     }
   }

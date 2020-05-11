@@ -13,6 +13,7 @@ export default class WriteModal extends Component {
     constructor(props) {  
       super(props);  
       this.state = {
+        modalShown: false,
         modalVisible: false,
         title:'',
         category:'카테고리',
@@ -21,10 +22,39 @@ export default class WriteModal extends Component {
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+    
+  setModalShown(visible) {
+    this.setState({modalShown: visible});
+  }
+  Settingmodal=()=>{
+    return <Modal
+    animationType="slide"
+    transparent={false}
+    visible={this.state.modalShown}
+    onRequestClose={() => {
+      this.setModalShown(!this.state.modalShown);
+    }}
+    backdrop={true}
+    >
+      <View style={{felx:1}}>
+        <Header style ={{justifyContent:'space-between'}}>
+          <Icon name='ios-arrow-back' onPress={()=>{this.setModalShown(!this.state.modalShown);}}/>
+          <Text>세부 정보</Text>
+          <Text/>
+        </Header>
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity style={styles.button} onPress={()=>this.setModalShown(true)}>
+            <Text style={{margin:5}}>세부정보</Text>
+            <Text style={{margin:5}}>></Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
 
+  }
   showmodal =() =>{
   return <Modal
-    animationType="slide"
+    animationType="fade"
     transparent={true}
     visible={this.state.modalVisible}
     onRequestClose={() => {
@@ -44,16 +74,16 @@ export default class WriteModal extends Component {
             <Text style={{color:'#004aff',margin:5}}>카테고리를 선택하시오.</Text>
             <TouchableOpacity style={styles.button} onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
-              this.setState({category: '구매 희망 게시판'});
+              this.setState({category: '방 구하기'});
             }}> 
-            <Text style={{color:'#004aff'}}>구매 희망 게시판</Text>
+            <Text style={{color:'#004aff'}}>방 구하기</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
-              this.setState({category: '거래 게시판'});
+              this.setState({category: '방 내놓기'});
 
             }}> 
-              <Text style={{color:'#004aff'}}>거래 게시판</Text>
+              <Text style={{color:'#004aff'}}>방 내놓기</Text>
             </TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
@@ -80,6 +110,7 @@ export default class WriteModal extends Component {
                   <Text></Text>           
                 </Header>
                 {this.showmodal()}
+                {this.Settingmodal()}
                 <View style={{alignItems:'center'}}>
                   <View style={styles.iteminformation}>
                     <Icon name='ios-camera' style={{margin:10, fontSize: 100}} />
@@ -90,6 +121,10 @@ export default class WriteModal extends Component {
                   </View>
                   <TouchableOpacity style={styles.button} onPress={()=>this.setModalVisible(true)}>
                     <Text style={{margin:5}}>{this.state.category}</Text>
+                    <Text style={{margin:5}}>></Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.button} onPress={()=>this.setModalShown(true)}>
+                    <Text style={{margin:5}}>세부정보</Text>
                     <Text style={{margin:5}}>></Text>
                   </TouchableOpacity>
                   <TextInput

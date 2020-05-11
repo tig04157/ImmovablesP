@@ -16,7 +16,7 @@ export default class EditInfo extends Component {
 }
   ChkInfo=()=>{
     <Modal
-    animationType="slide"
+    animationType="fade"
     transparent={true}
     visible={this.state.modalVisible}
     onRequestClose={() => {
@@ -33,7 +33,7 @@ export default class EditInfo extends Component {
             <View style={styles.background}>
                 <Text>회원정보를 수정하려면 ID'{this.state.getValue}'의 암호를 입력하십시오.</Text>
                 <TextInput style={styles.pw} placeholder='PW'/>
-                <TouchableOpacity onPress={()=>this.props.toggle1}>
+                <TouchableOpacity onPress={this.props.ahekf}>
                     <Text>로그인</Text>
                 </TouchableOpacity>
             </View>

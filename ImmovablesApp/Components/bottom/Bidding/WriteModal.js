@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {touchablehilight,TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
 import { Icon, Container, Header, Button, CheckBox, } from 'native-base'; 
 import Setting from './Setting/Setting'
+import SettingInfo from './Setting/Setting'
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH );
@@ -16,6 +17,7 @@ export default class WriteModal extends Component {
       this.state = {
         modalShown: false,
         modalVisible: false,
+        SettingInfoVisible: false,
         title:'',
         category:'카테고리',
         activeIndex:1,
@@ -110,6 +112,7 @@ ThirdSection=()=>{
     >
       <View style={{flex:1}}>
         <Header style ={{justifyContent:'space-between'}}>
+          
           <Icon name='ios-arrow-back' onPress={()=>{this.setModalShown(!this.state.modalShown);}}/>
           <Text>세부 정보</Text>
           <Text/>
@@ -150,11 +153,31 @@ ThirdSection=()=>{
           {this.ThirdSection()}
         </View>
         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end',alignItems:'center'}}>
-          <TouchableOpacity style={{width:'100%',height:50, backgroundColor:'#004aff', justifyContent:'center', alignItems:'center'}} >
+          <TouchableOpacity style={{width:'100%',height:50, backgroundColor:'#004aff', justifyContent:'center', alignItems:'center' }} onPress={()=>this.SettingInfoVisible1(!this.state.SettingInfoVisible)}>
             <Text style={{fontSize:20, color:'white'}}>다음</Text>
           </TouchableOpacity>
         </View>
       </View>
+      {this.SettingInfoModal()}
+    </Modal>
+
+  }
+
+
+  SettingInfoVisible1(visible) {
+    this.setState({SettingInfoVisible: visible});
+  }
+  SettingInfoModal=()=>{
+    return <Modal
+    animationType="slide"
+    transparent={false}
+    visible={this.state.SettingInfoVisible}
+    onRequestClose={() => {
+      this.SettingInfoVisible1(!this.state.SettingInfoVisible);
+    }}
+    backdrop={true}
+    >
+      <SettingInfo/>
     </Modal>
 
   }

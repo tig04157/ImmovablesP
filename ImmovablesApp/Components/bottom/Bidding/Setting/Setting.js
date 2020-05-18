@@ -13,7 +13,22 @@ const TabNavigator = createMaterialTopTabNavigator({
     기본정보: { screen: DefaultScreen },
     추가정보: { screen: AddiScreen },
     설명: { screen: DescScreen },
-});
+  },{
+    swipeEnabled: true,
+    tabBarOptions: {
+      style : {
+        backgroundColor:'whitesmoke',
+      },
+      iconStyle: {height:'20%'},
+      activeTintColor:'#004aff',
+      inactiveTintColor:'#9c9a9a',
+      upperCaseLabel: false,
+      indicatorStyle: {
+        backgroundColor: false
+    },
+    },
+
+  });
 const AppContainer = createAppContainer(TabNavigator);
 
 export default class Setting extends Component {
@@ -32,7 +47,10 @@ export default class Setting extends Component {
   render() {
     return (
       <Container>
-        <Header>
+        <Header style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+          <Icon name='ios-arrow-back' onPress={this.props.SettingInfoVisible1}/>
+          <Text>세부설정</Text>
+          <Text></Text>
         </Header>
         <AppContainer/>
       </Container>

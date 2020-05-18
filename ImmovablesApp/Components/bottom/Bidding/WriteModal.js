@@ -153,7 +153,7 @@ ThirdSection=()=>{
           {this.ThirdSection()}
         </View>
         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end',alignItems:'center'}}>
-          <TouchableOpacity style={{width:'100%',height:50, backgroundColor:'#004aff', justifyContent:'center', alignItems:'center' }} onPress={()=>this.SettingInfoVisible1(!this.state.SettingInfoVisible)}>
+          <TouchableOpacity style={{width:'100%',height:50, backgroundColor:'#004aff', justifyContent:'center', alignItems:'center' }} onPress={()=>this.SettingInfoVisible1()}>
             <Text style={{fontSize:20, color:'white'}}>다음</Text>
           </TouchableOpacity>
         </View>
@@ -164,8 +164,8 @@ ThirdSection=()=>{
   }
 
 
-  SettingInfoVisible1(visible) {
-    this.setState({SettingInfoVisible: visible});
+  SettingInfoVisible1() {
+    this.setState({SettingInfoVisible:!this.state.SettingInfoVisible});
   }
   SettingInfoModal=()=>{
     return <Modal
@@ -173,11 +173,11 @@ ThirdSection=()=>{
     transparent={false}
     visible={this.state.SettingInfoVisible}
     onRequestClose={() => {
-      this.SettingInfoVisible1(!this.state.SettingInfoVisible);
+      this.SettingInfoVisible1();
     }}
     backdrop={true}
     >
-      <SettingInfo/>
+      <SettingInfo SettingInfoVisible1={()=>this.SettingInfoVisible1()}/>
     </Modal>
 
   }

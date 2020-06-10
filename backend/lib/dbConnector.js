@@ -5,7 +5,7 @@ var dbconnInfo = {
     user: 'gmc',
     password: '17005314',
     //password: '0000',
-    database: 'gmc'
+    database: 'Immovables'
 };
 
 

@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
 import { Container, Header, Icon  } from 'native-base';
-
+import Modal from "react-native-modal";
+import DetailAdress from './DetailAdress'
 class FindAdress extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        isModalVisible: false
     };
   }
 
+  toggle() {
+    this.setState({isModalVisible:!this.state.isModalVisible});
+  }
   render() {
     return (
       <Container style={styles.container}>
+          <Modal isModalVisible={this.state.isModalVisible}>
+            <DetailAdress toggle={()=>this.toggle()}/>
+          </Modal>
           <Header style ={{justifyContent:'space-between', alignItems:'center'}}> 
             <Icon name='ios-arrow-back' onPress={()=>{this.props.toggle()}}/>
             <Text>주소찾기</Text>

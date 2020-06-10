@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 
 var dbconnInfo = {
-    host: 'localhost',
-    user: 'root',
-    password: 'iclab4',
+    host: '52.78.109.242',
+    user: 'gmc',
+    password: '17005314',
     //password: '0000',
-    database: 'immovables'
+    database: 'gmc'
 };
 
 

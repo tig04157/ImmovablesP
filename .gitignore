@@ -14,6 +14,6 @@ web-report/
 .DS_Store
 
 # Include IP File
-backend/lib/dbConnector.js
+backend/lib/*
 ImmovablesApp/http-common.js
 

@@ -4,7 +4,7 @@ var dbconnInfo = {
     host: '13.209.89.137',
     user: 'gmc',
     password: '17005314',
-    port: null,
+    port: 3306,
     //password: '0000',
     database: 'Immovables'
 };

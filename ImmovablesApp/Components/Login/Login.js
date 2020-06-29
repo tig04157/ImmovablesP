@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import {TouchableOpacity,AsyncStorage, StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View } from 'react-native';
+import {TouchableOpacity,AsyncStorage, StyleSheet,   Alert,  Button,   Image,  TextInput,   Text,   View, ImageBackground} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
@@ -59,58 +59,65 @@ export default class Login extends Component {
 
     render() {    
       return (
-        <View style={styles.container}>  
-        <View style={styles.header}></View>    
-        <View style={{height:60}}></View>    
-        <View style={styles.title}>
-        <Image style={{height:'100%',width:'100%', resizeMode:'contain'}} source={require('./../../assets/logoB1.png')}/>
-        </View>
-        <View style={styles.content}></View>
-          <View style={styles.searchSection}>
-            {/* <Text style={{color:"rosybrown"}}>아이디</Text> */}
-            <Image style={{height:'30%',width:'20%', resizeMode:'contain'}} source={require('./../../assets/mail_outline.png')}/>
-            <TextInput  
-                  style={{width:'80%',height: 40, fontSize: 20, margin:10}}  
-                  placeholder="ID"  
-                  color ='white'
-                  placeholderTextColor = "white"
-                  onChangeText={(id) => this.setState({id})}  
-                  value={this.state.id}
-              />
-            <View/>
-          </View>
-          
-          <View style={styles.searchSection}>
-            {/* <Text style={{color:"rosybrown"}}>비밀번호</Text> */}
-            <Image style={{height:'30%',width:'20%', resizeMode:'contain'}} source={require('./../../assets/key.png')}/>
-            <TextInput  
-                style={{width:'80%',height: 40, fontSize: 20, margin:10}}  
-                placeholder="Password"
-                color ='white'
-                placeholderTextColor = "white"
-                onChangeText={(pw) => this.setState({pw})} 
-                value={this.state.pw}
-            />
-            <View/>
-          </View>
-        {/* <View style={styles.footer}></View> */}
-        <View style={{height :30}}></View>
-        <View style={{height :50, flexDirection:'row'}}>
-          <CustomButton
-            buttonColor={'#58615C'}
-            title={'로그인'}
-            onPress={this.klikPost.bind(this)}
-            
-            />
-            <View style={{width: 10}}></View>
-          <CustomButton 
-            buttonColor={'#58615C'}
-            title={'회원가입'}
-            onPress={() => this.props.navigation.navigate('Signup')}/>
-        </View>
-        <View style={styles.content}></View>
+        <View style={styles.container}>
+          {/* <ImageBackground 
+          style={{ width: "100%", height: "70%", alignItems:'center'}}  
+          source={require("../../assets/backgroundG.png")}
+          resizeMode="cover">
         
-
+          </ImageBackground> */}
+          {/* <View style={styles.header}></View> */}
+          <View style={styles.title}>
+          {/* <Image style={{height:'100%',width:'100%', resizeMode:'contain'}} source={require('./../../assets/house.png')}/> */}
+            <Text>
+              어디 살래?
+            </Text>
+          </View>
+          {/* <View style={styles.content}></View> */}
+            <View style={styles.searchSection}>
+              {/* <Text style={{color:"rosybrown"}}>아이디</Text> */}
+                <Image style={{height:15,width:'20%', resizeMode:'contain'}} source={require('./../../assets/person.png')}/>
+              <TextInput  
+                    style={{width:'80%',height: 40, fontSize: 20, margin:-5}}  
+                    placeholder="아이디 입력"  
+                    placeholderTextColor = "#666666"
+                    onChangeText={(id) => this.setState({id})}  
+                    value={this.state.id}
+                />
+              <View/>
+            </View>
+            <View style={{height:20}}/>
+            <View style={styles.searchSection}>
+              {/* <Text style={{color:"rosybrown"}}>비밀번호</Text> */}
+              {/* <Image style={{height:20,width:'20%', resizeMode:'contain'}} source={require('../../assets/key.png')}/> */}
+              <TextInput  
+                  style={{width:'80%',height: 40, fontSize: 20, margin:-5}}  
+                  placeholder="비밀번호 입력"
+                  placeholderTextColor = "#666666"
+                  onChangeText={(pw) => this.setState({pw})} 
+                  value={this.state.pw}
+              />
+              <View/>
+            </View>
+          {/* <View style={styles.footer}></View> */}
+          <View style={{height :30}}></View>
+          <View style={{height :50, flexDirection:'row'}}>
+            <CustomButton
+              buttonColor={'#34c85a'}
+              title={'로그인'}
+              titleColor={'#666666'}
+              onPress={this.klikPost.bind(this)}
+              
+              />
+              <View style={{width: 10}}></View>
+            <CustomButton 
+              buttonColor={'white'}
+              title={'회원가입'}
+              titleColor={'#666666'}
+              onPress={() => this.props.navigation.navigate('Signup')}/>
+          </View>
+          <View style={styles.content}></View>
+      
       </View>  
       );
     }
@@ -120,40 +127,42 @@ export default class Login extends Component {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 10,
-      backgroundColor: '#D7B575',
-      alignItems:'center'
+      backgroundColor: 'white',
+      alignItems:'center',
+      backgroundColor:'#d7e1e9'
     },
     header: {
       width:'100%',
-      height:'1%',
+      height:'20%',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#D7B575',
+      //backgroundColor: '#24BD64',
     },
     title: {
-      width:'100%',
-      height:'30%',
+      width:'85%',
+      height:'65%',
       justifyContent: 'center',
       alignItems: 'center',
+      //backgroundColor:'#667C68'
     },
     content: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#D7B575',
+     // backgroundColor: '#94c4d2',
     },
     footer: {
       flex: 1,
       width: '100%',
       height: 50,
-      backgroundColor: '#D7B575',
+     // backgroundColor: '#94c4d2',
     },
     searchSection: {
       flexDirection: 'row',
       width:'90%',
       justifyContent: 'space-between',
       alignItems: 'center',
-      borderBottomWidth:1
+      borderBottomWidth:1,
+      borderColor:'#666666'
   },
   });

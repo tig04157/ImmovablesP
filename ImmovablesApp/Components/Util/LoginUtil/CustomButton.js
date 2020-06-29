@@ -36,6 +36,7 @@ export default class CustomButton extends Component{
 const styles = StyleSheet.create({
   button: {
     flex: 1,
+    width: '50%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,

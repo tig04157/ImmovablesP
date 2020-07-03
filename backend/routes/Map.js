@@ -25,4 +25,5 @@ router.get('/getPost', function(req, res, next) {
     });
 });
 
+
 module.exports = router;

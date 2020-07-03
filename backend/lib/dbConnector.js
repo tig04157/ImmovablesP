@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var dbconnInfo = {
     host: '3.34.129.21',
     user: 'gmc',
-    password: '17005314', 
+    password: '17005314',
     port: 3306,
     //password: '0000',
     database: 'Immovables'

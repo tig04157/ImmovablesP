@@ -68,10 +68,8 @@ export default class Login extends Component {
           </ImageBackground> */}
           {/* <View style={styles.header}></View> */}
           <View style={styles.title}>
-          {/* <Image style={{height:'100%',width:'100%', resizeMode:'contain'}} source={require('./../../assets/house.png')}/> */}
-            <Text>
-              어디 살래?
-            </Text>
+          <Image style={{height:'50%',width:'50%', resizeMode:'contain'}} source={require('./../../assets/house1.png')}/>
+        
           </View>
           {/* <View style={styles.content}></View> */}
             <View style={styles.searchSection}>
@@ -89,7 +87,7 @@ export default class Login extends Component {
             <View style={{height:20}}/>
             <View style={styles.searchSection}>
               {/* <Text style={{color:"rosybrown"}}>비밀번호</Text> */}
-              {/* <Image style={{height:20,width:'20%', resizeMode:'contain'}} source={require('../../assets/key.png')}/> */}
+              <Image style={{height:20,width:'20%', resizeMode:'contain'}} source={require('./../../assets/person.png')}/>
               <TextInput  
                   style={{width:'80%',height: 40, fontSize: 20, margin:-5}}  
                   placeholder="비밀번호 입력"

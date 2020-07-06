@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var dbconnInfo = {
-    host: '3.34.129.21',
+    host: '3.34.98.240',
     user: 'gmc',
     password: '17005314', 
     port: 3306,

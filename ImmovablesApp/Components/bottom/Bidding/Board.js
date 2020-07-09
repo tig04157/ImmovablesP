@@ -47,7 +47,7 @@ export default class Board extends Component {
   }
 
   getDB(){
-    http.get(`/postList/getPost`)
+    http.get(`/board/getPost`)
       .then(response => {
         this.state.DBdata = response.data
         this.renderSection()

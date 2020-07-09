@@ -7,7 +7,7 @@ var logger = require('morgan');
 //module 등록
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var PostListRouter = require('./routes/PostList');
+var BoardRouter = require('./routes/Board');
 var LoginRouter = require('./routes/Login')
 var Map = require('./routes/Map')
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 경로 확인
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/postList', PostListRouter)
+app.use('/api/board', BoardRouter)
 app.use('/api/login', LoginRouter)
 app.use('/api/map', Map)
 

@@ -15,6 +15,7 @@ export default class WriteModal extends Component {
     constructor(props) {  
       super(props);  
       this.state = {
+        ConmodalShown: false,
         modalShown: false,
         modalVisible: false,
         SettingInfoVisible: false,
@@ -23,14 +24,21 @@ export default class WriteModal extends Component {
         activeIndex:1,
         secondIndex:1,
         thirdIndex:1,
+        sellbuy:null
       };  
   } 
 
-  segmentClicked = (activeIndex) => {
-    this.setState({ 
-      activeIndex 
-    });
-    
+sellbuyClicked = (sellbuy) => {
+  this.setState({ 
+    sellbuy 
+  });
+  
+}  
+segmentClicked = (activeIndex) => {
+  this.setState({ 
+    activeIndex 
+  });
+  
 }
 SecondClicked = (secondIndex) => {
   this.setState({ 
@@ -58,6 +66,24 @@ renderSection=()=>{
           </View>
         </View>
     )
+  }
+}
+DetailSection=()=>{
+  if(this.state.sellbuy === 1){
+    return(
+      <TouchableOpacity style={styles.button} onPress={()=>this.setModalShown(true)}>
+        <Text style={{margin:5}}>세부정보</Text>
+        <Text style={{margin:5}}>></Text>
+      </TouchableOpacity>
+    )
+    }  
+  else if(this.state.sellbuy === 0){
+    return(
+      <TouchableOpacity style={styles.button} onPress={()=>this.SetConModalShown(true)}>
+        <Text style={{margin:5}}>편의시설</Text>
+        <Text style={{margin:5}}>></Text>
+      </TouchableOpacity>
+    )  
   }
 }
 SecondSection=()=>{
@@ -99,6 +125,69 @@ ThirdSection=()=>{
     
   setModalShown(visible) {
     this.setState({modalShown: visible});
+  }
+  SetConModalShown(visible){
+    this.setState({ConmodalShown: visible});
+  }
+  Conmodal=()=>{
+    return(
+      <Modal
+    animationType="fade"
+    transparent={true}
+    visible={this.state.ConmodalShown}
+    onRequestClose={() => {
+      this.SetConModalShown(!this.state.ConmodalShown);
+    }}
+    backdrop={true}
+    >
+    <TouchableWithoutFeedback onPress={()=>{this.SetConModalShown(!this.state.modalShown);}}>
+      <View style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            }}>
+        <TouchableWithoutFeedback>
+          <View style={{justifyContent:'center', alignItems:'center',width: 300, height: 150, borderWidth:1, borderColor:'#a7a7a7', borderRadius:5, backgroundColor:'white'}}>
+            <View style ={{justifyContent:'flex-start', width:300, height:40, backgroundColor: null}}>
+              <Icon style={{margin:10, fontSize:25}} name='ios-arrow-back' onPress={()=>{this.SetConModalShown(!this.state.ConmodalShown);}}/>
+              <Text/>
+              <Text/>
+            </View>
+            <View style={{flex:1, flexDirection:'row'}}>
+              <TouchableOpacity style={{height:50,width:50,borderRadius:100,justifyContent:'center',alignItems:'center', backgroundColor:'#fd6059'}}>
+                <Icon name='md-restaurant'/>
+                <Text>
+                  음식점
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{height:50,width:50,borderRadius:100,justifyContent:'center',alignItems:'center', backgroundColor:'#FBAF5B'}}>
+                <Icon name='ios-cafe'/>
+                <Text>
+                  카페
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{height:50,width:50,borderRadius:100,justifyContent:'center',alignItems:'center', backgroundColor:'#7BDB84'}}>
+                <Icon name='md-basket'/>
+                <Text>
+                  편의점
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{height:50,width:50,borderRadius:100,justifyContent:'center',alignItems:'center', backgroundColor:'#E3F95D'}}>
+                <Icon name='ios-medkit'/>
+                <Text>
+                  병원
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </TouchableWithoutFeedback>
+
+  </Modal>
+    )
   }
   Settingmodal=()=>{
     return <Modal
@@ -204,13 +293,14 @@ ThirdSection=()=>{
             <TouchableOpacity style={styles.button} onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
               this.setState({category: '방 구하기'});
+              this.sellbuyClicked(0);
             }}> 
             <Text style={{color:'#004aff'}}>방 구하기</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
               this.setState({category: '방 내놓기'});
-
+              this.sellbuyClicked(1);
             }}> 
               <Text style={{color:'#004aff'}}>방 내놓기</Text>
             </TouchableOpacity>
@@ -240,6 +330,7 @@ ThirdSection=()=>{
                 </Header>
                 {this.showmodal()}
                 {this.Settingmodal()}
+                {this.Conmodal()}
                 <View style={{alignItems:'center'}}>
                   <View style={styles.iteminformation}>
                     <Icon name='ios-camera' style={{margin:10, fontSize: 100}} />
@@ -252,10 +343,7 @@ ThirdSection=()=>{
                     <Text style={{margin:5}}>{this.state.category}</Text>
                     <Text style={{margin:5}}>></Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.button} onPress={()=>this.setModalShown(true)}>
-                    <Text style={{margin:5}}>세부정보</Text>
-                    <Text style={{margin:5}}>></Text>
-                  </TouchableOpacity>
+                  {this.DetailSection()}
                   <TextInput
                     style={styles.button}  
                     placeholder="제목" onChangeText={(title) => this.setState({title})} value={this.state.title}>  

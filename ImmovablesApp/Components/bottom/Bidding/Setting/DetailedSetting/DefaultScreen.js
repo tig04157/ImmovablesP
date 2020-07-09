@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import {TextInput,TouchableOpacity, View, Text, StyleSheet} from 'react-native';
-import {Container, Icon} from 'native-base';
+import {TextInput,TouchableOpacity, View, Text, StyleSheet, Modal} from 'react-native';
+import {Container, Icon,Header} from 'native-base';
 
 export default class DefaultScreen extends PureComponent {
   constructor(props) {
@@ -10,8 +10,14 @@ export default class DefaultScreen extends PureComponent {
         manaId : 0,
         parkId : 0,
         moveId : 0,
-        ch1:0
+        ch1:0,
+        priceshown: false,
+        heightshown: false,
+        sizwshown: false
     };
+  }
+  SetPriceModalVisible(visible) {
+    this.setState({priceshown: visible});
   }
   chrent = (id) => {
     this.setState({rentId: id});
@@ -25,16 +31,49 @@ export default class DefaultScreen extends PureComponent {
   chmove = (id) => {
     this.setState({moveId: id});
   };
-
+  PriceModal=()=>{
+    return(
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={this.state.priceshown}
+        onRequestClose={() => {
+        this.SetPriceModalVisible(!this.state.priceshown);
+    }}
+    backdrop={true}
+    >
+      <View style={{flex:1}}>
+        <Header style ={{justifyContent:'space-between'}}>
+          <Icon name='ios-arrow-back' onPress={()=>{this.SetPriceModalVisible(!this.state.priceshown);}}/>
+          <Text>가격</Text>
+          <Text/>
+        </Header>
+        <View style={{flexDirection:'column', alignItems:'center'}}>
+          <Text>
+            가격을 입력하세요.
+          </Text>
+          <Text>보증금(전세금)</Text>
+          <TextInput style={{color:'#000', width:'90%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center'}} placeholder='예)10 -> 10만원' placeholderTextColor='#000'/>
+        </View>
+        <View style={{flexDirection:'column', alignItems:'center'}}>
+          <Text>월세</Text>
+          <TextInput style={{color:'#000', width:'90%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center'}} placeholder='예)10 -> 10만원' placeholderTextColor='#000'/>
+        </View>
+      </View>
+      </Modal>
+    )
+  }
   render() {{this.setState.ch1=1}
     return (
         <Container style={styles.container}>
+          {this.PriceModal()}
           <View style={{ margin:3, width:'90%', height:'80%', borderWidth:0.5, borderRadius:5, alignItems:'center'}}>
             <View style={{width:'90%', borderBottomWidth:0.5}}>
               <Text style={{margin:15, fontSize: 15 }}>가장 중요한 정보이므로 정확히 입력하세요.</Text>
             </View>
             <View style={{width:'90%',height:'8%', justifyContent:'center', borderBottomWidth:0.5}}>
-              <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+              <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}
+                onPress={()=>this.SetPriceModalVisible(true)}>
                 <Text>가격</Text>
                 <View style={{ flexDirection:'row', alignItems:'center'}}>
                   <Text>입력하세요</Text>

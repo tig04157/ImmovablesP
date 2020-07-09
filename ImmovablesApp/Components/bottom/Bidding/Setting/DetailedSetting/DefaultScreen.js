@@ -12,34 +12,80 @@ export default class DefaultScreen extends PureComponent {
         parkId : 0,
         moveId : 0,
         ch1:0,
-        priceshown: false,
+        MPriceshown: false,
+        Priceshown: false,
         heightshown: false,
         sizeshwon: false,
         typeshown: false,
         typebutton: 3,
         typeresult:'',
-        priceresult1:'',
-        priceresult2:'',
+        Priceresult:'',
+        MPriceresult1:'',
+        MPriceresult2:'',
         heightresult:'',
         sizeresult:'',
         
     };
   }
-  priceresulthandle1 = (text) => {
+  MPricebutton(){
+    if(this.state.typeresult==='매매'){
+      return(
+        <View style={{width:'90%',height:'8%', justifyContent:'center', borderBottomWidth:0.5}}>
+          <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}
+            onPress={()=>{
+              this.SetPriceModalVisible(true);
+              this.setState({Priceresult:''});
+            }}>
+            <Text>가격</Text>
+            <View style={{width:90, flexDirection:'row', alignItems:'center', justifyContent: 'space-between'}}>
+              <Text>{this.state.Priceresult===''?'입력하세요':'매매'+this.state.Priceresult+'만 원'}</Text>
+              <Icon name='ios-arrow-forward'/>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    else if(this.state.typeresult==='전.월세'){
+      return(
+        <View style={{width:'90%',height:'8%', justifyContent:'center', borderBottomWidth:0.5}}>
+          <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}
+            onPress={()=>{
+              this.SetMPriceModalVisible(true);
+              this.setState({MPriceresult1:'', MPriceresult2:''});
+            }}>
+            <Text>가격</Text>
+            <View style={{width:90, flexDirection:'row', alignItems:'center', justifyContent: 'space-between'}}>
+              <Text>{this.state.MPriceresult2===''?this.state.MPriceresult1===''?'입력하세요':'전세'+this.state.MPriceresult1+'만 원':this.state.MPriceresult1==='입력하세요'?'':'월세'+this.state.MPriceresult1+'만 원 / '+this.state.MPriceresult2+'만 원'}</Text>
+              <Icon name='ios-arrow-forward'/>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
+  Priceresulthandle = (text) => {
     if (/^\d+$/.test(text)) {
-      this.setState({priceresult1: text});
+      this.setState({Priceresult: text});
     }
   };
-  priceresulthandle2 = (text) => {
+  MPriceresulthandle1 = (text) => {
     if (/^\d+$/.test(text)) {
-      this.setState({priceresult2: text});
+      this.setState({MPriceresult1: text});
+    }
+  };
+  MPriceresulthandle2 = (text) => {
+    if (/^\d+$/.test(text)) {
+      this.setState({MPriceresult2: text});
     }
   };
   Settypebuttonon = (type) => {
     this.setState({typebutton: type});
   };
-  SetPriceModalVisible(visible) {
-    this.setState({priceshown: visible});
+  SetPriceModalVisible(visible){
+    this.setState({Priceshown: visible});
+  }
+  SetMPriceModalVisible(visible) {
+    this.setState({MPriceshown: visible});
   };
   SetTypeModalVisible(visible){
     this.setState({typeshown:visible});
@@ -199,15 +245,57 @@ export default class DefaultScreen extends PureComponent {
       <Modal
         animationType="fade"
         transparent={false}
-        visible={this.state.priceshown}
+        visible={this.state.Priceshown}
         onRequestClose={() => {
-        this.SetPriceModalVisible(!this.state.priceshown);
+        this.SetPriceModalVisible(!this.state.Priceshown);
+      }}
+      backdrop={true}>
+        <View style={{flex:1}}>
+          <Header style ={{justifyContent:'space-between', width:'100%'}}>
+            <Icon name='ios-arrow-back' onPress={()=>{this.SetPriceModalVisible(!this.state.Priceshown);}}/>
+            <Text>가격</Text>
+            <Text/>
+          </Header>
+          <View style={{flexDirection:'column', alignItems:'center', height:'80%'}}>
+            <View  style={{justifyContent: 'center',alignItems:'center',height:'10%'}}>
+              <Text>가격을 입력하세요.</Text>
+            </View>
+            <View style={{flexDirection:'row'}}>
+              <Text style={{fontSize:15}}>매매금</Text><Text style={{fontSize:15, color:'#BEBEBE'}}> 만원</Text>
+            </View>
+              <TextInput
+                keyboardType='numeric'
+                onChangeText={this.Priceresulthandle}
+                style={{color:'#000', width:'90%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center'}}
+                placeholder='0'/>
+          </View>
+            <View style={{alignItems:'center', justifyContent:'center', width:'100%'}}>
+              <TouchableOpacity
+                onPress={()=>{
+                  this.SetPriceModalVisible(!this.state.Priceshown);
+                }}
+                style={{color:'#000', width:'90%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center', backgroundColor:"#004aff"}}>
+                <Text>입력</Text>
+              </TouchableOpacity>
+            </View>
+        </View>
+      </Modal>
+    );
+  }
+  MPriceModal=()=>{
+    return(
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={this.state.MPriceshown}
+        onRequestClose={() => {
+        this.SetMPriceModalVisible(!this.state.MPriceshown);
     }}
     backdrop={true}
     >
       <View style={{flex:1}}>
         <Header style ={{justifyContent:'space-between', width:'100%'}}>
-          <Icon name='ios-arrow-back' onPress={()=>{this.SetPriceModalVisible(!this.state.priceshown);}}/>
+          <Icon name='ios-arrow-back' onPress={()=>{this.SetMPriceModalVisible(!this.state.MPriceshown);}}/>
           <Text>가격</Text>
           <Text/>
         </Header>
@@ -221,7 +309,7 @@ export default class DefaultScreen extends PureComponent {
             </View>
             <TextInput
               keyboardType='numeric'
-              onChangeText={this.priceresulthandle1}
+              onChangeText={this.MPriceresulthandle1}
               style={{color:'#000', width:'100%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center'}}
               placeholder='0'/>
           </View>
@@ -235,7 +323,7 @@ export default class DefaultScreen extends PureComponent {
             </View>
             <TextInput 
             keyboardType='numeric'
-            onChangeText={this.priceresulthandle2}
+            onChangeText={this.MPriceresulthandle2}
             style={{color:'#000', width:'100%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center'}}
             placeholder='0'/>
           </View>
@@ -243,7 +331,7 @@ export default class DefaultScreen extends PureComponent {
         <View style={{alignItems:'center', justifyContent:'center', width:'100%'}}>
           <TouchableOpacity
             onPress={()=>{
-              this.SetPriceModalVisible(!this.state.priceshown);
+              this.SetMPriceModalVisible(!this.state.MPriceshown);
             }}
             style={{color:'#000', width:'90%', height:40, borderWidth:0.5, borderRadius:5, justifyContent:'center', alignItems:'center', backgroundColor:"#004aff"}}>
             <Text>입력</Text>
@@ -257,6 +345,7 @@ export default class DefaultScreen extends PureComponent {
     return (
         <Container style={styles.container}>
           {this.PriceModal()}
+          {this.MPriceModal()}
           {this.TypeModal()}
           {this.HeightModal()}
           {this.SizeModal()}
@@ -275,19 +364,8 @@ export default class DefaultScreen extends PureComponent {
                 </View>
               </TouchableOpacity>
             </View>
-            <View style={{width:'90%',height:'8%', justifyContent:'center', borderBottomWidth:0.5}}>
-              <TouchableOpacity style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}
-                onPress={()=>{
-                  this.SetPriceModalVisible(true);
-                  this.setState({priceresult1:'', priceresult2:''});
-                }}>
-                <Text>가격</Text>
-                <View style={{width:90, flexDirection:'row', alignItems:'center', justifyContent: 'space-between'}}>
-                <Text>{this.state.priceresult2===''?this.state.priceresult1===''?'입력하세요':'전세'+this.state.priceresult1+'만 원':this.state.priceresult1==='입력하세요'?'':'월세'+this.state.priceresult1+'만 원 / '+this.state.priceresult2+'만 원'}</Text>
-                  <Icon name='ios-arrow-forward'/>
-                </View>
-              </TouchableOpacity>
-            </View>
+              
+              {this.MPricebutton()}
             <View style={{width:'90%', height:'8%', justifyContent:'center', borderBottomWidth:0.5}}>
               <TouchableOpacity 
                 onPress={()=>{

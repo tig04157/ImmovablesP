@@ -7,11 +7,27 @@ export default class DescScreen extends PureComponent {
     super(props);
     this.state = {
       num:0,
+      buttonoff:false,
     };
   }
   ckonbutton=(cknum)=>{
     this.setState({num:cknum});
   };
+  setckonbutton(visible){
+    this.setState({buttonoff:visible})
+  }
+  botchk=()=>{
+    switch(this.state.num){
+      case 1:
+        return(
+          <TouchableOpacity 
+            onPress={()=>this.ckonbutton(0)}
+            style={{width:50, height:25, backgroundColor:'#004aff', alignItems:'center', justifyContent:'center'}}>
+            <Text style={{color:'white'}}>음식점 x</Text> 
+          </TouchableOpacity>
+        );
+    }
+  }
   render() {
     return (
         <Container style={styles.container}>
@@ -26,7 +42,9 @@ export default class DescScreen extends PureComponent {
                 </View>
                 <View style={{justifyContent:'space-between', height:'11%', width:'90%', alignItems:'flex-end', flexDirection:'row'}}>
                   <TouchableOpacity 
-                    onPress={()=>this.ckonbutton(1)}
+                    onPress={()=>{
+                      this.ckonbutton(1);
+                      this.botchk(1);}}
                     style={this.state.num===1? styles.onbutton : styles.offbutton}>
                     <Icon name='md-restaurant'/>
                     <Text>
@@ -34,7 +52,9 @@ export default class DescScreen extends PureComponent {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity 
-                    onPress={()=>this.ckonbutton(2)}
+                    onPress={()=>{
+                      this.ckonbutton(2);
+                      this.botchk(2);}}
                     style={this.state.num===2? styles.onbutton : styles.offbutton}>
                     <Icon name='ios-cafe'/>
                     <Text>
@@ -42,7 +62,9 @@ export default class DescScreen extends PureComponent {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity 
-                    onPress={()=>this.ckonbutton(3)}
+                    onPress={()=>{
+                      this.ckonbutton(3);
+                      this.botchk(3);}}
                     style={this.state.num===3? styles.onbutton : styles.offbutton}>
                     <Icon name='md-basket'/>
                     <Text>
@@ -52,7 +74,9 @@ export default class DescScreen extends PureComponent {
                 </View>
                 <View style={{justifyContent:'flex-start', height:'27%', width:'90%', alignItems:'flex-end', flexDirection:'row'}}>
                 <TouchableOpacity 
-                  onPress={()=>this.ckonbutton(4)}
+                  onPress={()=>{
+                    this.ckonbutton(4);
+                    this.botchk(4);}}
                   style={this.state.num===4? styles.onbutton : styles.offbutton}>
                     <Icon name='ios-medkit'/>
                     <Text>
@@ -62,7 +86,7 @@ export default class DescScreen extends PureComponent {
                 </View>
               </View>
               <View style={{height:'30%',width:'100%', justifyContent: 'flex-end', alignItems:'center'}}>
-                <Text>dsf</Text>
+                {this.botchk()}
               </View>
             </View>
         </Container>

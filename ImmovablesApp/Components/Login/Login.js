@@ -40,7 +40,6 @@ export default class Login extends Component {
           this.setState({id:''})
           this.setState({pw:''})
           this.props.navigation.replace('next')
-
         }
         else if(response.data.values=="중복아님"){
           alert('아이디 혹은 비밀번호가 다릅니다.');

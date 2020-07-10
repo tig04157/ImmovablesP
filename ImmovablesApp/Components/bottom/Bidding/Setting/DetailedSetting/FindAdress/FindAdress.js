@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native
 import { Container, Header, Icon  } from 'native-base';
 import Modal from "react-native-modal";
 import DetailAdress from './DetailAdress'
+import Dofind from './CityFind/DoFind'
 class FindAdress extends Component {
   constructor(props) {
     super(props);
@@ -11,14 +12,14 @@ class FindAdress extends Component {
     };
   }
 
-  toggle() {
+  Dotoggle() {
     this.setState({isModalVisible:!this.state.isModalVisible});
   }
   render() {
     return (
       <Container style={styles.container}>
-          <Modal isModalVisible={this.state.isModalVisible}>
-            <DetailAdress toggle={()=>this.toggle()}/>
+          <Modal isVisible={this.state.isModalVisible}>
+            <Dofind Dotoggle={()=>this.Dotoggle()}/>
           </Modal>
           <Header style ={{justifyContent:'space-between', alignItems:'center'}}> 
             <Icon name='ios-arrow-back' onPress={()=>{this.props.toggle()}}/>
@@ -31,7 +32,9 @@ class FindAdress extends Component {
             </View>
             <View style={{height:'50%'}}>
                 <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', height:'25%'}}>
-                    <TouchableOpacity style={styles.bottombutton}>
+                    <TouchableOpacity 
+                      onPress={()=>{this.Dotoggle()}}
+                      style={styles.bottombutton}>
                         <Text>시/도 선택</Text>
                         <Icon name='ios-arrow-forward'/>
                     </TouchableOpacity>

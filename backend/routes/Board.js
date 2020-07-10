@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 // 본문 읽어 오기
 router.get('/getPost', function(req, res, next) {
     console.log(2);
-    conn.query('SELECT * FROM wishInfo', function(err, row) {
+    conn.query('SELECT * FROM imformation', function(err, row) {
         res.send(row);        
     });
 });

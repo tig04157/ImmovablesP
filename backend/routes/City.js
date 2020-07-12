@@ -13,7 +13,10 @@ router.get('/', function(req, res, next) {
 router.get('/getCity', function(req, res, next) {
     console.log(3);
     conn.query('SELECT * FROM city', function(err, row) {
-        res.send(row);        
+        console.log(3);
+        res.send(row);  
+        
+        alert(row);
     });
 });
 

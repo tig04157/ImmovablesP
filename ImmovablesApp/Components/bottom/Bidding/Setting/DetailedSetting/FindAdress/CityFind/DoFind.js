@@ -38,37 +38,17 @@ export default class DoFind extends Component {
           })
     }
     renderSection() {  
-        if(this.state.DBdata != null){
+        if(this.state.DBdata != null && this.state.loading==false){
             return (
-
-              console.log(this.state.DBdata)
-
-
-              //this.state.DBdata.map((feed, index) => (
-                // <RowCardComponent data={ feed } key={index} ckname={(a)=>this.setnum(a)}/>
-                
-
-
-
-                /*
-                <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center',}}>
-                  <View style={{flexDirection:'row',}}>
-                  <Text style={{backgroundColor:'red'}}>{feed.name==='서울시' ? '서울시': null}</Text>
-                  <Text style={{backgroundColor:'red'}}>{feed.name==='경기도' ? feed.name : null}</Text>
-                  </View>
-                  <View style={{flexDirection:'column',}}>
-
-                  <Text style={{backgroundColor:'red'}}>{feed.name==='대구시' ? feed.name : null}</Text>
-                  <Text style={{backgroundColor:'red'}}>{feed.name==='세종시' ? feed.name : null}</Text>
-                  </View>
-                  <Text style={{backgroundColor:'red'}}>{feed.name==='충청북도' ? feed.name : null}</Text>
-                
+              
+              this.state.DBdata.map((feed, index) => (
+                <View style={{flexDirection:'row'}}>
+                  <Text style={{flexDirection:'row'}}>{feed.name}</Text>
                 </View>
-                */
-              //))
+              ))
             )
           }
-        else{
+        else if(this.state.DBdata == null && this.state.loading==false){
           return(
             <Text>로딩에 실패하였습니다.</Text>
           )

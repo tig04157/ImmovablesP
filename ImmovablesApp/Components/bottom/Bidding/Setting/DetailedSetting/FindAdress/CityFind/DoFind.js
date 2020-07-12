@@ -40,8 +40,17 @@ export default class DoFind extends Component {
     renderSection() {  
         if(this.state.DBdata != null){
             return (
-              this.state.DBdata.map((feed, index) => (
+
+              console.log(this.state.DBdata)
+
+
+              //this.state.DBdata.map((feed, index) => (
                 // <RowCardComponent data={ feed } key={index} ckname={(a)=>this.setnum(a)}/>
+                
+
+
+
+                /*
                 <View style={{flexDirection:'column', justifyContent: 'center', alignItems:'center',}}>
                   <View style={{flexDirection:'row',}}>
                   <Text style={{backgroundColor:'red'}}>{feed.name==='서울시' ? '서울시': null}</Text>
@@ -55,7 +64,8 @@ export default class DoFind extends Component {
                   <Text style={{backgroundColor:'red'}}>{feed.name==='충청북도' ? feed.name : null}</Text>
                 
                 </View>
-              ))
+                */
+              //))
             )
           }
         else{

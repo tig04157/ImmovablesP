@@ -15,8 +15,6 @@ router.get('/getCity', function(req, res, next) {
     conn.query('SELECT * FROM city', function(err, row) {
         console.log(3);
         res.send(row);  
-        
-        alert(row);
     });
 });
 

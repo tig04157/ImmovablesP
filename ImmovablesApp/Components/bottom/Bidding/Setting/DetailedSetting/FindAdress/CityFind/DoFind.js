@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,Dimensions, TouchableOpacity, TextInput} from 'react-native';
 import { Container, Header, Icon  } from 'native-base';
+import { FlatGrid } from 'react-native-super-grid';
 import RowCardComponent  from '../../../../CityRowCardComponent'; 
 import http from "../../../../../../../http-common"
 
@@ -15,8 +16,8 @@ export default class DoFind extends Component {
             isModalVisible: false,
             loading:true,
             DBdata:null,
-            city:''
-
+            city:'',
+            cityArr:[]
         };
       }
     componentDidMount(){
@@ -39,13 +40,22 @@ export default class DoFind extends Component {
     }
     renderSection() {  
         if(this.state.DBdata != null && this.state.loading==false){
-            return (
-              
               this.state.DBdata.map((feed, index) => (
-                <View style={{flexDirection:'row'}}>
-                  <Text style={{flexDirection:'row'}}>{feed.name}</Text>
-                </View>
-              ))
+                this.state.cityArr.push({name:feed.name})
+            ))
+            console.log(this.state.cityArr)
+            return (
+              <FlatGrid
+                itemDimension={100}
+                data={this.state.cityArr}
+                style={styles.grideView}
+                spacing={0}
+                renderItem={({item})=>(
+                  <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                    <Text style={styles.itemName}>{item.name}</Text>
+                  </View>
+                )}              
+              />
             )
           }
         else if(this.state.DBdata == null && this.state.loading==false){
@@ -65,11 +75,9 @@ export default class DoFind extends Component {
                 <Text>시/도 선택</Text>
                 <Text/>
                 </Header>
-                <View >
-                  <View style={{flexDirection:'column'}}>
-                    {this.renderSection()}
-                    <Text>ff</Text>
-                  </View>
+                <View >                  
+                  {this.renderSection()}
+                  <Text>ff</Text>
                 </View>
 
             </Container>
@@ -81,5 +89,26 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         
+    },
+    gridView: {
+      marginTop: 0,
+      marginBottom: 50,
+      flex: 1,
+    },
+    itemContainer: {
+      justifyContent: 'flex-end',
+      borderRadius: 5,
+      padding: 10,
+      height: 150,
+    },
+    itemName: {
+      fontSize: 16,
+      color: 'black',
+      fontWeight: '600',
+    },
+    itemCode: {
+      fontWeight: '600',
+      fontSize: 12,
+      color: '#fff',
     },
 });

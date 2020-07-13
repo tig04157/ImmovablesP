@@ -43,7 +43,6 @@ export default class DoFind extends Component {
               this.state.DBdata.map((feed, index) => (
                 this.state.cityArr.push({name:feed.name})
             ))
-            console.log(this.state.cityArr)
             return (
               <FlatGrid
                 itemDimension={100}

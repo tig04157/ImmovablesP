@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, AsyncStorage} from 'react-native';
 import { Container, Header, Icon  } from 'native-base';
 import Modal from "react-native-modal";
 import DetailAdress from './DetailAdress'
 import Dofind from './CityFind/DoFind'
+import Gunfind from './CityFind/GunFind'
 class FindAdress extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        isModalVisible: false
+        isGunVisible: false,
+        isModalVisible: false,
+        DoNum:''
     };
   }
-
+  Doshow(){
+    AsyncStorage.getItem('Doch').then(value =>
+      this.setState({ getValue: value }),
+      );
+  }
   Dotoggle() {
     this.setState({isModalVisible:!this.state.isModalVisible});
+
   }
+  Guntoggle(){
+    this.setState({isGunVisible:!this.state.isGunVisible});
+  }
+  
   render() {
     return (
       <Container style={styles.container}>
           <Modal isVisible={this.state.isModalVisible}>
-            <Dofind Dotoggle={()=>this.Dotoggle()}/>
+            <Dofind Dotoggle={()=>this.Dotoggle()} Doshow={()=>this.Doshow()} />
+          </Modal>
+          <Modal isVisible={this.state.isGunVisible}>
+            <Gunfind Guntoggle={()=>this.Guntoggle()} Gun={()=>this.Doshow()} />
           </Modal>
           <Header style ={{justifyContent:'space-between', alignItems:'center'}}> 
             <Icon name='ios-arrow-back' onPress={()=>{this.props.toggle()}}/>
@@ -33,12 +48,14 @@ class FindAdress extends Component {
             <View style={{height:'50%'}}>
                 <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', height:'25%'}}>
                     <TouchableOpacity 
-                      onPress={()=>{this.Dotoggle()}}
+                      onPress={()=>{this.Dotoggle();}}
                       style={styles.bottombutton}>
                         <Text>시/도 선택</Text>
                         <Icon name='ios-arrow-forward'/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.bottombutton}>
+                    <TouchableOpacity 
+                      onPress={()=>{this.Guntoggle();}}
+                      style={styles.bottombutton}>
                         <Text>시/군/구 선택</Text>
                         <Icon name='ios-arrow-forward'/>
                     </TouchableOpacity>

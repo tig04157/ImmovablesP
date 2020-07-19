@@ -11,6 +11,7 @@ export default class mymap extends Component {
   constructor(props){
     super(props)
     this.state={
+      temp:0,
       region: new AnimatedRegion({
         latitude: 37.5647673,
         longitude: 126.7086819,
@@ -92,9 +93,12 @@ export default class mymap extends Component {
               }
               
             </MapView>
-
+            
             
           </View> 
+          <View style={{marginLeft:10}}>
+            <Text>{this.state.temp}</Text>
+          </View>
       </Container>
     );
   }

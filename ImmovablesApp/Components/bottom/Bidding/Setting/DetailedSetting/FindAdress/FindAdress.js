@@ -11,12 +11,14 @@ class FindAdress extends Component {
     this.state = {
         isGunVisible: false,
         isModalVisible: false,
-        DoNum:''
+        DoNum:'',
+        CityName:'시/도 선택'
     };
   }
   Doshow(){
     AsyncStorage.getItem('Doch').then(value =>
-      this.setState({ getValue: value }),
+      this.setState({ getValue: value, CityName:value }),
+      
       );
   }
   Dotoggle() {
@@ -50,7 +52,7 @@ class FindAdress extends Component {
                     <TouchableOpacity 
                       onPress={()=>{this.Dotoggle();}}
                       style={styles.bottombutton}>
-                        <Text>시/도 선택</Text>
+                        <Text>{this.state.CityName}</Text>
                         <Icon name='ios-arrow-forward'/>
                     </TouchableOpacity>
                     <TouchableOpacity 

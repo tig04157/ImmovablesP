@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-// 본문 읽어 오기
+// 시/도 읽어 오기
 router.get('/getCity', function(req, res, next) {
     console.log(3);
     conn.query('SELECT * FROM city', function(err, row) {
@@ -17,5 +17,12 @@ router.get('/getCity', function(req, res, next) {
         res.send(row);  
     });
 });
-
+// 시/군/구읽어오기
+router.get('/getGunCity', function(req, res, next) {
+    console.log(4);
+    conn.query('SELECT * FROM contry', function(err, row) {
+        console.log(3);
+        res.send(row);  
+    });
+});
 module.exports = router;

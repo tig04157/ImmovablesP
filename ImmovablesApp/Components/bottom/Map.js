@@ -30,6 +30,7 @@ export default class mymap extends Component {
       loading: true
     }
   }
+
   componentDidMount(){
     this.getDB()
     setTimeout(()=>{
@@ -62,8 +63,7 @@ export default class mymap extends Component {
             coordinate={{latitude: 37.5647673, longitude: 126.7086819}}
             title= {this.state.cityData[0].name}
             description='gg'
-          />  
-                
+          />     
       )    
   }
 
@@ -71,29 +71,26 @@ export default class mymap extends Component {
     this.setState({ region });
   }
   
-
   render() {
     return (
       <Container style={styles.container}>
         <Header style={styles.header}><Text>지도</Text></Header>
           <View style={styles.container}>
           <MapView
-              initialRegion={{
-                latitude: 35.2,
-                longitude: 127.8,
-                latitudeDelta: 6.5,
-                longitudeDelta: 3.6,
-              }}
-              minZoomLevel={7.1}
-              style={styles.mapStyle}
-              >
+            initialRegion={{
+              latitude: 35.2,
+              longitude: 127.8,
+              latitudeDelta: 6.5,
+              longitudeDelta: 3.6,
+            }}
+            minZoomLevel={7.1}
+            style={styles.mapStyle}
+          >
+            {
+              this.state.loading === false? this.makingMarker() : null            
+            }
               
-              {
-                this.state.loading === false? this.makingMarker() : null            
-              }
-              
-            </MapView>
-            
+          </MapView>
             
           </View> 
           <View style={{marginLeft:10}}>

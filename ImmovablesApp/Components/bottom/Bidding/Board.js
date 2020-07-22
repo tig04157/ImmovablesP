@@ -19,6 +19,7 @@ export default class Board extends Component {
     this.state = {
       DBdata: null,
       activeIndex: 0,
+      activeIndex2: 3,
       loading: true,
       searchInfo: '',
       isModalVisible: false
@@ -46,6 +47,11 @@ export default class Board extends Component {
     this.renderSection()
   }
 
+  segmentClicked2 = (activeIndex2)=>{
+    this.setState({activeIndex2});
+    this.renderSection()
+  }
+
   getDB(){
     http.get(`/board/getPost`)
       .then(response => {
@@ -67,10 +73,26 @@ export default class Board extends Component {
         )            
       }
       else if(this.state.activeIndex === 1){
-        return (            
-          this.state.DBdata.map((feed, index) => (
-            <RowCardComponent data={ feed } key={index}/>
-          ))
+        return (   
+          <View>    
+            <View style={styles.category}>
+              <TouchableOpacity style={[ this.state.activeIndex === 0 ? {height:40,borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
+                onPress={() => this.segmentClicked2(3)}
+                active={this.state.activeIndex2 === 3}>
+                <Text style={[ this.state.activeIndex2 === 3 ? {} : {color: 'grey'} ]}>중개를 원해요!</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[ this.state.activeIndex === 1 ? {height:40, borderBottomWidth:2} :{height:40}], { padding: 15, backgroundColor:'string', flexDirection: 'row'}}
+                onPress={() => this.segmentClicked2(4)}
+                active={this.state.activeIndex2 === 4}>
+                <Text style={ [ this.state.activeIndex2 === 4 ? {} : {color: 'grey'} ]}>거래를 원해요!</Text>
+              </TouchableOpacity>
+          </View> 
+            {
+            this.state.DBdata.map((feed, index) => (
+              <RowCardComponent data={ feed } key={index}/>
+            ))
+            }
+          </View>  
         )
       }
     }else{

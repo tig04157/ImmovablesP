@@ -18,6 +18,7 @@ export default class Board extends Component {
     super(props);      
     this.state = {
       DBdata: null,
+      DBdata2: null,
       activeIndex: 0,
       activeIndex2: 3,
       loading: true,
@@ -56,6 +57,17 @@ export default class Board extends Component {
     http.get(`/board/getPost`)
       .then(response => {
         this.state.DBdata = response.data
+        this.renderSection()
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  getDB2(){
+    http.get(`/board/getPost2`)
+      .then(response => {
+        this.state.DBdata2 = response.data
         this.renderSection()
       })
       .catch(error => {

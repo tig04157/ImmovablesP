@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 // 본문 읽어 오기
 router.get('/getPost', function(req, res, next) {
     console.log(2);
-    conn.query('SELECT * FROM wishinfo WHARE att = 1', function(err, row) {
+    conn.query('SELECT * FROM wishinfo WHERE att = 1', function(err, row) {
         res.send(row);        
     });
 });
@@ -21,7 +21,7 @@ router.get('/getPost', function(req, res, next) {
 // 본문 읽어 오기
 router.get('/getPost2', function(req, res, next) {
     console.log(2);
-    conn.query('SELECT * FROM wishinfo WHARE att = 2', function(err, row) {
+    conn.query('SELECT * FROM wishinfo WHERE att = 2', function(err, row) {
         res.send(row);        
     });
 });

@@ -4,10 +4,22 @@ import {touchablehilight,TouchableWithoutFeedback,TouchableOpacity,TextInput, St
 import { Icon, Container, Header, Button, CheckBox, } from 'native-base'; 
 import Setting from './Setting/Setting'
 import SettingInfo from './Setting/Setting'
+import * as ImagePicker from 'expo-image-picker'
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH );
 const ITEM_WIDTH1 = Math.round(SLIDER_WIDTH);
+
+let openImage = async () =>{
+  let permission = await ImagePicker.requestCameraRollPermissionsAsync();
+
+  if(permission.granted == false){
+    return;
+  }
+  let picker = await ImagePicker.launchImageLibraryAsync()
+
+  console.log(picker)
+}
 
 export default class WriteModal extends Component {
 
@@ -314,7 +326,7 @@ ThirdSection=()=>{
   updateText = () => {
     this.setState({myText: 'My Changed Text'})
  }
- 
+
   render() {
       return (
               <Container style={styles.container}>
@@ -353,10 +365,12 @@ ThirdSection=()=>{
                       style={styles.mcontent} placeholder="게시글을 작성해주세요." >
                       
                     </TextInput>
-                    <View style={styles.bottomimage}>
-                      <Icon name='md-image' style={{margin:5, color:'#004aff'}}/>
-                      <Text style={{margin:5, color:'#004aff'}}>사진 추가하기</Text>
-                    </View>
+                      <TouchableOpacity style={styles.bottomimage} onPress={openImage}>
+                        <View style={{flexDirection:'row'}}>
+                          <Icon name='md-image' style={{margin:5, color:'#004aff'}}/>
+                          <Text style={{margin:5, color:'#004aff'}}>사진 추가하기</Text>
+                        </View>
+                      </TouchableOpacity>
                   </View> 
                   <View style={{flexDirection:'row'}}>
                     <TouchableOpacity style={styles.bottombutton} onPress={this.props.toggle}> 

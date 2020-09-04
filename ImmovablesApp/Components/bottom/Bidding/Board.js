@@ -202,7 +202,7 @@ export default class Board extends Component {
           </View> 
           <ScrollView>                                             
           {                               
-            this.renderSection() 
+            // this.renderSection() 
           }
           </ScrollView>
         </Container>

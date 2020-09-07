@@ -1,25 +1,36 @@
 
 import React, { Component } from 'react';
-import {touchablehilight,TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
+import {Image,touchablehilight,TouchableWithoutFeedback,TouchableOpacity,TextInput, StyleSheet, Text, View, Dimensions, Modal, TouchableHighlight, ScrollView} from 'react-native';
 import { Icon, Container, Header, Button, CheckBox, } from 'native-base'; 
 import Setting from './Setting/Setting'
 import SettingInfo from './Setting/Setting'
-import * as ImagePicker from 'expo-image-picker'
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH );
 const ITEM_WIDTH1 = Math.round(SLIDER_WIDTH);
+// const [selectImg, setSelectedImg] = React.useState(null)
+// let openImage = async () =>{
+//   let permission = await ImagePicker.requestCameraRollPermissionsAsync();
 
-let openImage = async () =>{
-  let permission = await ImagePicker.requestCameraRollPermissionsAsync();
+//   if(permission.granted == false){
+//     return;
+//   }
+//   let picker = await ImagePicker.launchImageLibraryAsync()
 
-  if(permission.granted == false){
-    return;
-  }
-  let picker = await ImagePicker.launchImageLibraryAsync()
+//   if(picker.cancelled === true){
+//     return;
 
-  console.log(picker)
-}
+//   }
+//   setSelectedImg({localUri:picker.uri})
+//   console.log(picker)
+// }
+
+//   console.log(picker)
+//   console.log('ㅗㅑㅗㅑ')
+  
+// }
 
 export default class WriteModal extends Component {
 
@@ -36,9 +47,38 @@ export default class WriteModal extends Component {
         activeIndex:1,
         secondIndex:1,
         thirdIndex:1,
-        sellbuy:null
+        sellbuy:null,
+        image: null
       };  
-  } 
+  }
+  componentDidMount() {
+    this.getPermissionAsync();
+  }
+  getPermissionAsync = async () => {
+    if (Platform.OS !== 'web') {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
+  _pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        this.setState({ image: result.uri });
+      }
+
+      console.log(result);
+    } catch (E) {
+      console.log(E);
+    }
+  }; 
 
 sellbuyClicked = (sellbuy) => {
   this.setState({ 
@@ -328,6 +368,7 @@ ThirdSection=()=>{
  }
 
   render() {
+      let { image } = this.state;
       return (
               <Container style={styles.container}>
               <ScrollView>
@@ -345,7 +386,16 @@ ThirdSection=()=>{
                 {this.Conmodal()}
                 <View style={{alignItems:'center'}}>
                   <View style={styles.iteminformation}>
-                    <Icon name='ios-camera' style={{margin:10, fontSize: 100}} />
+                    {/* {
+                      selectImg != null ?
+                      (
+                        <Image
+                        style = {styles.image}
+                        source={{uri:(selectImg.localUri !=null) ? selectImg.localUri :'' }}/>
+                      ) : <Icon name='ios-camera' style={{margin:10, fontSize: 100}} />
+                      
+                    } */}
+                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
                     <View>
                       <Text>매물이름</Text>
                       <Text>가격</Text>
@@ -365,7 +415,7 @@ ThirdSection=()=>{
                       style={styles.mcontent} placeholder="게시글을 작성해주세요." >
                       
                     </TextInput>
-                      <TouchableOpacity style={styles.bottomimage} onPress={openImage}>
+                      <TouchableOpacity style={styles.bottomimage} onPress={this._pickImage} >
                         <View style={{flexDirection:'row'}}>
                           <Icon name='md-image' style={{margin:5, color:'#004aff'}}/>
                           <Text style={{margin:5, color:'#004aff'}}>사진 추가하기</Text>
@@ -387,6 +437,11 @@ ThirdSection=()=>{
       );
   }
 }
+const Buttton = ({ onPress, children }) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
+    <Text style={styles.text}>{children}</Text>
+  </TouchableOpacity>
+);
 const styles = StyleSheet.create({
     container: {
         margin:-20,
@@ -468,5 +523,7 @@ const styles = StyleSheet.create({
       borderColor:'#a7a7a7',   
       backgroundColor:'#004aff'   
     },
+    image: { width: 300, height: 300, backgroundColor: 'gray' },
+
 
 });

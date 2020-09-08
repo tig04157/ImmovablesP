@@ -395,7 +395,8 @@ ThirdSection=()=>{
                       ) : <Icon name='ios-camera' style={{margin:10, fontSize: 100}} />
                       
                     } */}
-                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                    
+                    {image && <Image source={{ uri: image }} style={{ width: 100, height: 100, backgroundColor:'#004aff'  }} />}
                     <View>
                       <Text>매물이름</Text>
                       <Text>가격</Text>
